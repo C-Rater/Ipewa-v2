@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name" translatable="false">Ipewa</string>
+    <string name="txtV_SignIn">Acceder</string>
+    <string name="txtV_User">Nombre de Usuario</string>
+    <string name="txtV_Password">Contraseña</string>
+    <string name="btn_GoogleSign">Acceder con Google+</string>
+    <string name="btn_FBSign">Acceder con Facebook</string>
+    <string name="btn_Remember"><u>Recuerdame</u></string>
+    <string name="btn_SignUp">Registrarme</string>
+    <string name="btn_SignIn">Acceder</string>
+    <string name="txtV_IfSignUP">¿Sin cuenta aún? Registrate</string>
+    <string name="txtV_BienvenidaUsr">Bienvenido, Usuario</string>
+    <string name="action_save">Guardar</string>
+    <string name="listado_tareas">Listado Tareas</string>
+    <string name="Prioridad">Prioridad:</string>
+    <string name="Dificultad">Dificultad:</string>
+    <string name="fechaFin">Fecha Fin:</string>
+    <string name="listado_de_proyectos">Listado de Proyectos</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="name">Nombre</string>
+    <string name="color">Color</string>
+    <string name="deadline">Fecha Limite</string>
+    <string name="sort">Ordenar</string>
+    <string name="sortDifficult">Ordenar por Dificultad</string>
+    <string name="sortPriority">Ordenar por Pioridad</string>
+    <string name="AboutMe">Sobre Mi</string>
+    <string name="subTitleAbout">Alumno del I.E.S Portada Alta</string>
+    <string name="nameAbout" translatable="false">Juan Francisco</string>
+    <string name="briefAbout">AboutMe creado usando la libreria MaterialAbout</string>
+    <string name="pressImg">Pulsa la imagen para abrir el login</string>
+    <string name="createdProject">Proyecto Creado</string>
+    <string name="addName">Añada un Nombre</string>
+    <string name="errorWrongUserPassword">El usuario o la contraseña no son correctas</string>
+    <string name="ErrorEmptyName">El nombre no puede estar vacio.</string>
+    <string name="title_activity_add_task" translatable="false">AddTaskActivity</string>
+    <string name="title_activity_edit_task" translatable="false">EditTaskActivity</string>
+    <string name="btnOK" translatable="false">Ok</string>
+    <string name="btnCancel">Cancelar</string>
+    <string name="action_delete">Borrar</string>
+    <string name="titleDeleteProject">Borrar</string>
+    <string name="messageDeleteProject">¿Borrar este proyecto?</string>
+    <string name="titleDeleteTask">Borrar</string>
+    <string name="txvUser">Usuario</string>
+    <string name="txvPassword">Contraseña</string>
+    <string name="txvEmail">Email</string>
+    <string name="txvName">Nombre</string>
+    <string name="userAlreadyExits">Un usuario con este nombre ya existe</string>
+    <string name="emailError">Correo no valido</string>
+    <string name="tareas">Tareas</string>
+    <string name="Proyecto">Proyecto:</string>
+    <string name="messageDeleteTask">¿Borrar esta tarea?</string>
+    <string name="btnSignIn">Iniciar</string>
+    <string name="userEmptyError">El usuario esta vacio</string>
+    <string name="emailAlreadyExits">Un usuario con este correo ya existe</string>
+    <string name="passwordError">Contraseña no valida</string>
+    <string name="emailEmptyError">Email esta vacio</string>
+    <string name="passwordEmptyError">Contraseña esta vacia</string>
+    <string name="userError">Usuario no valido</string>
+    <string name="pref_description_showUser">Mostrar usuario al inicio</string>
+    <string name="pref_turnoff_showUser">No mostrar</string>
+    <string name="pref_turnon_showUser">Mostrar usuario</string>
+    <string name="pref_title_showUser">Mostrar usuario</string>
+    <string name="title_userName_preference">Nombre de usuario</string>
+    <string name="summary_userName_preference">Nombre del usuario registrado</string>
+    <string name="dialog_title_userName_preference">Nombre de usuario</string>
+    <string name="title_country_preference">Idioma</string>
+    <string name="summary_country_preference">Idioma de la aplicacion</string>
+    <string name="dialog_title_country_preference">Idioma</string>
+    <string name="welcome">Bienvenido,</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="action_settings">Preferencias</string>
+    <string name="pref_category_general">Preferencias</string>
+    <string name="pref_description_nightmode">Modo noche</string>
+    <string name="pref_title_nighmode">Activar modo noche</string>
+    <string name="pref_turnoff_nightmode">Modo noche desactivado</string>
+    <string name="pref_turnon_nightmode">Modo noche activado</string>
+    <string name="pref_aboutme">Sobre mí</string>
+</resources>
