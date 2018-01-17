@@ -27,6 +27,7 @@
         <activity android:name=".ui.pref.PrefferencesActivity" />
         <activity android:name=".ui.project.View.AddProjectActivity" />
         <activity android:name=".ui.project.View.EditProjectActivity" />
+        <activity android:name=".ui.task.TabListTab"/>
         <activity
             android:name=".ui.task.View.AddTaskActivity"
             android:label="@string/title_activity_add_task"

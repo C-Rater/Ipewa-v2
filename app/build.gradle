@@ -28,4 +28,6 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     compile 'com.github.jrvansuita:MaterialAbout:+'
     implementation 'com.github.ivbaranov:materiallettericon:0.2.2'
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
 }

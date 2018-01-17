@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,11 +34,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     private EditText edtUser;
     private EditText edtpassword;
     private TextView txtVIfSignUp;
+    private CheckBox chkB_Remember;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         presenter= new LoginPresenter(this,this);
+        chkB_Remember=findViewById(R.id.chkB_Remember);
+        chkB_Remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+
+                sharedPreferences.setRememberMe(isChecked);
+            }
+        });
         btn_SignIn = (Button) findViewById(R.id.btn_SignIn);
         edtUser=findViewById(R.id.edT_User);
         edtpassword=findViewById(R.id.edT_Passw);
@@ -64,7 +76,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
             }
 
         });
+        AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
 
+        if(sharedPreferences.getRememberMe())
+        {
+            Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(intnt);
+        }
     }
 
     @Override

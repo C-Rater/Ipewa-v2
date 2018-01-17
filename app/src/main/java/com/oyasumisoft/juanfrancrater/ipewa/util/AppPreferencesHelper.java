@@ -55,6 +55,13 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
         String name=preferences.getString(PREF_KEY_CURRENT_USER_NAME, null);
         return name;
     }
+    public void setRememberMe(Boolean bool) {
+        preferences.edit().putBoolean(PREF_KEY_REMEMBER_ME,bool).apply();
+    }
+    public boolean getRememberMe() {
+        Boolean remember=preferences.getBoolean(PREF_KEY_REMEMBER_ME, false);
+        return remember;
+    }
 
     public boolean getshowUser() {
         Boolean bool=preferences.getBoolean(PREf_KEY_SHOW_USER_NAME, false);
