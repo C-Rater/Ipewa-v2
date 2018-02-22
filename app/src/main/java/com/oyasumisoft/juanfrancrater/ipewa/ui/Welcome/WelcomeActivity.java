@@ -15,7 +15,6 @@ import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.about.AboutActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.pref.PrefferencesActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.View.ListProjectActivity;
-import com.oyasumisoft.juanfrancrater.ipewa.ui.task.TabListTab;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.task.View.ListTaskActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.oyasumisoft.juanfrancrater.ipewa.util.ThisApplication;
@@ -61,7 +60,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_about:
-                startActivity(new Intent(WelcomeActivity.this, TabListTab.class));
+                startActivity(new Intent(WelcomeActivity.this, AboutActivity.class));
                 break;
             case R.id.action_pref:
                 startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
