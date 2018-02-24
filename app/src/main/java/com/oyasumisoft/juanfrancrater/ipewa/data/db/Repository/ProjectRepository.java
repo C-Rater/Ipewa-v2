@@ -1,5 +1,6 @@
 package com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository;
 
+import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.dao.ProjectDao;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tarea;
 
@@ -17,6 +18,7 @@ public class ProjectRepository {
     //Declaracion
     private int lastID=0;
     private ArrayList<Proyecto> projects;
+    private ProjectDao dao;
 
     private static ProjectRepository projectRepository;
 
@@ -30,22 +32,7 @@ public class ProjectRepository {
 
     private ProjectRepository() {
         this.projects = new ArrayList<>();
-        initialize();
-    }
-
-    //Metodos
-
-    private void initialize() {
-
-        addProject( "Proyecto Integrado", "Proyecto Integrado del curso: Desarrollo App 'Ipewa', aplicacion con el objetivo de poder gestionar proyectos entre varios usuarios, permitiendo a estos tener acceso a distintas herramientas y elementos etc...",
-
-                "Blue","2018/02/10");
-
-        addProject( "Aprender un idioma", "Aprender un idioma antes de que acabe el 2019",
-
-                "Black","2019/12/31");
-
-
+        dao= new ProjectDao();
     }
 
     public static ProjectRepository getInstance() {
@@ -61,15 +48,15 @@ public class ProjectRepository {
 
     public void addProject(String name,String description,String color, String deadLine ) {
 
-        projects.add(new Proyecto(lastID++,name,description,color,deadLine));
+        dao.add(new Proyecto(lastID++,name,description,color,deadLine));
     }
     public void addProject(Proyecto proyecto) {
 
-        projects.add(proyecto);
+        dao.add(proyecto);
     }
     public void deleteProject(Proyecto project) {
 
-        projects.remove(project);
+        dao.delete(project.get_ID());
     }
     public Proyecto getProject(int id)
     {
@@ -87,28 +74,18 @@ public class ProjectRepository {
     }
     public void setProject(int id, Proyecto pro)
     {
-        Iterator<Proyecto> iterator= getInstance().getProjects().iterator();
-        Proyecto temp;
-        while(iterator.hasNext())
-        {
-            temp=iterator.next();
-            if(pro.get_ID()==temp.get_ID())
-            {
-                iterator.remove();
-            }
-        }
-        getInstance().addProject(pro);
+        dao.set(id,pro);
     }
 
     public ArrayList<Proyecto> getProjects()
     {
-        Collections.sort(projects);
+       projects=dao.loadAll();
         return projects;
     }
 
     public ArrayList<String> getNameProjects() {
         ArrayList<String> list=new ArrayList<>();
-        Iterator<Proyecto> iterator= getInstance().getProjects().iterator();
+        Iterator<Proyecto> iterator= dao.loadAll().iterator();
         Proyecto temp;
         list.add("-");
         while(iterator.hasNext())
@@ -121,7 +98,7 @@ public class ProjectRepository {
 
     public ArrayList<String> getIdProjects() {
         ArrayList<String> list=new ArrayList<>();
-        Iterator<Proyecto> iterator= getInstance().getProjects().iterator();
+        Iterator<Proyecto> iterator= dao.loadAll().iterator();
         Proyecto temp;
         list.add("-1");
         while(iterator.hasNext())

@@ -1,6 +1,7 @@
 package com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository;
 
 
+import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.dao.TareaDao;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tarea;
 
@@ -15,6 +16,7 @@ import java.util.Iterator;
  */
 public class TareaRepository {
     ArrayList<Tarea> tareas;
+    TareaDao dao;
 
     static TareaRepository tareaRepository;
 
@@ -22,34 +24,25 @@ public class TareaRepository {
         tareaRepository = new TareaRepository();
     }
 
-    void inicializarTareas()
-    {
-        addTarea(new Tarea(1, "Limpiar", "Limpiar el polvo de la libreria", "Red","2017-10-10" ," Media", "Baja",0 ));
-        addTarea(new Tarea(2, "Entregar DEINT", "Entregar practica 6", "Blue", "2017-10-10"," Alta", "Media" ,0));
-        addTarea(new Tarea(3, "Pasar a limpio EINE", "Limpiar el polvo de la libreria", "Black","2017-10-10" ," Baja", "Alta",0 ));
-        addTarea(new Tarea(4, "Entregar PSPRO", "Entregar practica 6", "Green", "2017-10-10"," Alta", "Baja",0 ));
-        addTarea(new Tarea(5, "Examen x", "Limpiar el polvo de la libreria", "Red","2017-10-10" ," Baja", "Media" ,1));
-        addTarea(new Tarea(6, "Examen x", "Entregar practica 6", "Yellow", "2017-10-10"," Media", "Alta",1 ));
-        addTarea(new Tarea(7, "Examen x", "Limpiar el polvo de la libreria", "Blue","2017-10-10" ," Baja", "Alta" ,1));
-        addTarea(new Tarea(8, "Examen x", "Entregar practica 6", "Red", "2017-10-10"," Media", "Alta",-1 ));
-    }
 
     private TareaRepository()
     {
         this.tareas = new ArrayList<>();
-        inicializarTareas();
+        dao=new TareaDao();
     }
     void addTarea(Tarea t)
+
     {
-        tareas.add(t);
+        dao.add(t);
     }
+
     public static TareaRepository getInstance()
     {
         return tareaRepository;
     }
     public ArrayList<Tarea> getTareas()
     {
-        Collections.sort(tareas);
+        tareas= dao.loadAll();
         return  tareas;
     }
     public ArrayList<Tarea> getTareasSortByDif()
@@ -65,21 +58,11 @@ public class TareaRepository {
     }
 
     public void setTarea(int id, Tarea tarea) {
-        Iterator<Tarea> iterator= getInstance().getTareas().iterator();
-        Tarea temp;
-        while(iterator.hasNext())
-        {
-            temp=iterator.next();
-            if(tarea.get_ID()==temp.get_ID())
-            {
-                iterator.remove();
-            }
-        }
-        getInstance().addTarea(tarea);
+        dao.set(id,tarea);
     }
 
     public void addTarea(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto) {
-    getInstance().addTarea(new Tarea(getTareas().size()+1,name,description,color,deadLine,priority,difficulty,idProyecto));
+        dao.add(name,description,color,deadLine,priority,difficulty,idProyecto);
     }
 
     public ArrayList<Tarea> getTareasByProjectId(int id) {
@@ -106,23 +89,13 @@ public class TareaRepository {
             temp=iterator.next();
             if(temp.get_idProyecto()==id)
             {
-               iterator.remove();
+              dao.delete(id);
             }
         }
     }
 
     public void deleteTask(Tarea tarea) {
-        Iterator<Tarea> iterator= getInstance().getTareas().iterator();
-        Tarea temp;
-        while(iterator.hasNext())
-        {
-            temp=iterator.next();
-            if(temp.get_ID()==tarea.get_ID())
-            {
-                iterator.remove();
-                return;
-            }
-        }
+        dao.delete(tarea.get_ID());
     }
 }
 
