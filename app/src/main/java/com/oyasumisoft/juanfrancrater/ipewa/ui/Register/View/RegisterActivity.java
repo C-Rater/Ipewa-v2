@@ -1,5 +1,7 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.Register.View;
 
+import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,9 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.Register.Contrats.SigninContract;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.Register.Presenter.RegisterPresenter;
+import com.oyasumisoft.juanfrancrater.ipewa.util.ThisApplication;
+
 /**
  * Permite Añadir un nuevo usuario comprobando que los datos sean validos.
  * Luego podra iniciar sesion con el mismo
@@ -18,14 +25,13 @@ import com.oyasumisoft.juanfrancrater.ipewa.ui.Register.Presenter.RegisterPresen
  */
 public class RegisterActivity extends AppCompatActivity implements SigninContract.View{
 
-    EditText edtUser,edtPassword,edtEmail;
+    EditText edtPassword,edtEmail;
     Button btnSignIn;
     SigninContract.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        edtUser=findViewById(R.id.edtUser);
         edtEmail=findViewById(R.id.edtEmail);
         edtPassword=findViewById(R.id.edtPassword);
         btnSignIn=findViewById(R.id.btnSignIn);
@@ -33,14 +39,27 @@ public class RegisterActivity extends AppCompatActivity implements SigninContrac
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.validateCredentials(edtUser.getText().toString(),edtPassword.getText().toString(),edtEmail.getText().toString());
+                presenter.validateCredentials(edtPassword.getText().toString(),edtEmail.getText().toString());
             }
         });
     }
 
     @Override
     public void onSuccess() {
-        finish();
+        ThisApplication.getFirebase().createUserWithEmailAndPassword(edtEmail.getText().toString(), edtPassword.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    finish();
+
+                }else{
+                    Toast.makeText(RegisterActivity.this,"Ha ocurrido un error",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
     }
 
     @Override

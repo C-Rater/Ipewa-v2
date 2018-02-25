@@ -1,10 +1,18 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.login.Interactor;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.UserRepository;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.login.Contrats.LoginContrat;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.login.Presenter.LoginPresenter;
+import com.oyasumisoft.juanfrancrater.ipewa.util.ThisApplication;
+
+import java.util.concurrent.Executor;
 
 /**
  * Created by PcCom on 31/12/2017.
@@ -19,14 +27,7 @@ public class LoginInteractor  implements LoginContrat.Interactor{
 
     @Override
     public void validateUser(String username, String password) {
-        if(UserRepository.getInstance().enterUser(username,password))
-        {
-            listener.Enter();
-        }else{
-            listener.showErrorWrongUserPassword();
-        }
-
-
+        listener.Enter();
     }
 
     public interface LoginListener{

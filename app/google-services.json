@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "892457402504",
+    "firebase_url": "https://ipewapp.firebaseio.com",
+    "project_id": "ipewapp",
+    "storage_bucket": "ipewapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892457402504:android:7b16c2f51a1b952b",
+        "android_client_info": {
+          "package_name": "com.craterstudio.juanfrancrater.ipewa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892457402504-lb2bdded4dnfobao7ic8b68ujf4cpgb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.craterstudio.juanfrancrater.ipewa",
+            "certificate_hash": "834241ee5a5eacc29f01ffa960e1332edd4357e4"
+          }
+        },
+        {
+          "client_id": "892457402504-mpfes9fd1ipftp23360d2qb76u91skfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcFe47BI5-04CvZ9w18jzY7T1vqv7uz_0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892457402504-mpfes9fd1ipftp23360d2qb76u91skfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

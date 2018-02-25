@@ -1,6 +1,7 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.login.View;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.Register.View.RegisterActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.Welcome.WelcomeActivity;
@@ -35,20 +41,36 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     private EditText edtpassword;
     private TextView txtVIfSignUp;
     private CheckBox chkB_Remember;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = ThisApplication.getFirebase().getCurrentUser();
+        if(currentUser!=null)
+        {
+            AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         presenter= new LoginPresenter(this,this);
         chkB_Remember=findViewById(R.id.chkB_Remember);
+        final AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
         chkB_Remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
-
                 sharedPreferences.setRememberMe(isChecked);
             }
         });
+        if(sharedPreferences.getRememberMe())
+        {
+            Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(intnt);
+        }
         btn_SignIn = (Button) findViewById(R.id.btn_SignIn);
         edtUser=findViewById(R.id.edT_User);
         edtpassword=findViewById(R.id.edT_Passw);
@@ -57,13 +79,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(LoginActivity.this, RegisterActivity.class),0);
-            }
-        });
-        btn_SignIn.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
-                return true;
             }
         });
 
@@ -76,23 +91,30 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
             }
 
         });
-        AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
 
-        if(sharedPreferences.getRememberMe())
-        {
-            Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
-            startActivity(intnt);
-        }
+
+
     }
 
     @Override
     public void Enter() {
-        AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+        ThisApplication.getFirebase().signInWithEmailAndPassword(edtUser.getText().toString(), edtpassword.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
 
-            sharedPreferences.setCurrentUserName(edtUser.getText().toString());
+                    sharedPreferences.setCurrentUserName(edtUser.getText().toString());
+                    Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
+                    startActivity(intnt);
+                } else {
+                    showError("Error en inicio de sesion");
+                }
+            }
+        });
 
-        Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
-        startActivity(intnt);
+
     }
 
     @Override
@@ -103,6 +125,5 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     @Override
     public void showError(String error) {
         Toast.makeText(LoginActivity.this,error,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"Crea un usuario o manten pulsado el boton de inicio de sesion para entrar", Toast.LENGTH_LONG).show();
     }
 }

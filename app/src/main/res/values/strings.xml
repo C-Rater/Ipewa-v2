@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Ipewa</string>
     <string name="txtV_SignIn">Acceder</string>
-    <string name="txtV_User">Nombre de Usuario</string>
+    <string name="txtV_User">Correo Electronico</string>
     <string name="txtV_Password">Contraseña</string>
     <string name="btn_GoogleSign">Acceder con Google+</string>
     <string name="btn_FBSign">Acceder con Facebook</string>

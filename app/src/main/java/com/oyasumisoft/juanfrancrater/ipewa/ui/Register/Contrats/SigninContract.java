@@ -18,7 +18,7 @@ public interface SigninContract {
     }
 
     interface Presenter {
-        void validateCredentials(String user, String password, String email);
+        void validateCredentials( String password, String email);
     }
 
     interface Interactor

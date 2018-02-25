@@ -1,9 +1,6 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.Register.Interactor;
 
-import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.UserRepository;
-import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Usuarios;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.Register.Contrats.SigninContract;
-import com.oyasumisoft.juanfrancrater.ipewa.ui.Register.Presenter.RegisterPresenter;
 import com.oyasumisoft.juanfrancrater.ipewa.util.EmailValidator;
 
 /**
@@ -18,7 +15,7 @@ public class RegisterInteractor implements SigninContract.Interactor {
     }
 
     @Override
-    public void signIn(String user, String password, String email) {
+    public void signIn(final String user, final String password, final String email) {
         if(user.isEmpty())
         {listener.onUserEmptyError();
         }else if(password.isEmpty())
@@ -33,13 +30,8 @@ public class RegisterInteractor implements SigninContract.Interactor {
 
         listener.onEmailError();
 
-        }else if(UserRepository.getInstance().findUser(user)){
-        listener.onUserDuplicated();
-        }else if(UserRepository.getInstance().findEmail(email)) {
-        listener.onEmailDuplicated();
-        }else{
-        UserRepository.getInstance().addUser(user,password,email);
-        listener.onSuccess();
+        }else {
+            listener.onSuccess();
         }
     }
     public interface RegisterListener

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="txtV_SignIn">Sign in</string>
-    <string name="txtV_User">Username</string>
     <string name="txtV_Password">Password</string>
     <string name="btn_GoogleSign">Sign in with Google+</string>
     <string name="btn_FBSign">Sign in with Facebook</string>
@@ -45,9 +44,9 @@
     <string name="messageDeleteProject">Delete this project?</string>
     <string name="titleDeleteTask">Delete</string>
     <string name="messageDeleteTask">Delete this task?</string>
-    <string name="txvUser">Usuario</string>
+    <string name="txvUser">User</string>
     <string name="txvPassword">Password</string>
-    <string name="txvEmail">Correo</string>
+    <string name="txvEmail">Email</string>
     <string name="txvName">Name</string>
     <string name="btnSignIn">Sign In</string>
     <string name="userEmptyError">User is Empty</string>
@@ -60,4 +59,5 @@
     <string name="userError">User not valid</string>
     <string name="tareas">Task</string>
     <string name="Proyecto">Project:</string>
+    <string name="txtV_User">Email</string>
 </resources>
