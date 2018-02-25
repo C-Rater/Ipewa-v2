@@ -27,7 +27,7 @@
         <activity android:name=".ui.pref.PrefferencesActivity" />
         <activity android:name=".ui.project.View.AddProjectActivity" />
         <activity android:name=".ui.project.View.EditProjectActivity" />
-        <activity android:name=".ui.task.TabListTab"/>
+        <activity android:name=".ui.task.TabListTab" />
         <activity
             android:name=".ui.task.View.AddTaskActivity"
             android:label="@string/title_activity_add_task"
@@ -37,7 +37,11 @@
             android:label="@string/title_activity_edit_task"
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.Register.View.RegisterActivity" />
-        <activity android:name=".ui.project.View.DetailProjectActivity"></activity>
+        <activity android:name=".ui.project.View.DetailProjectActivity" />
+        <activity
+            android:name=".ui.task.View.KanbanActivity"
+            android:label="@string/title_activity_kanban"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -24,9 +24,9 @@ public class EditTaskInteractor implements TaskContrat.editTask.Interactor {
 
 
     @Override
-    public void EditTask(int id, String name, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto) {
+    public void EditTask(int id, String name, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto,int idTablero) {
         if(!name.isEmpty()) {
-            TareaRepository.getInstance().setTarea(id, new Tarea(id, name, description, color, deadLine, priority, difficulty,_idProyecto));
+            TareaRepository.getInstance().setTarea(id, new Tarea(id, name, description, color, deadLine, priority, difficulty,_idProyecto,idTablero));
             listener.back();
         }else{
             listener.showEmptyName();

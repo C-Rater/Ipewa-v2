@@ -7,6 +7,7 @@ import android.provider.BaseColumns;
 
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Contrat.MyContrats;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.MyOpenHelper;
+import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tarea;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7));
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
                 tareaArrayList.add(tarea);
             }while (cursor.moveToNext());
         }
@@ -60,12 +61,13 @@ public class TareaDao {
         contentValues.put(MyContrats.Tareas.COLUMN_DIFFICULTY,tarea.get_difficulty());
         contentValues.put(MyContrats.Tareas.COLUMN_PRIORITY,tarea.get_priority());
         contentValues.put(MyContrats.Tareas.COLUMN_IDPROYECTO,tarea.get_idProyecto());
+        contentValues.put(MyContrats.Tareas.COLUMN_IDTABLERO,tarea.get_idTablero());
         return contentValues;
     }
 
-    public void add(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto) {
+    public void add(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto,int idTablero) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        ContentValues contentValues=createContent(new Tarea(-1,name,description,color,deadLine,priority,difficulty,idProyecto));
+        ContentValues contentValues=createContent(new Tarea(-1,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero));
         sqLiteDatabase.insert(MyContrats.Tareas.TABLE_NAME,null,contentValues);
         MyOpenHelper.getInstance().closeDateBase();
     }
@@ -75,5 +77,27 @@ public class TareaDao {
         ContentValues contentValues=createContent(t);
         sqLiteDatabase.insert(MyContrats.Tareas.TABLE_NAME,null,contentValues);
         MyOpenHelper.getInstance().closeDateBase();
+    }
+
+    public ArrayList<Tarea> loadByTab(int id) {
+            final ArrayList<Tarea> tareaArrayList=new ArrayList<>();
+            final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+            Cursor cursor = sqLiteDatabase.query(MyContrats.Tareas.TABLE_NAME,
+                    MyContrats.Tareas.ALL_COLUMN,
+                    MyContrats.Tareas.COLUMN_IDTABLERO+"=?",
+                    new String[]{String.valueOf(id)},
+                    null,
+                    null,
+                    MyContrats.Tareas.DEFAULT_SORT,
+                    null);
+            if(cursor.moveToFirst())
+            {
+                do{
+                    Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
+                    tareaArrayList.add(tarea);
+                }while (cursor.moveToNext());
+            }
+            MyOpenHelper.getInstance().closeDateBase();
+            return tareaArrayList;
     }
 }

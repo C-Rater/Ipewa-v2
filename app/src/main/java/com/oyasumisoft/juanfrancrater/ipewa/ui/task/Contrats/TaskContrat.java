@@ -21,14 +21,14 @@ public interface TaskContrat {
         }
 
         interface Presenter{
-            void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty,int _idProyecto);
+            void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty,int _idProyecto, int idTablero);
 
             void getIdList();
         }
 
         interface Interactor
         {
-            void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty,int _idProyecto);
+            void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty,int _idProyecto, int idTablero);
 
             void getIdList();
         }
@@ -61,13 +61,13 @@ public interface TaskContrat {
         }
 
         interface Presenter{
-            void EditTask(int id, String name, String description, String color, String deadLine,String priority, String difficulty,int _idProyecto );
+            void EditTask(int id, String name, String description, String color, String deadLine,String priority, String difficulty,int _idProyecto,int idTablero );
             void getIdList();
         }
 
         interface Interactor
         {
-            void EditTask(int id, String name, String description, String color, String deadLine,String priority, String difficulty,int _idProyecto);
+            void EditTask(int id, String name, String description, String color, String deadLine,String priority, String difficulty,int _idProyecto,int idTablero );
             void getIdList();
         }
     }

@@ -2,6 +2,7 @@ package com.oyasumisoft.juanfrancrater.ipewa.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.TareaRepository;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -35,7 +37,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         }
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener extends Serializable{
         void onItemClick(Tarea tarea);
         void onLongClick(Tarea tarea);
     }

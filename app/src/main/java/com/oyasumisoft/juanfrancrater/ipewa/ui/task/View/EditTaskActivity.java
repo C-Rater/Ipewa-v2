@@ -62,7 +62,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.EditTask(editTask.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),spnColor.getSelectedItem().toString(),deadLine,spnPrio.getSelectedItem().toString(),spnDiff.getSelectedItem().toString(),Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())));
+                presenter.EditTask(editTask.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),spnColor.getSelectedItem().toString(),deadLine,spnPrio.getSelectedItem().toString(),spnDiff.getSelectedItem().toString(),Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
             }
         });
     }

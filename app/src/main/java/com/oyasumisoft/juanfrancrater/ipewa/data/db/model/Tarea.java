@@ -21,8 +21,9 @@ public class Tarea implements Comparable, Parcelable {
     String _priority;
     String _difficulty;
     int _idProyecto;
+    int _idTablero;
 
-    public Tarea(int _ID, String _name, String _description, String _color, String _deadLine, String _priority, String _difficulty,int _idProyecto) {
+    public Tarea(int _ID, String _name, String _description, String _color, String _deadLine, String _priority, String _difficulty,int _idProyecto,int _idTablero) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -31,6 +32,7 @@ public class Tarea implements Comparable, Parcelable {
         this._priority = _priority;
         this._difficulty = _difficulty;
         this._idProyecto=_idProyecto;
+        this._idTablero=_idTablero;
 
     }
 
@@ -43,6 +45,7 @@ public class Tarea implements Comparable, Parcelable {
         _priority = in.readString();
         _difficulty = in.readString();
         _idProyecto=in.readInt();
+        _idTablero=in.readInt();
     }
 
     public void set_idProyecto(int _idProyecto) {
@@ -141,6 +144,11 @@ public class Tarea implements Comparable, Parcelable {
         dest.writeString(_priority);
         dest.writeString(_difficulty);
         dest.writeInt(_idProyecto);
+        dest.writeInt(_idTablero);
+    }
+
+    public int get_idTablero() {
+        return _idTablero;
     }
 
     public static class TareaOrderByPriority implements Comparator<Tarea> {
@@ -210,5 +218,10 @@ public class Tarea implements Comparable, Parcelable {
             }
             return 1;
         }
+    }
+
+    @Override
+    public String toString() {
+        return _name;
     }
 }

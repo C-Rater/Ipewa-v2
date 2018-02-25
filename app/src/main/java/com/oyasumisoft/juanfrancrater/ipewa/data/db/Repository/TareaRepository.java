@@ -61,8 +61,8 @@ public class TareaRepository {
         dao.set(id,tarea);
     }
 
-    public void addTarea(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto) {
-        dao.add(name,description,color,deadLine,priority,difficulty,idProyecto);
+    public void addTarea(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto, int idTablero) {
+        dao.add(name,description,color,deadLine,priority,difficulty,idProyecto,idTablero);
     }
 
     public ArrayList<Tarea> getTareasByProjectId(int id) {
@@ -96,6 +96,10 @@ public class TareaRepository {
 
     public void deleteTask(Tarea tarea) {
         dao.delete(tarea.get_ID());
+    }
+
+    public ArrayList getTareasByTablero(int tablero) {
+     return dao.loadByTab(tablero);
     }
 }
 

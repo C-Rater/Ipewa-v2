@@ -62,7 +62,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
                         tiedtDescription.getText().toString(),
                         spnColor.getSelectedItem().toString(),
                         deadLine,spnPrio.getSelectedItem().toString(),
-                        spnDiff.getSelectedItem().toString(), Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())));
+                        spnDiff.getSelectedItem().toString(), Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
             }
         });
 

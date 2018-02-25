@@ -39,8 +39,8 @@ public class EditTaskPresenter implements TaskContrat.editTask.Presenter,EditTas
     }
 
     @Override
-    public void EditTask(int id, String name, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto) {
-        interactor.EditTask(id,name,description,color,deadLine,priority,difficulty,_idProyecto);
+    public void EditTask(int id, String name, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto,int idTablero) {
+        interactor.EditTask(id,name,description,color,deadLine,priority,difficulty,_idProyecto, idTablero);
     }
 
     @Override

@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 
 public class MyContrats {
     public static final String DATABASE_NAME = "ipewapp";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 5;
 
     public static class Proyectos{
         public static final String TABLE_NAME = "proyecto";
@@ -50,8 +50,9 @@ public class MyContrats {
         public static final String COLUMN_DEADLINE = "deadline";
         public static final String COLUMN_PRIORITY = "priority";
         public static final String COLUMN_DIFFICULTY = "difficulty";
+        public static final String COLUMN_IDPROYECTO="idProyecto";
 
-        public static final String[] ALL_COLUMN = {BaseColumns._ID,COLUMN_NAME, COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY} ;
+        public static final String[] ALL_COLUMN = {BaseColumns._ID,COLUMN_NAME, COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO} ;
         public static final String DEFAULT_SORT = BaseColumns._ID;
 
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
@@ -64,12 +65,13 @@ public class MyContrats {
                         "%s TEXT NOT NULL,"+
                         "%s TEXT NOT NULL,"+
                         "%s TEXT,"+
-                        "%s TEXT)",
+                        "%s TEXT," +
+                        "%s INTEGER NOT NULL)",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY);
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s) VALUES ('%s','%s','%s','%s','%s','%s')",
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO);
+        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s) VALUES ('%s','%s','%s','%s','%s','%s','%s')",
                 TABLE_NAME,
                 COLUMN_NAME,
                 COLUMN_DESCRIPTION,
@@ -77,12 +79,14 @@ public class MyContrats {
                 COLUMN_DEADLINE,
                 COLUMN_PRIORITY,
                 COLUMN_DIFFICULTY,
+                COLUMN_IDPROYECTO,
                 "1000 Palabras",
                 "Aprender 1000 palabras de vocabulario",
                 "Red",
                 "10/08/2018",
                 "Media",
-                "Media"
+                "Media",
+                "1"
         );
     }
     public static class Actividad{
@@ -137,9 +141,10 @@ public class MyContrats {
         public static final String TABLE_NAME = "tablero";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_POSITION = "position";
+        public static final String COLUMN_IDPROYECTO="idProyecto";
 
-        public static final String[] ALL_COLUMN = {BaseColumns._ID,COLUMN_NAME, COLUMN_POSITION} ;
-        public static final String DEFAULT_SORT = BaseColumns._ID;
+        public static final String[] ALL_COLUMN = {BaseColumns._ID,COLUMN_NAME, COLUMN_POSITION,COLUMN_IDPROYECTO} ;
+        public static final String DEFAULT_SORT = COLUMN_POSITION;
 
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
@@ -147,16 +152,19 @@ public class MyContrats {
                 "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                         "%s TEXT NOT NULL," +
+                        "%s INTEGER NOT NULL,"+
                         "%s INTEGER NOT NULL)",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME, COLUMN_POSITION);
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s) VALUES ('%s','%s')",
+                COLUMN_NAME, COLUMN_POSITION,COLUMN_IDPROYECTO);
+        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s) VALUES ('%s','%s','%s')",
                 TABLE_NAME,
                 COLUMN_NAME,
                 COLUMN_POSITION,
+                COLUMN_IDPROYECTO,
                 "TO DO",
+                "1",
                 "1"
         );
     }
@@ -169,8 +177,9 @@ public class MyContrats {
         public static final String COLUMN_PRIORITY = "priority";
         public static final String COLUMN_DIFFICULTY = "difficulty";
         public static final String COLUMN_IDPROYECTO = "idProyecto";
+        public static final String COLUMN_IDTABLERO = "idTablero";
 
-        public static final String[] ALL_COLUMN = {BaseColumns._ID,COLUMN_NAME, COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO} ;
+        public static final String[] ALL_COLUMN = {BaseColumns._ID,COLUMN_NAME, COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO} ;
         public static final String DEFAULT_SORT = BaseColumns._ID;
 
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
@@ -184,13 +193,14 @@ public class MyContrats {
                         "%s TEXT NOT NULL,"+
                         "%s TEXT,"+
                         "%s TEXT,"+
+                        "%s INTEGER,"+
                         "%s INTEGER)",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO);
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO);
 
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s) VALUES ('%s','%s','%s','%s','%s','%s','%s')",
+        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')",
                 TABLE_NAME,
                 COLUMN_NAME,
                 COLUMN_DESCRIPTION,
@@ -199,12 +209,14 @@ public class MyContrats {
                 COLUMN_PRIORITY,
                 COLUMN_DIFFICULTY,
                 COLUMN_IDPROYECTO,
+                COLUMN_IDTABLERO,
                 "10 Palabras",
                 "Aprender 10 palabras de vocabulario",
                 "Blue",
                 "10/05/2018",
                 "Baja",
                 "Baja",
+                "1",
                 "1"
         );
     }

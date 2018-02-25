@@ -16,6 +16,7 @@ public class Meta {
     String _deadLine;
     String _priority;
     String _difficulty;
+    int _idProyecto;
 
     public int get_ID() {
         return _ID;
@@ -73,7 +74,7 @@ public class Meta {
         this._difficulty = _difficulty;
     }
 
-    public Meta(int _ID, String _name, String _description, String _color, String _deadLine, String _priority, String _difficulty) {
+    public Meta(int _ID, String _name, String _description, String _color, String _deadLine, String _priority, String _difficulty,int _idProyecto) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -81,5 +82,11 @@ public class Meta {
         this._deadLine = _deadLine;
         this._priority = _priority;
         this._difficulty = _difficulty;
+        this._idProyecto=_idProyecto;
+    }
+
+    @Override
+    public String toString() {
+        return _name;
     }
 }

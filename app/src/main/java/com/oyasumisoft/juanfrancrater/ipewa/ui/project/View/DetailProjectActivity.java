@@ -2,7 +2,6 @@ package com.oyasumisoft.juanfrancrater.ipewa.ui.project.View;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,8 +19,8 @@ import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Presenter.DetailProjectPresenter;
-import com.oyasumisoft.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
-import com.oyasumisoft.juanfrancrater.ipewa.ui.task.View.ListTaskActivity;
+import com.oyasumisoft.juanfrancrater.ipewa.ui.task.View.KanbanActivity;
+
 /**
  * Muestra datos del proyecto y mediante un menu permite eliminarlo.
  * Un boton permite ver las tareas relacioadas con ese proyecto
@@ -52,9 +51,9 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
         btnListaTareas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailProjectActivity.this, ListTaskActivity.class);
+              Intent intent = new Intent(DetailProjectActivity.this, KanbanActivity.class);
                 Bundle bnd = new Bundle();
-                bnd.putInt("project", detailProject.get_ID());
+                bnd.putParcelable("detailProject", detailProject);
                 intent.putExtras(bnd);
                 startActivity(intent);
             }

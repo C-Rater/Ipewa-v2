@@ -78,6 +78,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         }catch (SQLiteException e)
         {
+            Log.d("Error",e.getMessage());
         }finally {
             db.endTransaction();
         }

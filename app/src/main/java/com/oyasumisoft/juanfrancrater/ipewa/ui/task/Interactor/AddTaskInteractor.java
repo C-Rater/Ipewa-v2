@@ -20,9 +20,9 @@ public class AddTaskInteractor implements TaskContrat.addTask.Interactor {
     }
 
     @Override
-    public void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto) {
+    public void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto, int idTablero) {
         if(!nombre.isEmpty()) {
-            TareaRepository.getInstance().addTarea(nombre, description, color, deadLine, priority, difficulty,_idProyecto);
+            TareaRepository.getInstance().addTarea(nombre, description, color, deadLine, priority, difficulty,_idProyecto,idTablero);
             listener.back();
         }else
         {
