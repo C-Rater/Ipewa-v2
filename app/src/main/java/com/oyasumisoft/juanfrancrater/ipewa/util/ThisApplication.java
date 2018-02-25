@@ -3,6 +3,9 @@ package com.oyasumisoft.juanfrancrater.ipewa.util;
 import android.app.Application;
 import android.content.Context;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -14,6 +17,8 @@ public class ThisApplication extends Application {
     private AppPreferencesHelper appPreferencesHelper;
     private static ThisApplication mContext;
 
+    private static GoogleSignInClient mGoogleSignInClient;
+
     public ThisApplication(){
         mContext=this;
     }
@@ -22,11 +27,21 @@ public class ThisApplication extends Application {
         return mAuth;
     }
 
+
+    public static GoogleSignInClient getmGoogleSignInClient() {
+        return mGoogleSignInClient;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         appPreferencesHelper= AppPreferencesHelper.getInstance();
         mAuth=FirebaseAuth.getInstance();
+        //GoogleSignIN
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     public AppPreferencesHelper getAppPreferencesHelper()

@@ -18,8 +18,8 @@ public class RegisterPresenter implements SigninContract.Presenter,RegisterInter
     }
 
     @Override
-    public void validateCredentials(String user, String password, String email) {
-    interactor.signIn(user,password,email);
+    public void validateCredentials( String password, String email) {
+    interactor.signIn(password,email);
     }
 
     @Override

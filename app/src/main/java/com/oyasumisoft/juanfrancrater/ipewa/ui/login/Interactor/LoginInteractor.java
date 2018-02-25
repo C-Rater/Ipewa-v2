@@ -27,7 +27,14 @@ public class LoginInteractor  implements LoginContrat.Interactor{
 
     @Override
     public void validateUser(String username, String password) {
-        listener.Enter();
+        if(username.isEmpty()) {
+            listener.showErrorWrongUserPassword();
+        } else
+        if(password.isEmpty()) {
+            listener.showErrorWrongUserPassword();
+        }else {
+            listener.Enter();
+        }
     }
 
     public interface LoginListener{

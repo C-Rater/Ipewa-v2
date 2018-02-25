@@ -32,4 +32,7 @@
             android:entryValues="@array/entryvalues_country_preference"
             android:dialogTitle="@string/dialog_title_country_preference" />
     </PreferenceCategory>
+    <Preference android:title="Cerrar Sesion"
+        android:key="@string/signOut"
+        android:summary="Cerrar Sesion con el usuario actual"/>
 </PreferenceScreen>

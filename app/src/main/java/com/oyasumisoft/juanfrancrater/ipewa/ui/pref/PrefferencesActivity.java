@@ -1,10 +1,15 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.pref;
 
 
+import android.content.Intent;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
 
 import com.oyasumisoft.juanfrancrater.ipewa.R;
+import com.oyasumisoft.juanfrancrater.ipewa.ui.Splash.SplashActivity;
+import com.oyasumisoft.juanfrancrater.ipewa.util.ThisApplication;
+
 /**
  * Activity de las preferencias
  * @author Juan Francisco Benítez López
@@ -16,6 +21,16 @@ public class PrefferencesActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
+        Preference button = findPreference(getString(R.string.signOut));
+        button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                ThisApplication.getFirebase().signOut();
+                Intent intnt = new Intent(PrefferencesActivity.this, SplashActivity.class);
+                startActivity(intnt);
+                return true;
+            }
+        });
       }
 
 

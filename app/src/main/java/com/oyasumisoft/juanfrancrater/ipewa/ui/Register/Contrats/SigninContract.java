@@ -18,11 +18,11 @@ public interface SigninContract {
     }
 
     interface Presenter {
-        void validateCredentials( String password, String email);
+        void validateCredentials(String password, String email);
     }
 
     interface Interactor
     {
-        void signIn(String user, String password, String email);
+        void signIn( String password, String email);
     }
 }

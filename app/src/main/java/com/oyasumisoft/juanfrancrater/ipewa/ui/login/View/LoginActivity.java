@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,9 +42,9 @@ import com.oyasumisoft.juanfrancrater.ipewa.util.ThisApplication;
  */
 
 public class LoginActivity extends AppCompatActivity implements LoginContrat.View {
-
+    private static final int RC_SIGN_IN = 9001;
     private LoginContrat.Presenter presenter;
-    private Button btn_SignIn;
+    private Button btn_SignIn,btnGoogle;
     private EditText edtUser;
     private EditText edtpassword;
     private TextView txtVIfSignUp;
@@ -47,17 +55,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = ThisApplication.getFirebase().getCurrentUser();
-        if(currentUser!=null)
+        AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+        if(currentUser!=null&&sharedPreferences.getRememberMe())
         {
-            AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+            sharedPreferences.setCurrentUserName(currentUser.getDisplayName());
         }
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         presenter= new LoginPresenter(this,this);
+        btnGoogle=findViewById(R.id.btn_GoogleLogin);
+
         chkB_Remember=findViewById(R.id.chkB_Remember);
         final AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
         chkB_Remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -66,11 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
                 sharedPreferences.setRememberMe(isChecked);
             }
         });
-        if(sharedPreferences.getRememberMe())
-        {
-            Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
-            startActivity(intnt);
-        }
+
         btn_SignIn = (Button) findViewById(R.id.btn_SignIn);
         edtUser=findViewById(R.id.edT_User);
         edtpassword=findViewById(R.id.edT_Passw);
@@ -94,10 +102,49 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
 
 
 
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signInIntent = ThisApplication.getmGoogleSignInClient().getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+        if(sharedPreferences.getRememberMe())
+        {
+            Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(intnt);
+        }else{
+            ThisApplication.getmGoogleSignInClient().signOut();
+        }
+
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+            sharedPreferences.setCurrentUserName(account.getDisplayName());
+            Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
+            startActivity(intnt);
+            } catch (ApiException e) {
+            showError("Error en inicio de sesion");
+            }
     }
 
     @Override
     public void Enter() {
+
         ThisApplication.getFirebase().signInWithEmailAndPassword(edtUser.getText().toString(), edtpassword.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

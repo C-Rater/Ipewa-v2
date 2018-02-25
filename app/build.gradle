@@ -32,6 +32,7 @@ dependencies {
     compile 'com.github.jrvansuita:MaterialAbout:+'
     implementation 'com.github.ivbaranov:materiallettericon:0.2.2'
     apply plugin: 'com.google.gms.google-services'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
 }
 
 
