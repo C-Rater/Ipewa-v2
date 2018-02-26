@@ -105,13 +105,5 @@
         android:background="@color/colorGoogle"
         android:text="@string/btn_GoogleSign" />
 
-    <Button
-        android:id="@+id/btn_FbLogin"
-        style="@style/Widget.Button.Transparent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.07"
-        android:background="@color/colorFacebook"
-        android:text="@string/btn_FBSign" />
 
 </LinearLayout>
