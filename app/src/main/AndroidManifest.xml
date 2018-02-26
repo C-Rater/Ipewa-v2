@@ -27,7 +27,6 @@
         <activity android:name=".ui.pref.PrefferencesActivity" />
         <activity android:name=".ui.project.View.AddProjectActivity" />
         <activity android:name=".ui.project.View.EditProjectActivity" />
-        <activity android:name=".ui.task.TabListTab" />
         <activity
             android:name=".ui.task.View.AddTaskActivity"
             android:label="@string/title_activity_add_task"
@@ -41,7 +40,15 @@
         <activity
             android:name=".ui.task.View.KanbanActivity"
             android:label="@string/title_activity_kanban"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+
+        <service android:name=".util.Chat.FireBaseServiceChat">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".util.Chat.ChatActivity"></activity>
     </application>
 
 </manifest>
