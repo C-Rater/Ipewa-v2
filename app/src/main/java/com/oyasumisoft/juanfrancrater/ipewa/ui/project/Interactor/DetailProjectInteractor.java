@@ -1,5 +1,6 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.project.Interactor;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.ProjectRepository;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.TareaRepository;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
@@ -26,6 +27,7 @@ public class DetailProjectInteractor implements ProjectContrat.DetailProject.Int
     public void deleteProject(Proyecto detailProject) {
         ProjectRepository.getInstance().deleteProject(detailProject);
         TareaRepository.getInstance().deleteTareasByProjectId(detailProject.get_ID());
+        FirebaseMessaging.getInstance().subscribeToTopic(String.valueOf(detailProject.get_ID()));
         listener.reloadList();
     }
 

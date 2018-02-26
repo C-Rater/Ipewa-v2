@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mli.MaterialLetterIcon;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
@@ -39,11 +40,14 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_detail_project);
         presenter= new DetailProjectPresenter(this);
         btnListaTareas=findViewById(R.id.btnListaTareas);
 
         detailProject =getIntent().getExtras().getParcelable("detailProject");
+        FirebaseMessaging.getInstance().subscribeToTopic(String.valueOf(detailProject.get_ID()));//Subcribirse al tema del proyecto por el id para el futuro chat
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initialize();
@@ -120,6 +124,7 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
         {
             case (R.id.action_delete):
                 presenter.deleteProject(detailProject);
+
                 break;
 
         }

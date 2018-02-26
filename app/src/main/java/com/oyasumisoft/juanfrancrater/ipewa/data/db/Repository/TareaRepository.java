@@ -89,7 +89,7 @@ public class TareaRepository {
             temp=iterator.next();
             if(temp.get_idProyecto()==id)
             {
-              dao.delete(id);
+              dao.delete(temp.get_ID());
             }
         }
     }
