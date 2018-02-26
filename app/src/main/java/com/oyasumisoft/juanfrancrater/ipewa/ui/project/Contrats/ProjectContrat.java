@@ -4,6 +4,8 @@ import android.os.Parcelable;
 
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 
+import java.util.ArrayList;
+
 /**
  * Created by PcCom on 31/12/2017.
  */
@@ -55,17 +57,21 @@ public interface ProjectContrat  {
     interface listProject
     {
         interface View{
-
+            void recargarProjects(ArrayList<Proyecto> proyectos);
             void openDetailProject(Parcelable object);
         }
 
         interface Presenter{
             void getProjectAtPosition(int position);
+
+            void getProjects();
         }
 
         interface Interactor
         {
             void getProject(int position);
+
+            void getProjects();
         }
     }
     interface editProject

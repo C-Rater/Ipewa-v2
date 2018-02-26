@@ -38,17 +38,22 @@ public interface TaskContrat {
         interface View{
 
             void reload();
+            void reload(ArrayList<Tarea> tareas);
         }
 
         interface Presenter{
 
             void delete(Tarea tarea);
+            void obtenerTareas();
+
         }
 
         interface Interactor
         {
 
             void delete(Tarea tarea);
+
+            void obtenerTareas();
         }
     }
     interface editTask

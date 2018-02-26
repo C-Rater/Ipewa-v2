@@ -28,13 +28,9 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
     private ArrayList<Tarea> tareas;
     private OnItemClickListener listener;
 
-    public TareaAdapter(OnItemClickListener listener,int idProyecto){
+    public TareaAdapter(OnItemClickListener listener,ArrayList tareas){
         this.listener=listener;
-        if(idProyecto==-1) {
-            tareas = TareaRepository.getInstance().getTareas();
-        }else{
-            tareas=TareaRepository.getInstance().getTareasByProjectId(idProyecto);
-        }
+       this.tareas=tareas;
     }
 
     public interface OnItemClickListener extends Serializable{

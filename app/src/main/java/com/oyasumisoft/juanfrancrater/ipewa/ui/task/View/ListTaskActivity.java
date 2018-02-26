@@ -20,12 +20,15 @@ import android.widget.Toast;
 import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.adapter.ProjectAdapter;
 import com.oyasumisoft.juanfrancrater.ipewa.adapter.TareaAdapter;
+import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.View.EditProjectActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.View.ListProjectActivity;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.task.Contrats.TaskContrat;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.task.Presenter.ListTaskPresenter;
+
+import java.util.ArrayList;
 
 /**
  * Muestra una lista de las tareas del proyectos.
@@ -97,14 +100,12 @@ public class ListTaskActivity extends AppCompatActivity implements TaskContrat.l
                 alertDialog.show();
             }
         };
-        tareaAdapter = new TareaAdapter(listener,idProyecto);
-        recyclerView.setAdapter(tareaAdapter);
+       presenter.obtenerTareas();
     }
     @Override
     protected void onResume() {
         super.onResume();
-        tareaAdapter = new TareaAdapter(listener,idProyecto);
-        recyclerView.setAdapter(tareaAdapter);
+       presenter.obtenerTareas();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,7 +130,12 @@ public class ListTaskActivity extends AppCompatActivity implements TaskContrat.l
 
     @Override
     public void reload() {
-        tareaAdapter = new TareaAdapter(listener,idProyecto);
+        presenter.obtenerTareas();
+    }
+
+    @Override
+    public void reload(ArrayList<Tarea> tareas) {
+        tareaAdapter = new TareaAdapter(listener,tareas);
         recyclerView.setAdapter(tareaAdapter);
     }
 }

@@ -1,10 +1,10 @@
 package com.oyasumisoft.juanfrancrater.ipewa.ui.task.Interactor;
 
-import com.oyasumisoft.juanfrancrater.ipewa.adapter.TareaAdapter;
+import android.os.AsyncTask;
+
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.TareaRepository;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.task.Contrats.TaskContrat;
-import com.oyasumisoft.juanfrancrater.ipewa.ui.task.Presenter.ListTaskPresenter;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,24 @@ public class ListTaskInteractor implements TaskContrat.listTask.Interactor {
         listener.reload();
     }
 
+    @Override
+    public void obtenerTareas() {
+        AsyncTask<Void,Void, ArrayList<Tarea>> asyncTask = new AsyncTask<Void, Void, ArrayList<Tarea>>() {
+
+            @Override
+            protected ArrayList<Tarea> doInBackground(Void... voids) {
+                return TareaRepository.getInstance().getTareas();
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Tarea> tareas) {
+                listener.obtenerTareas(tareas);
+            }
+        }.execute();
+    }
+
     public interface ListTaskListener {
         void reload();
+        void obtenerTareas(ArrayList<Tarea> tareas);
     }
 }

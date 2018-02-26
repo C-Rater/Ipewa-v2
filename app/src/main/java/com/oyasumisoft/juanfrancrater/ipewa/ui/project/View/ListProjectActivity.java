@@ -23,6 +23,7 @@ import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Presenter.ListProjectPresenter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Muestra una lista de los proyectos del sistema. Si se gira la
@@ -51,7 +52,8 @@ public class ListProjectActivity extends AppCompatActivity implements ProjectCon
         fab = findViewById(R.id.fab);
         setSupportActionBar(toolbar);
         adapter = new ProjectAdapter(this);
-        listView.setAdapter(adapter);
+        presenter.getProjects();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -72,6 +74,12 @@ public class ListProjectActivity extends AppCompatActivity implements ProjectCon
     protected void onResume() {
         super.onResume();
         adapter= new ProjectAdapter(this);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void recargarProjects(ArrayList<Proyecto> proyectos) {
+        adapter.addAll(proyectos);
         listView.setAdapter(adapter);
     }
 

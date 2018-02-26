@@ -15,6 +15,8 @@ import com.oyasumisoft.juanfrancrater.ipewa.R;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.Repository.ProjectRepository;
 import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 
+import java.util.ArrayList;
+
 
 /**
  * Adapter del Pojo Proyecto
@@ -25,7 +27,7 @@ import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 public class ProjectAdapter extends ArrayAdapter<Proyecto> {
 
     public ProjectAdapter(@NonNull Context context) {
-        super(context, R.layout.item_project, ProjectRepository.getInstance().getProjects());
+        super(context, R.layout.item_project, new ArrayList<Proyecto>());
     }
 
     @NonNull

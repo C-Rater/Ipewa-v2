@@ -2,8 +2,11 @@ package com.oyasumisoft.juanfrancrater.ipewa.ui.project.Presenter;
 
 import android.os.Parcelable;
 
+import com.oyasumisoft.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.oyasumisoft.juanfrancrater.ipewa.ui.project.Interactor.ListProjectInteractor;
+
+import java.util.ArrayList;
 
 /**
  * Created by PcCom on 31/12/2017.
@@ -25,7 +28,17 @@ public class ListProjectPresenter implements ProjectContrat.listProject.Presente
     }
 
     @Override
+    public void getProjects() {
+        interactor.getProjects();
+    }
+
+    @Override
     public void openEditProject(Parcelable object) {
         view.openDetailProject(object);
+    }
+
+    @Override
+    public void reloadProjects(ArrayList<Proyecto> projects) {
+        view.recargarProjects(projects);
     }
 }
