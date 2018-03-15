@@ -72,8 +72,14 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_kanban">KanbanActivity</string>
     <string name="action_setting">Settings</string>
     <string name="signOut">Cerrar Sesion</string>
+    <string name="title_notification_days_task_preference">Dias Notificacion Tareas</string>
+    <string name="summary_notification_days_task_preference">Dias de antelacion con los que se avisara del vencimiento de una tarea</string>
+    <string name="dialog_title_notification_days_preference">Dias</string>
+    <string name="title_notification_days_meta_preference">Dias Notificacion Metas</string>
+    <string name="summary_notification_days_meta_preference">Dias de antelacion con los que se avisara del vencimiento de una meta</string>
+    <string name="tareas_vencido">Las siguientes tareas han vencido o estan a punto de hacerlo</string>
+    <string name="metas_vencido" >Las siguientes metas han vencido o estan a punto de hacerlo</string>
 </resources>

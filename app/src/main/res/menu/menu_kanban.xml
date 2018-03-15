@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.oyasumisoft.juanfrancrater.ipewa.ui.task.View.KanbanActivity">
+    tools:context="com.craterstudio.juanfrancrater.ipewa.ui.task.View.KanbanActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

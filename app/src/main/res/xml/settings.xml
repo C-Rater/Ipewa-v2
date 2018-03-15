@@ -9,28 +9,24 @@
             android:summaryOn="@string/pref_turnon_nightmode"
             android:title="@string/pref_title_nighmode" />
 
-        <SwitchPreference
-            android:key="pref_key_show_user_name"
-            android:defaultValue="false"
-            android:id="@+id/spnshowUser"
-            android:summary="@string/pref_description_showUser"
-            android:summaryOff="@string/pref_turnoff_showUser"
-            android:summaryOn="@string/pref_turnon_showUser"
-            android:title="@string/pref_title_showUser" />
-
         <EditTextPreference
             android:key="pref_key_current_user_name"
             android:title="@string/title_userName_preference"
             android:summary="@string/summary_userName_preference"
             android:dialogTitle="@string/dialog_title_userName_preference" />
+        <EditTextPreference
+            android:key="@string/title_notification_days_task_preference"
+            android:summary="@string/summary_notification_days_task_preference"
+            android:dialogTitle="@string/dialog_title_notification_days_preference"
+            android:singleLine="true"
+            android:title="@string/title_notification_days_task_preference" />
+        <EditTextPreference
+            android:key="@string/title_notification_days_meta_preference"
+            android:summary="@string/summary_notification_days_meta_preference"
+            android:dialogTitle="@string/dialog_title_notification_days_preference"
+            android:singleLine="true"
+            android:title="@string/title_notification_days_meta_preference" />
 
-        <ListPreference
-            android:key="language"
-            android:title="@string/title_country_preference"
-            android:summary="@string/summary_country_preference"
-            android:entries="@array/entries_language_preference"
-            android:entryValues="@array/entryvalues_country_preference"
-            android:dialogTitle="@string/dialog_title_country_preference" />
     </PreferenceCategory>
     <Preference android:title="Cerrar Sesion"
         android:key="@string/signOut"
