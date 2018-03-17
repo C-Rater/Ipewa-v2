@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/navheader_height"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/navheader_leftpadding">
+
+
+    <TextView
+        android:id="@+id/txtV_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"/>
+
+    <TextView
+        android:id="@+id/txtV_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="someone@somemail.somedom"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"/>
+
+</LinearLayout>

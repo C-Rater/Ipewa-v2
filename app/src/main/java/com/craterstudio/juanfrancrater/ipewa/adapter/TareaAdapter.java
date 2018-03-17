@@ -82,7 +82,9 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
     @Override
 
     public int getItemCount() {
+        if(tareas!=null)
         return tareas.size();
+        return 0;
     }
 
     public static class TareaViewHolder extends RecyclerView.ViewHolder {

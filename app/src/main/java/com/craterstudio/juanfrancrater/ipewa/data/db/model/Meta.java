@@ -83,6 +83,14 @@ public class Meta {
         this._idProyecto=_idProyecto;
     }
 
+    public int get_idProyecto() {
+        return _idProyecto;
+    }
+
+    public void set_idProyecto(int _idProyecto) {
+        this._idProyecto = _idProyecto;
+    }
+
     @Override
     public String toString() {
         return _name;

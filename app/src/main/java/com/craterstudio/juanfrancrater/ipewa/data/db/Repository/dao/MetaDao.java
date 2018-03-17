@@ -1,7 +1,9 @@
 package com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Contrat.MyContrats;
 import com.craterstudio.juanfrancrater.ipewa.data.db.MyOpenHelper;
@@ -61,5 +63,36 @@ public static ArrayList<Meta> getMetasByProject(int id){
         }
         MyOpenHelper.getInstance().closeDateBase();
         return metaArrayList;
+    }
+
+    public void delete(Meta meta) {
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ String.valueOf(meta.get_ID())} );
+        MyOpenHelper.getInstance().closeDateBase();
+    }
+
+    public void add(Meta meta) {
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        ContentValues contentValues=createContent(meta);
+        sqLiteDatabase.insert(MyContrats.Metas.TABLE_NAME,null,contentValues);
+        MyOpenHelper.getInstance().closeDateBase();
+    }
+
+    public void edit(Meta meta) {
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        ContentValues contentValues=createContent(meta);
+        sqLiteDatabase.update(MyContrats.Metas.TABLE_NAME,contentValues,BaseColumns._ID+"=?",new String[]{ String.valueOf(meta.get_ID())});
+        MyOpenHelper.getInstance().closeDateBase();
+    }
+    private ContentValues createContent(Meta meta) {
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(MyContrats.Metas.COLUMN_NAME,meta.get_name());
+        contentValues.put(MyContrats.Metas.COLUMN_DESCRIPTION,meta.get_description());
+        contentValues.put(MyContrats.Metas.COLUMN_COLOR,meta.get_color());
+        contentValues.put(MyContrats.Metas.COLUMN_DEADLINE,meta.get_deadLine());
+        contentValues.put(MyContrats.Metas.COLUMN_DIFFICULTY,meta.get_difficulty());
+        contentValues.put(MyContrats.Metas.COLUMN_PRIORITY,meta.get_priority());
+        contentValues.put(MyContrats.Metas.COLUMN_IDPROYECTO,meta.get_idProyecto());
+        return contentValues;
     }
 }

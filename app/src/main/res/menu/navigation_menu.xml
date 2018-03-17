@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_task"
+            android:title="@string/action_task"/>
+        <item
+            android:id="@+id/action_projects"
+            android:title="@string/action_projects"/>
+        <item
+            android:id="@+id/action_agenda"
+            android:title="@string/action_agenda"/>
+    </group>
+
+    <item
+        android:id="@+id/navigation_subheader">
+
+        <menu>
+            <item
+                android:id="@+id/action_help"
+                android:title="@string/AboutMe"/>
+
+            <item
+                android:id="@+id/action_settings"
+                android:title="@string/action_settings"/>
+        </menu>
+
+    </item>
+
+</menu>

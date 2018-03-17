@@ -36,4 +36,14 @@ public class MetaRepository {
     public ArrayList<Meta> getMetasInDays(int id) {
         return dao.getByDays(id);
     }
+
+    public void delete(Meta meta) {
+        dao.delete(meta);
+    }
+    public void add(Meta meta) {
+        dao.add(meta);
+    }
+    public void edit(Meta meta) {
+        dao.edit(meta);
+    }
 }

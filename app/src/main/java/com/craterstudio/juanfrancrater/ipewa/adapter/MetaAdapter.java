@@ -73,6 +73,8 @@ public class MetaAdapter extends RecyclerView.Adapter<MetaAdapter.MetaViewHolder
     @Override
 
     public int getItemCount() {
+        if(Metas==null)
+            return 0;
         return Metas.size();
     }
 

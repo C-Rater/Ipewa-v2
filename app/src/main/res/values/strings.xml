@@ -82,4 +82,7 @@
     <string name="summary_notification_days_meta_preference">Dias de antelacion con los que se avisara del vencimiento de una meta</string>
     <string name="tareas_vencido">Las siguientes tareas han vencido o estan a punto de hacerlo</string>
     <string name="metas_vencido" >Las siguientes metas han vencido o estan a punto de hacerlo</string>
+    <string name="action_task">Tareas</string>
+    <string name="action_projects">Proyectos</string>
+    <string name="action_agenda">Agenda</string>
 </resources>

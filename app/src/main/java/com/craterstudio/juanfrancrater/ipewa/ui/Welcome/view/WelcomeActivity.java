@@ -11,11 +11,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.adapter.MetaAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.TareaAdapter;
+import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.MetaRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
@@ -41,7 +43,9 @@ import java.util.List;
  */
 public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat.View {
 
+    TextView textTask;
     RecyclerView recyclerTask;
+    TextView textMeta;
     RecyclerView recyclerMeta;
     TareaAdapter adapterTask;
     MetaAdapter adapterMeta;
@@ -51,8 +55,11 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     ArrayList<Meta> metas;
     WelcomeContrat.Presenter presenter;
 
+    AppPreferencesHelper sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
@@ -70,10 +77,10 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             public void onButtonClicked(int index) {
                 if(index==1)
                 {
-                    startActivity(new Intent(WelcomeActivity.this, ListTaskActivity.class));
+                    startActivity(new Intent(WelcomeActivity.this, ListProjectActivity.class));
                 }else if(index==2)
                 {
-                    startActivity(new Intent(WelcomeActivity.this, ListProjectActivity.class));
+                    startActivity(new Intent(WelcomeActivity.this, ListTaskActivity.class));
                 }
             }
 
@@ -87,9 +94,10 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
             }
         });
+        textTask=findViewById(R.id.textTask);
         recyclerTask=findViewById(R.id.recyclerTask);
+        textMeta=findViewById(R.id.textMeta);
         recyclerMeta=findViewById(R.id.recyclerMeta);
-        AppPreferencesHelper sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
         presenter= new WelcomePresenter(this);
         presenter.obtainElements(sharedPreferences.getsetDaysNotTask(),sharedPreferences.getsetDaysNotMeta());
         listenerTask= new TareaAdapter.OnItemClickListener() {
@@ -104,14 +112,14 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             }
         };
         listenerMeta= new MetaAdapter.OnItemClickListener(){
+
             @Override
             public void onItemClick(Meta Meta) {
-            //
             }
 
             @Override
             public void onLongClick(Meta Meta) {
-            //
+
             }
         };
         adapterTask= new TareaAdapter(listenerTask,tareas);
@@ -164,6 +172,14 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
         return super.onOptionsItemSelected(item);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
+        presenter.obtainElements(sharedPreferences.getsetDaysNotTask(), sharedPreferences.getsetDaysNotMeta());
+    }
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
@@ -171,7 +187,24 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
     @Override
     public void fillList(ArrayList<Tarea> tareas, ArrayList<Meta> metas) {
-        this.tareas=tareas;
-        this.metas=metas;
+        if(tareas==null||tareas.size()==0)
+        {
+            textTask.setVisibility(View.INVISIBLE);
+            recyclerTask.setVisibility(View.INVISIBLE);
+        }else{
+            this.tareas=tareas;
+            textTask.setVisibility(View.VISIBLE);
+            recyclerTask.setVisibility(View.VISIBLE);
+        }
+        if(metas==null||metas.size()==0)
+        {
+            textMeta.setVisibility(View.INVISIBLE);
+            recyclerMeta.setVisibility(View.INVISIBLE);
+        }else{
+            this.metas=metas;
+            textMeta.setVisibility(View.VISIBLE);
+            recyclerMeta.setVisibility(View.VISIBLE);
+        }
+
     }
 }
