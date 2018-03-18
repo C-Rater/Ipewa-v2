@@ -2,12 +2,14 @@ package com.craterstudio.juanfrancrater.ipewa.ui.pref;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.ui.Splash.SplashActivity;
+import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 
 /**
@@ -26,6 +28,8 @@ public class PrefferencesActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 ThisApplication.getFirebase().signOut();
+                AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+                sharedPreferences.setRememberMe(false);
                 Intent intnt = new Intent(PrefferencesActivity.this, SplashActivity.class);
                 startActivity(intnt);
                 return true;

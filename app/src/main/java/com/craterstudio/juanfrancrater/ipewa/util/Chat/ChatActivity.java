@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
+import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class ChatActivity extends AppCompatActivity {
     EditText input;
@@ -22,7 +24,6 @@ public class ChatActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 input.setText("");
             }
         });
