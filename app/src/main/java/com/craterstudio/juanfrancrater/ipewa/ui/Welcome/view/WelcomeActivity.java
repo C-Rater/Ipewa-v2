@@ -59,11 +59,11 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Welcome);
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        tabs = (TabLayout) findViewById(R.id.tabs);
         sharedPreferences=((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
         setContentView(R.layout.activity_kanban);
         setSupportActionBar(toolbar);
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        tabs = (TabLayout) findViewById(R.id.tabs);
         setupViewPager(mViewPager);
         tabs.setupWithViewPager(mViewPager);
         presenter=new WelcomePresenter(this);
@@ -239,5 +239,10 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
+        presenter.obtainElements(sharedPreferences.getsetDaysNotTask(), sharedPreferences.getsetDaysNotMeta());
+    }
 }
