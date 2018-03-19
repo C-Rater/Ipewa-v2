@@ -46,4 +46,12 @@ public class MetaRepository {
     public void edit(Meta meta) {
         dao.edit(meta);
     }
+
+    public void deleteMetasByProjectId(int id) {
+        for(int i=0; i<metas.size();i++){
+            if(metas.get(i).get_idProyecto()==id)
+            { dao.delete(metas.get(i));}
+        }
+
+    }
 }

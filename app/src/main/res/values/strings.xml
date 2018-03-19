@@ -85,4 +85,6 @@
     <string name="action_task">Tareas</string>
     <string name="action_projects">Proyectos</string>
     <string name="action_agenda">Agenda</string>
+    <string name="metas">metas</string>
+    <string name="projects">proyectos</string>
 </resources>

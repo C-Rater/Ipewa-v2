@@ -22,8 +22,6 @@
             android:screenOrientation="portrait" />
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view.WelcomeActivity" />
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.about.AboutActivity" />
-        <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.task.View.ListTaskActivity" />
-        <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.project.View.ListProjectActivity" />
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.pref.PrefferencesActivity" />
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity" />
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.ui.project.View.EditProjectActivity" />

@@ -1,156 +1,86 @@
 package com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
-import com.craterstudio.juanfrancrater.ipewa.adapter.MetaAdapter;
-import com.craterstudio.juanfrancrater.ipewa.adapter.TareaAdapter;
-import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.MetaRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
+import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.presenter.WelcomePresenter;
 import com.craterstudio.juanfrancrater.ipewa.ui.about.AboutActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.pref.PrefferencesActivity;
-import com.craterstudio.juanfrancrater.ipewa.ui.project.View.ListProjectActivity;
-import com.craterstudio.juanfrancrater.ipewa.ui.task.View.ListTaskActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.project.View.DetailProjectActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
-import com.fangxu.allangleexpandablebutton.AllAngleExpandableButton;
-import com.fangxu.allangleexpandablebutton.ButtonData;
-import com.fangxu.allangleexpandablebutton.ButtonEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * En esta version, permite acceder a un menu de preferencias
- (no funcional), a la interfaz de AboutActivity y a las listas
+ *
  * @author Juan Francisco Benítez López
  * @version 0.2.0
  */
 public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat.View {
 
-    TextView textTask;
-    RecyclerView recyclerTask;
-    TextView textMeta;
-    RecyclerView recyclerMeta;
-    TareaAdapter adapterTask;
-    MetaAdapter adapterMeta;
-    private TareaAdapter.OnItemClickListener listenerTask;
-    private MetaAdapter.OnItemClickListener listenerMeta;
-    ArrayList<Tarea> tareas;
-    ArrayList<Meta> metas;
-    WelcomeContrat.Presenter presenter;
 
-    AppPreferencesHelper sharedPreferences;
+    private WelcomeContrat.Presenter presenter;
+    static ArrayList<Meta> metas;
+    static ArrayList<Tarea> tareas;
+    static ArrayList<Proyecto> projects;
+    static ArrayList<String> feed;
+    ViewPager mViewPager;
+    TabLayout tabs;
+    private AppPreferencesHelper sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        AllAngleExpandableButton button = (AllAngleExpandableButton)findViewById(R.id.button_expandable);
-        final List<ButtonData> buttonDatas = new ArrayList<>();
-        int[] drawable = {R.drawable.ic_action_pref,R.drawable.project,R.drawable.task};
-        int[] color = {R.color.colorAccent,R.color.colorPrimary,R.color.colorPrimary};
-        for (int i = 0; i < drawable.length; i++) {
-            ButtonData buttonData = ButtonData.buildIconButton(this, drawable[i], 0);
-            buttonData.setBackgroundColorId(this, color[i]);
-            buttonDatas.add(buttonData);
-        }
-        button.setButtonDatas(buttonDatas);
-        button.setButtonEventListener(new ButtonEventListener() {
-            @Override
-            public void onButtonClicked(int index) {
-                if(index==1)
-                {
-                    startActivity(new Intent(WelcomeActivity.this, ListProjectActivity.class));
-                }else if(index==2)
-                {
-                    startActivity(new Intent(WelcomeActivity.this, ListTaskActivity.class));
-                }
-            }
-
-            @Override
-            public void onExpand() {
-
-            }
-
-            @Override
-            public void onCollapse() {
-
-            }
-        });
-        textTask=findViewById(R.id.textTask);
-        recyclerTask=findViewById(R.id.recyclerTask);
-        textMeta=findViewById(R.id.textMeta);
-        recyclerMeta=findViewById(R.id.recyclerMeta);
-        presenter= new WelcomePresenter(this);
-        presenter.obtainElements(sharedPreferences.getsetDaysNotTask(),sharedPreferences.getsetDaysNotMeta());
-        listenerTask= new TareaAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Tarea tarea) {
-            //
-            }
-
-            @Override
-            public void onLongClick(Tarea tarea) {
-            //
-            }
-        };
-        listenerMeta= new MetaAdapter.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(Meta Meta) {
-            }
-
-            @Override
-            public void onLongClick(Meta Meta) {
-
-            }
-        };
-        adapterTask= new TareaAdapter(listenerTask,tareas);
-        adapterMeta = new MetaAdapter(listenerMeta,metas);
-        recyclerTask.setLayoutManager(new LinearLayoutManager(this));
-        recyclerTask.setAdapter(adapterTask);
-        recyclerTask.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerTask, new ClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
-
-            }
-        }));
-        recyclerMeta.setLayoutManager(new LinearLayoutManager(this));
-        recyclerMeta.setAdapter(adapterMeta);
-        recyclerMeta.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerMeta, new ClickListener() {
-            @Override
-            public void onClick(View view, final int position) {
-
-            }
-        }));
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Welcome);
+        sharedPreferences=((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
+        setContentView(R.layout.activity_kanban);
         setSupportActionBar(toolbar);
-
-
-
-        if(sharedPreferences.getshowUser()) {
-            String message= getString(R.string.welcome)+sharedPreferences.getCurrentUserName();
-            Toast.makeText(this,message, Toast.LENGTH_LONG).show();
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        tabs = (TabLayout) findViewById(R.id.tabs);
+        setupViewPager(mViewPager);
+        tabs.setupWithViewPager(mViewPager);
+        presenter=new WelcomePresenter(this);
+        if (sharedPreferences.getshowUser()) {
+            String message = getString(R.string.welcome) + sharedPreferences.getCurrentUserName();
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        }
+        presenter.obtainElements(sharedPreferences.getsetDaysNotTask(),sharedPreferences.getsetDaysNotMeta());
     }
+    private void setupViewPager(ViewPager viewPager) {
+        WelcomeActivity.SectionsPagerAdapter adapter = new WelcomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
 
+        adapter.addFragment(TabFragment.newInstance(0,0),getResources().getString(R.string.projects));
+        adapter.addFragment(TabFragment.newInstance(1,1),getResources().getString(R.string.tareas));
+        adapter.addFragment(TabFragment.newInstance(2,2),getResources().getString(R.string.metas));
+
+        viewPager.setAdapter(adapter);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflador = getMenuInflater();
@@ -168,7 +98,6 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                 startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
                 break;
         }
-
         return super.onOptionsItemSelected(item);
 
     }
@@ -176,6 +105,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     protected void onResume() {
         super.onResume();
+
         sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
         presenter.obtainElements(sharedPreferences.getsetDaysNotTask(), sharedPreferences.getsetDaysNotMeta());
     }
@@ -186,25 +116,128 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     }
 
     @Override
-    public void fillList(ArrayList<Tarea> tareas, ArrayList<Meta> metas) {
-        if(tareas==null||tareas.size()==0)
-        {
-            textTask.setVisibility(View.INVISIBLE);
-            recyclerTask.setVisibility(View.INVISIBLE);
-        }else{
-            this.tareas=tareas;
-            textTask.setVisibility(View.VISIBLE);
-            recyclerTask.setVisibility(View.VISIBLE);
+    public void fillList(ArrayList<Tarea> tareas, ArrayList<Meta> metas,ArrayList<Proyecto> proyectos) {
+        this.tareas=tareas;
+        this.metas=metas;
+        this.projects=proyectos;
+    }
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
         }
-        if(metas==null||metas.size()==0)
-        {
-            textMeta.setVisibility(View.INVISIBLE);
-            recyclerMeta.setVisibility(View.INVISIBLE);
-        }else{
-            this.metas=metas;
-            textMeta.setVisibility(View.VISIBLE);
-            recyclerMeta.setVisibility(View.VISIBLE);
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
+    }
+    public static class TabFragment extends Fragment {
+
+        private static final String tabNumber = "tabNumber";
+
+        private static final String tipoTab = "tipo";
+        private int tipo;
+
+        public static TabFragment newInstance(int tabpos,int tipo) {
+            TabFragment fragment = new TabFragment();
+            Bundle args = new Bundle();
+            args.putInt(tabNumber, tabpos);
+            args.putInt(tipoTab,tipo);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        public TabFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_kanban, container, false);
+            int tablero= getArguments().getInt(tabNumber);
+             tipo=getArguments().getInt(tipoTab);
+            ListView view = rootView.findViewById(R.id.list);
+            view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(tipo==1)
+                    {
+                        Intent intent = new Intent(getContext(), EditTaskActivity.class);
+                        intent.putExtra("editTask", tareas.get(i));
+                        startActivityForResult(intent,0);
+                    }else if(tipo==2){
+                       // Intent intent = new Intent(getContext(), EditMetaActivity.class);
+                        //intent.putExtra("editTask", tareas.get(i));
+                        //startActivityForResult(intent,0);
+                    } else
+                    {
+                        Intent intent = new Intent(getContext(), DetailProjectActivity.class);
+                        intent.putExtra("detailProject",  projects.get(i));
+                        startActivityForResult(intent,0);
+                    }
+
+                }
+            });
+            view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                    final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+                    builder.setTitle(builder.getContext().getResources().getString(R.string.titleDeleteTask));
+                    builder.setMessage(builder.getContext().getResources().getString(R.string.messageDeleteTask));
+                    builder.setCancelable(true);
+                    builder.setPositiveButton(builder.getContext().getString(R.string.btnOK), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // presenter.delete();
+                        }
+                    }).setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    AlertDialog alertDialog= builder.create();
+                    alertDialog.show();
+                    return true;
+                }
+            });
+            ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1);
+            if(tablero==1) {
+                for(int i=0;i<tareas.size();i++)
+                {
+                    if(tareas.get(i).get_idTablero()==tablero)
+                    {
+                        adapter.add(tareas.get(i));
+                    }
+                }
+
+            }else if(tablero==2){
+                adapter.addAll(metas);
+            }else {
+                adapter.addAll(projects);
+            }
+            view.setAdapter(adapter);
+            return rootView;
         }
 
     }
+
+
 }

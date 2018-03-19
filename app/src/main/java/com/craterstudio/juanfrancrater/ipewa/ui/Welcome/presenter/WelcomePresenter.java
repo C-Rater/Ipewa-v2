@@ -1,6 +1,7 @@
 package com.craterstudio.juanfrancrater.ipewa.ui.Welcome.presenter;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
+import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.interactor.WelcomeInteractor;
@@ -26,7 +27,7 @@ public class WelcomePresenter implements WelcomeContrat.Presenter,WelcomeInterac
     }
 
     @Override
-    public void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas) {
-        view.fillList(tareas,metas);
+    public void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos) {
+        view.fillList(tareas,metas,proyectos);
     }
 }

@@ -1,5 +1,6 @@
 package com.craterstudio.juanfrancrater.ipewa.ui.project.Interactor;
 
+import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.MetaRepository;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.ProjectRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.TareaRepository;
@@ -26,7 +27,7 @@ public class DetailProjectInteractor implements ProjectContrat.DetailProject.Int
     public void deleteProject(Proyecto detailProject) {
         ProjectRepository.getInstance().deleteProject(detailProject);
         TareaRepository.getInstance().deleteTareasByProjectId(detailProject.get_ID());
-        FirebaseMessaging.getInstance().subscribeToTopic(String.valueOf(detailProject.get_ID()));
+        MetaRepository.getInstance().deleteMetasByProjectId(detailProject.get_ID());
         listener.reloadList();
     }
 

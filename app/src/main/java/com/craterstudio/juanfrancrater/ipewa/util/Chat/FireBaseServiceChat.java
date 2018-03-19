@@ -14,7 +14,5 @@ public class FireBaseServiceChat extends FirebaseInstanceIdService{
         sendRegistrationToServer(refreshedToken);
     }
 
-    private void sendRegistrationToServer(String refreshedToken) {
-
-    }
+    private void sendRegistrationToServer(String refreshedToken) {}
 }

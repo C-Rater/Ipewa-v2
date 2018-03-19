@@ -104,4 +104,9 @@ public class Proyecto implements Comparable, Parcelable {
     public int compareTo(@NonNull Object o) {
         return _ID-((Proyecto)o).get_ID();
     }
+
+    @Override
+    public String toString() {
+        return _name ;
+    }
 }
