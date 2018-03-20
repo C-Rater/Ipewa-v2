@@ -58,12 +58,13 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_Welcome);
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        tabs = (TabLayout) findViewById(R.id.tabs);
+        setContentView(R.layout.activity_kanban);
+        Toolbar toolbar =  findViewById(R.id.toolbar_Welcome);
         sharedPreferences=((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
         setContentView(R.layout.activity_kanban);
         setSupportActionBar(toolbar);
+        mViewPager =  findViewById(R.id.container);
+        tabs =  findViewById(R.id.tabs);
         setupViewPager(mViewPager);
         tabs.setupWithViewPager(mViewPager);
         presenter=new WelcomePresenter(this);

@@ -18,15 +18,13 @@ import com.vansuita.materialabout.views.AboutView;
  */
 public class AboutActivity extends AppCompatActivity {
 
-   // Using MaterialAbout  https://github.com/jrvansuita/MaterialAbout
-
     FrameLayout frmL;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        frmL=(FrameLayout)findViewById(R.id.frmL);
+        frmL=findViewById(R.id.frmL);
         AboutBuilder build = AboutBuilder.with(this)
                 .setName(getString(R.string.nameAbout))
                 .setSubTitle(getString(R.string.subTitleAbout))
@@ -37,7 +35,7 @@ public class AboutActivity extends AppCompatActivity {
                 .setDividerDashGap(13)
                 .setLinksColumnsCount(3)
                 .addGitHubLink("JuanFranCrater")
-                .addLinkedInLink("juan-francisco-benítez-lópez-557918130")
+                .addLinkedInLink("juan-francisco-benitez-lopez")
                 .addEmailLink("juanfbenitezlopez@gmail.com")
                 .setShowAsCard(true);
         AboutView view = build.build();
