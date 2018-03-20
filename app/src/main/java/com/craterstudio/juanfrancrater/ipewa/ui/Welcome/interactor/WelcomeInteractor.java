@@ -25,9 +25,11 @@ public class WelcomeInteractor implements WelcomeContrat.Interactor{
         ArrayList<Tarea> tareas;
         ArrayList<Meta> metas;
         ArrayList<Proyecto> proyectos;
-        tareas= TareaRepository.getInstance().getTareasInDays(daysTask);
+       // tareas= TareaRepository.getInstance().getTareasInDays(daysTask);
+        tareas=TareaRepository.getInstance().getTareas();
+       // metas=MetaRepository.getInstance().getMetasInDays(daysMeta);
         metas=MetaRepository.getInstance().getMetasInDays(daysMeta);
-        proyectos= ProjectRepository.getInstance().getProjects();
+        proyectos=ProjectRepository.getInstance().getProjects();
         listener.reloadList(tareas,metas,proyectos);
 
     }
