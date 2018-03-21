@@ -54,4 +54,8 @@ public class MetaRepository {
         }
 
     }
+
+    public ArrayList<Meta> getMetas() {
+        return dao.loadAll();
+    }
 }
