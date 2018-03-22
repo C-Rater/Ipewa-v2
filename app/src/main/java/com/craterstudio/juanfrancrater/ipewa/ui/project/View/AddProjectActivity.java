@@ -50,43 +50,41 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
         setContentView(R.layout.activity_add_project);
         presenter= new AddProjectPresenter(this,this);
         initialize();
-        edtDate =  findViewById(R.id.edtDate);
-        edtDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar mcurrentDate = Calendar.getInstance();
-                mYear = mcurrentDate.get(Calendar.YEAR);
-                mMonth = mcurrentDate.get(Calendar.MONTH);
-                mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog mDatePicker = new DatePickerDialog(AddProjectActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                        Calendar myCalendar = Calendar.getInstance();
-                        myCalendar.set(Calendar.YEAR, selectedyear);
-                        myCalendar.set(Calendar.MONTH, selectedmonth);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
-                        String myFormatTextView = "dd/MM/yyyy";
-                        String myFormatBD = "yyyy/MM/dd";
-                        SimpleDateFormat sdf = new SimpleDateFormat(myFormatTextView);
-                        SimpleDateFormat sdfDB = new SimpleDateFormat(myFormatBD);
-                        deadLine = sdfDB.format(myCalendar.getTime());
-                        edtDate.setText(sdf.format(myCalendar.getTime()));
-                        mDay = selectedday;
-                        mMonth = selectedmonth;
-                        mYear = selectedyear;
-                    }
-                }, mYear, mMonth, mDay);
-                mDatePicker.show();
-            }
-        });
     }
+    private void datePicker()
+    { Calendar mcurrentDate = Calendar.getInstance();
+    mYear = mcurrentDate.get(Calendar.YEAR);
+    mMonth = mcurrentDate.get(Calendar.MONTH);
+    mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
 
+    DatePickerDialog mDatePicker = new DatePickerDialog(AddProjectActivity.this, new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+            Calendar myCalendar = Calendar.getInstance();
+            myCalendar.set(Calendar.YEAR, selectedyear);
+            myCalendar.set(Calendar.MONTH, selectedmonth);
+            myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+            String myFormatTextView = "dd/MM/yyyy";
+            String myFormatBD = "yyyy/MM/dd";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormatTextView);
+            SimpleDateFormat sdfDB = new SimpleDateFormat(myFormatBD);
+            deadLine = sdfDB.format(myCalendar.getTime());
+            edtDate.setText(sdf.format(myCalendar.getTime()));
+            mDay = selectedday;
+            mMonth = selectedmonth;
+            mYear = selectedyear;
+        }
+    }, mYear, mMonth, mDay);
+    mDatePicker.show();
+
+    }
     private void initialize()
     {
         tiedtName =  findViewById(R.id.tiedtName);
         tiedtDescription = findViewById(R.id.tiedtDescription);
         iconColor=findViewById(R.id.iconColorPicker);
         txtColor=findViewById(R.id.txtColor);
+        edtDate =  findViewById(R.id.edtDate);
         iconColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
