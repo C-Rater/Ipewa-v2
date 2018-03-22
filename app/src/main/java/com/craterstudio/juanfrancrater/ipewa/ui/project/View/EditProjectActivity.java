@@ -65,6 +65,12 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
 
     private void initialize() {
         edtDate =  findViewById(R.id.edtDate);
+        edtDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePicker();
+            }
+        });
         deadLine=editProject.get_deadLine();
         edtDate.setText(deadLine);
         tiedtName = findViewById(R.id.tiedtName);

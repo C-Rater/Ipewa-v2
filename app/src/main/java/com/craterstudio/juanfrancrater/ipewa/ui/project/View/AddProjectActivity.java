@@ -85,6 +85,12 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
         iconColor=findViewById(R.id.iconColorPicker);
         txtColor=findViewById(R.id.txtColor);
         edtDate =  findViewById(R.id.edtDate);
+        edtDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePicker();
+            }
+        });
         iconColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
