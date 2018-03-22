@@ -60,10 +60,9 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanban);
         Toolbar toolbar =  findViewById(R.id.toolbar);
-        toolbar.setSubtitle(getResources().getString(R.string.welcome));
-        sharedPreferences=((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
-        setContentView(R.layout.activity_kanban);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.welcome));
+        sharedPreferences=((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
         mViewPager =  findViewById(R.id.container);
         tabs =  findViewById(R.id.tabs);
         setupViewPager(mViewPager);
