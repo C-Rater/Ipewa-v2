@@ -35,6 +35,9 @@ dependencies {
     implementation 'com.github.ivbaranov:materiallettericon:0.2.2'
     apply plugin: 'com.google.gms.google-services'
     compile 'com.google.android.gms:play-services-auth:11.8.0'
+
+
+    compile 'com.github.skydoves:colorpickerpreference:1.0.3'
 }
 
 

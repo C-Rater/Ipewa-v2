@@ -41,13 +41,12 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_detail_project);
         presenter= new DetailProjectPresenter(this);
         btnListaTareas=findViewById(R.id.btnListaTareas);
 
         detailProject =getIntent().getExtras().getParcelable("detailProject");
-        FirebaseMessaging.getInstance().subscribeToTopic(String.valueOf(detailProject.get_ID()));//Subcribirse al tema del proyecto por el id para el futuro chat
+        //FirebaseMessaging.getInstance().subscribeToTopic(String.valueOf(detailProject.get_ID()));//Subcribirse al tema del proyecto por el id para el futuro chat
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initialize();
