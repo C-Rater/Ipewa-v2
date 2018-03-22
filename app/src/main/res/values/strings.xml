@@ -66,7 +66,7 @@
     <string name="title_country_preference">Idioma</string>
     <string name="summary_country_preference">Idioma de la aplicacion</string>
     <string name="dialog_title_country_preference">Idioma</string>
-    <string name="welcome">Bienvenido,</string>
+    <string name="welcome">Bienvenido</string>
     <string name="toDo">To Do</string>
     <string name="title_activity_kan_ban">KanBanActivity</string>
     <string name="tab_text_1">Tab 1</string>

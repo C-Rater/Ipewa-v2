@@ -2,6 +2,7 @@ package com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,11 +27,14 @@ import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
+import com.craterstudio.juanfrancrater.ipewa.ui.Meta.AddMetasActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.presenter.WelcomePresenter;
 import com.craterstudio.juanfrancrater.ipewa.ui.about.AboutActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.pref.PrefferencesActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.DetailProjectActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
@@ -59,6 +63,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanban);
+        FloatingActionButton fab = findViewById(R.id.fab);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.welcome));
@@ -73,6 +78,24 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
         presenter.obtainElements(-1,-1);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (mViewPager.getCurrentItem())
+                {
+                    case 0:
+                        startActivityForResult(new Intent(WelcomeActivity.this, AddProjectActivity.class),0);
+                        break;
+                    case 1:
+                        startActivityForResult(new Intent(WelcomeActivity.this, AddTaskActivity.class),1);
+                        break;
+                    case 2:
+                        startActivityForResult(new Intent(WelcomeActivity.this, AddMetasActivity.class),2);
+                        break;
+                }
+            }
+        });
     }
     private void setupViewPager(ViewPager viewPager) {
         WelcomeActivity.SectionsPagerAdapter adapter = new WelcomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
@@ -185,7 +208,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                     {
                         Intent intent = new Intent(getContext(), EditTaskActivity.class);
                         intent.putExtra("editTask", tareas.get(i));
-                        startActivityForResult(intent,0);
+                        startActivityForResult(intent,3);
                     }else if(tipo==2){
                        // Intent intent = new Intent(getContext(), EditMetaActivity.class);
                         //intent.putExtra("editTask", tareas.get(i));
@@ -194,7 +217,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                     {
                         Intent intent = new Intent(getContext(), DetailProjectActivity.class);
                         intent.putExtra("detailProject",  projects.get(i));
-                        startActivityForResult(intent,0);
+                        startActivityForResult(intent,4);
                     }
 
                 }
@@ -223,18 +246,14 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             });
             ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1);
             if(tablero==1) {
-                for(int i=0;i<tareas.size();i++)
-                {
-                    if(tareas.get(i).get_idTablero()==tablero)
-                    {
-                        adapter.add(tareas.get(i));
-                    }
-                }
 
+                adapter.addAll(tareas);
             }else if(tablero==2){
                 adapter.addAll(metas);
+
             }else {
                 adapter.addAll(projects);
+
             }
             view.setAdapter(adapter);
             return rootView;
@@ -245,7 +264,6 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
-        presenter.obtainElements(sharedPreferences.getsetDaysNotTask(), sharedPreferences.getsetDaysNotMeta());
+        presenter.obtainElements(-1, -1);
     }
 }
