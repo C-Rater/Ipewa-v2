@@ -14,6 +14,7 @@
     </group>
 
     <item
+        android:title="@string/other"
         android:id="@+id/navigation_subheader">
 
         <menu>
@@ -24,6 +25,9 @@
             <item
                 android:id="@+id/action_settings"
                 android:title="@string/action_settings"/>
+            <item
+                android:id="@+id/action_about"
+                android:title="@string/AboutMe"/>
         </menu>
 
     </item>

@@ -74,6 +74,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
         });
 
         btn_SignIn = (Button) findViewById(R.id.btn_SignIn);
+        btn_SignIn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                startActivityForResult(new Intent(LoginActivity.this, WelcomeActivity.class),0);
+                return true;
+            }
+        });
         edtUser=findViewById(R.id.edT_User);
         edtpassword=findViewById(R.id.edT_Passw);
         txtVIfSignUp=findViewById(R.id.txtVIfSignUp);

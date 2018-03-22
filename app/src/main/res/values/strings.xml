@@ -89,4 +89,5 @@
     <string name="projects">proyectos</string>
     <string name="sortbyDate">Ordenar por fecha</string>
     <string name="showByDays">showByDays</string>
+    <string name="other">Otros</string>
 </resources>

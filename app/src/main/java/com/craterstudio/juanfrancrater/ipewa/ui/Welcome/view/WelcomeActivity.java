@@ -59,7 +59,8 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanban);
-        Toolbar toolbar =  findViewById(R.id.toolbar_Welcome);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        toolbar.setSubtitle(getResources().getString(R.string.welcome));
         sharedPreferences=((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
         setContentView(R.layout.activity_kanban);
         setSupportActionBar(toolbar);
@@ -83,6 +84,8 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
         viewPager.setAdapter(adapter);
     }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflador = getMenuInflater();
         menuInflador.inflate(R.menu.menu_activity_welcome, menu);
