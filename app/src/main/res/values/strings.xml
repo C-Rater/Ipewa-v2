@@ -87,4 +87,6 @@
     <string name="action_agenda">Agenda</string>
     <string name="metas">metas</string>
     <string name="projects">proyectos</string>
+    <string name="sortbyDate">Ordenar por fecha</string>
+    <string name="showByDays">showByDays</string>
 </resources>

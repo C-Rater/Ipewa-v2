@@ -124,4 +124,22 @@ public class TareaDao {
         MyOpenHelper.getInstance().closeDateBase();
         return tareaArrayList;
     }
+
+    public ArrayList<Tarea> getSortByDate() {
+
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        Cursor cursor = sqLiteDatabase.query(MyContrats.Tareas.TABLE_NAME, null,
+                null, null, null, null, MyContrats.Tareas.COLUMN_DEADLINE+" DESC ");
+
+        final ArrayList<Tarea> tareaArrayList=new ArrayList<>();
+        if(cursor.moveToFirst())
+        {
+            do{
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
+                tareaArrayList.add(tarea);
+            }while (cursor.moveToNext());
+        }
+        MyOpenHelper.getInstance().closeDateBase();
+        return tareaArrayList;
+    }
 }

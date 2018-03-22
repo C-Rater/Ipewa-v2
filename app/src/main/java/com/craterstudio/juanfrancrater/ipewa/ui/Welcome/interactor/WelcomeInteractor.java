@@ -39,6 +39,15 @@ public class WelcomeInteractor implements WelcomeContrat.Interactor{
 
 
     }
+
+    @Override
+    public void sortByDate() {
+        ArrayList<Tarea> tareas=TareaRepository.getInstance().getTareasSortByDate();
+        ArrayList<Meta> metas=MetaRepository.getInstance().getMetasSortByDate();
+        ArrayList<Proyecto> proyectos=ProjectRepository.getInstance().getProjects();
+        listener.reloadList(tareas,metas,proyectos);
+    }
+
     public interface WelcomeListener
     {
         void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos);

@@ -58,4 +58,8 @@ public class MetaRepository {
     public ArrayList<Meta> getMetas() {
         return dao.loadAll();
     }
+
+    public ArrayList<Meta> getMetasSortByDate() {
+        return dao.getSortByDate();
+    }
 }

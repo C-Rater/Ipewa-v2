@@ -102,5 +102,9 @@ public class TareaRepository {
     }
 
     public ArrayList getTareasInDays(int days){return dao.getByDays(days);}
+
+    public ArrayList<Tarea> getTareasSortByDate() {
+        return dao.getSortByDate();
+    }
 }
 

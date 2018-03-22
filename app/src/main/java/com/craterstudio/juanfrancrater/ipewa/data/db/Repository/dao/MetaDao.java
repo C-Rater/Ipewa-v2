@@ -120,4 +120,21 @@ public static ArrayList<Meta> getMetasByProject(int id){
         MyOpenHelper.getInstance().closeDateBase();
         return list;
     }
+
+    public ArrayList<Meta> getSortByDate() {
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        Cursor cursor = sqLiteDatabase.query(MyContrats.Metas.TABLE_NAME, null,
+                null, null, null, null, MyContrats.Metas.COLUMN_DEADLINE+" DESC ");
+
+        final ArrayList<Meta> metaArrayList=new ArrayList<>();
+        if(cursor.moveToFirst())
+        {
+            do{
+                Meta meta=new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7));
+                metaArrayList.add(meta);
+            }while (cursor.moveToNext());
+        }
+        MyOpenHelper.getInstance().closeDateBase();
+        return metaArrayList;
+    }
 }

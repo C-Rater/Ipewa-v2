@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group >
 
-    <item android:id="@+id/action_about"
-        android:title="@string/AboutMe" app:showAsAction="ifRoom"/>
-    <item android:id="@+id/action_pref" android:icon="@drawable/ic_action_pref"
-        android:title="@string/pref_category_general"/>
+        <item
+            android:id="@+id/sortbyDate"
+            android:title="@string/sortbyDate"
+            app:actionLayout="@layout/switch_item" />
+        <item
+            android:id="@+id/showByDays"
+            android:title="@string/showByDays"
+            app:actionLayout="@layout/switch_item" />
+        <item
+            android:id="@+id/sortDiff"
+            android:title="@string/sortDifficult"
+            app:actionLayout="@layout/switch_item"/>
+        <item
+            android:id="@+id/sortPrio"
+            android:title="@string/sortPriority"
+            app:actionLayout="@layout/switch_item"/>
+
+
+    </group>
 </menu>

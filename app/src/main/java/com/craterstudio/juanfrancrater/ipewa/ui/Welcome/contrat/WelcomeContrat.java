@@ -12,8 +12,12 @@ public interface WelcomeContrat {
     }
     interface Presenter{
         void obtainElements(int daysTask,int daysMeta);
+
+        void sortByDate();
     }
     interface Interactor{
         void obtainElement(int daysTask,int daysMeta);
+
+        void sortByDate();
     }
 }

@@ -72,7 +72,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             String message = getString(R.string.welcome) + sharedPreferences.getCurrentUserName();
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
-        presenter.obtainElements(sharedPreferences.getsetDaysNotTask(),sharedPreferences.getsetDaysNotMeta());
+        presenter.obtainElements(-1,-1);
     }
     private void setupViewPager(ViewPager viewPager) {
         WelcomeActivity.SectionsPagerAdapter adapter = new WelcomeActivity.SectionsPagerAdapter(getSupportFragmentManager());
@@ -92,11 +92,11 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_about:
-                startActivity(new Intent(WelcomeActivity.this, AboutActivity.class));
+            case R.id.sortbyDate:
+                presenter.sortByDate();
                 break;
-            case R.id.action_pref:
-                startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
+            case R.id.showByDays:
+                presenter.obtainElements(sharedPreferences.getsetDaysNotTask(),sharedPreferences.getsetDaysNotMeta());
                 break;
         }
         return super.onOptionsItemSelected(item);
