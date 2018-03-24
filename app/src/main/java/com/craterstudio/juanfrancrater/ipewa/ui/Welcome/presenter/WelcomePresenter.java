@@ -45,4 +45,9 @@ public class WelcomePresenter implements WelcomeContrat.Presenter,WelcomeInterac
     public void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos) {
         view.fillList(tareas,metas,proyectos);
     }
+
+    @Override
+    public void reload() {
+        view.reload();
+    }
 }

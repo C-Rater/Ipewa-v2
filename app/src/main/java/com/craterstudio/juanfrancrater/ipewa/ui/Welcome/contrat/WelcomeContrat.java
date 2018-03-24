@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public interface WelcomeContrat {
     interface View{
         void fillList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos);
+
+        void reload();
     }
     interface Presenter{
         void obtainElements(int daysTask,int daysMeta);

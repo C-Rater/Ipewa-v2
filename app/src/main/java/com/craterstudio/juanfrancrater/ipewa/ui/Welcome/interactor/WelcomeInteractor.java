@@ -51,17 +51,19 @@ public class WelcomeInteractor implements WelcomeContrat.Interactor{
     @Override
     public void deleteTask(int i) {
         TareaRepository.getInstance().deleteTask(i);
-        this.sortByDate();
+       listener.reload();
     }
 
     @Override
     public void deleteMeta(int i) {
         MetaRepository.getInstance().delete(i);
-        this.sortByDate();
+        listener.reload();
     }
 
     public interface WelcomeListener
     {
         void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos);
+
+        void reload();
     }
 }

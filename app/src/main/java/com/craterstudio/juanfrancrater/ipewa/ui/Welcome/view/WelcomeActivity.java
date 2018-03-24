@@ -147,6 +147,12 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
         this.metas=metas;
         this.projects=proyectos;
     }
+
+    @Override
+    public void reload() {
+        startActivity(new Intent(this,this.getClass()));
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
