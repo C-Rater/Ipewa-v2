@@ -24,6 +24,7 @@ import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
+import com.craterstudio.juanfrancrater.ipewa.ui.Meta.AddMetasActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Contrats.TaskTabContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Presenter.KanbanPresenter;
 
@@ -46,8 +47,8 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         detailProject =getIntent().getExtras().getParcelable("detailProject");
         setContentView(R.layout.activity_kanban);
         setToolbar();
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        tabs = (TabLayout) findViewById(R.id.tabs);
+        mViewPager = findViewById(R.id.container);
+        tabs =  findViewById(R.id.tabs);
         presenter=new KanbanPresenter(this);
         presenter.obtenerList(detailProject.get_ID());
         setupViewPager(mViewPager);
@@ -60,7 +61,19 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(new Intent(KanbanActivity.this, AddTaskActivity.class),0);
+                switch (mViewPager.getCurrentItem())
+                {
+                    case 0:
+                        Intent intent= new Intent(KanbanActivity.this, AddTaskActivity.class);
+                        intent.putExtra("idProyecto",detailProject.get_ID());
+                        startActivityForResult(intent,0);
+                        break;
+                    case 1:
+                        Intent intent2= new Intent(KanbanActivity.this, AddTaskActivity.class);
+                        intent2.putExtra("idProyecto",detailProject.get_ID());
+                        startActivityForResult(intent2,1);
+                        break;
+                }
             }
         });
     }
@@ -105,8 +118,8 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
     private void setupViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         for (int i=0; i<tableros.size();i++)
-        adapter.addFragment(TabFragment.newInstance(tableros.get(i).get_ID()),tableros.get(i).get_name());
-        adapter.addFragment(TabFragment.newInstance(-1),"Metas");
+        adapter.addFragment(TabFragment.newInstance(0),tableros.get(i).get_name());
+        adapter.addFragment(TabFragment.newInstance(1),"Metas");
         viewPager.setAdapter(adapter);
     }
     private void setToolbar() {

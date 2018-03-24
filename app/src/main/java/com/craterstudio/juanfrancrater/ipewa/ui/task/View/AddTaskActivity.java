@@ -1,5 +1,6 @@
 package com.craterstudio.juanfrancrater.ipewa.ui.task.View;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,18 +8,21 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
-import com.craterstudio.juanfrancrater.ipewa.adapter.ColorAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.DiffPrioAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.SpinnerProyectAdapter;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Contrats.TaskContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Presenter.AddTaskPresenter;
+import com.github.ivbaranov.mli.MaterialLetterIcon;
+import com.skydoves.colorpickerpreference.ColorEnvelope;
+import com.skydoves.colorpickerpreference.ColorListener;
+import com.skydoves.colorpickerpreference.ColorPickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,18 +36,19 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
 
     TextInputEditText tiedtName;
     TextInputEditText tiedtDescription;
-    Spinner spnColor;
     Spinner spnPrio;
     Spinner spnDiff;
     Spinner spnProyecto;
-    Button btnDeadline;
-    TextView txtVDeadLine;
+    TextView txtColor;
+    EditText edtDate;
+    MaterialLetterIcon iconColor;
     int mYear;
     int mMonth;
     int mDay;
     String deadLine = "";
     ArrayList<String> listProjId;
     TaskContrat.addTask.Presenter presenter;
+    private String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
             public void onClick(View view) {
                 presenter.addTask(tiedtName.getText().toString(),
                         tiedtDescription.getText().toString(),
-                        spnColor.getSelectedItem().toString(),
+                        color,
                         deadLine,spnPrio.getSelectedItem().toString(),
                         spnDiff.getSelectedItem().toString(), Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
             }
@@ -65,7 +70,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
 
         presenter= new AddTaskPresenter(this,this);
         initialize();
-        btnDeadline.setOnClickListener(new View.OnClickListener() {
+        edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar mcurrentDate = Calendar.getInstance();
@@ -84,7 +89,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
                         SimpleDateFormat sdf = new SimpleDateFormat(myFormatTextView);
                         SimpleDateFormat sdfDB = new SimpleDateFormat(myFormatBD);
                         deadLine=sdfDB.format(myCalendar.getTime());
-                        txtVDeadLine.setText(sdf.format(myCalendar.getTime()));
+                        edtDate.setText(sdf.format(myCalendar.getTime()));
 
                         mDay = selectedday;
                         mMonth = selectedmonth;
@@ -94,23 +99,51 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
                 mDatePicker.show();
             }
         });
+        int id;
+        try {
+             id = getIntent().getExtras().getInt("idProyecto");
+            if (id != 0) {
+                for (int i = 0; i < listProjId.size(); i++) {
+                    if (id == Integer.parseInt(listProjId.get(i))) {
+                        spnProyecto.setSelection(i);
+                    }
+                }
+            }
+        }catch (NullPointerException e)
+        {
+        }
     }
 
-    private void initialize()
-    {
-        tiedtName = (TextInputEditText) findViewById(R.id.tiedtName);
-        tiedtDescription = (TextInputEditText) findViewById(R.id.tiedtDescription);
-        spnColor = (Spinner) findViewById(R.id.spnColor);
-        spnDiff=(Spinner) findViewById(R.id.spnDiff);
-        spnPrio=(Spinner) findViewById(R.id.spnPrio);
-        spnProyecto=(Spinner) findViewById(R.id.spnProyecto);
+    private void initialize() {
+        tiedtName = findViewById(R.id.tiedtName);
+        tiedtDescription =findViewById(R.id.tiedtDescription);
+        iconColor=findViewById(R.id.iconColorPicker);
+        txtColor=findViewById(R.id.txtColor);
+        spnDiff = findViewById(R.id.spnDiff);
+        spnPrio =  findViewById(R.id.spnPrio);
+        spnProyecto =  findViewById(R.id.spnProyecto);
         spnProyecto.setAdapter(new SpinnerProyectAdapter(this));
         presenter.getIdList();
-        spnColor.setAdapter(new ColorAdapter(this));
         spnDiff.setAdapter(new DiffPrioAdapter(this));
         spnPrio.setAdapter(new DiffPrioAdapter(this));
-        btnDeadline = (Button) findViewById(R.id.btnDatePicker);
-        txtVDeadLine=(TextView) findViewById(R.id.txtVDeadLine);
+        edtDate =  findViewById(R.id.edtDate);
+        iconColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(AddTaskActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                builder.setTitle("ColorPicker Dialog");
+                builder.setPositiveButton(getString(R.string.btnOK), new ColorListener() {
+                    @Override
+                    public void onColorSelected(ColorEnvelope colorEnvelope) {
+                        txtColor.setText("#" + colorEnvelope.getColorHtml());
+                        color=colorEnvelope.getColorHtml();
+                        iconColor.setShapeColor(colorEnvelope.getColor());
+                    }
+                });
+                builder.setCancelable(true);
+                builder.show();
+            }
+        });
     }
 
     @Override

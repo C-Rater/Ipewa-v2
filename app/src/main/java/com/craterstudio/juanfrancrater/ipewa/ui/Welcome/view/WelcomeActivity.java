@@ -50,7 +50,7 @@ import java.util.List;
 public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat.View {
 
 
-    private WelcomeContrat.Presenter presenter;
+    private static WelcomeContrat.Presenter presenter;
     static ArrayList<Meta> metas;
     static ArrayList<Tarea> tareas;
     static ArrayList<Proyecto> projects;
@@ -222,28 +222,38 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
                 }
             });
-            view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                    final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                    builder.setTitle(builder.getContext().getResources().getString(R.string.titleDeleteTask));
-                    builder.setMessage(builder.getContext().getResources().getString(R.string.messageDeleteTask));
-                    builder.setCancelable(true);
-                    builder.setPositiveButton(builder.getContext().getString(R.string.btnOK), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // presenter.delete();
-                        }
-                    }).setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    AlertDialog alertDialog= builder.create();
-                    alertDialog.show();
-                    return true;
-                }
-            });
+            if(tipo!=0)
+            {
+                view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                        final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+                        builder.setTitle(builder.getContext().getResources().getString(R.string.titleDeleteTask));
+                        builder.setCancelable(true);
+                        builder.setPositiveButton(builder.getContext().getString(R.string.btnOK), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(tipo==1)
+                                {
+                                    presenter.deleteTask(i);
+                                }else if(tipo==2){
+                                    presenter.deleteMeta(i);
+                                }
+                            }
+
+                        }).setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        AlertDialog alertDialog= builder.create();
+                        alertDialog.show();
+                        return true;
+                    }
+                });
+            }
+
             ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1);
             if(tablero==1) {
 

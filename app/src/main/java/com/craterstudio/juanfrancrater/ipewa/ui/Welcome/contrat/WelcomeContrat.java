@@ -14,10 +14,18 @@ public interface WelcomeContrat {
         void obtainElements(int daysTask,int daysMeta);
 
         void sortByDate();
+
+        void deleteTask(int i);
+
+        void deleteMeta(int i);
     }
     interface Interactor{
         void obtainElement(int daysTask,int daysMeta);
 
         void sortByDate();
+
+        void deleteTask(int i);
+
+        void deleteMeta(int i);
     }
 }

@@ -6,15 +6,12 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
-import com.craterstudio.juanfrancrater.ipewa.adapter.ColorAdapter;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Presenter.AddProjectPresenter;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
@@ -43,6 +40,7 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
     int mDay;
     String deadLine = "";
     ProjectContrat.addProject.Presenter presenter;
+    private String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +98,7 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
                     @Override
                     public void onColorSelected(ColorEnvelope colorEnvelope) {
                         txtColor.setText("#" + colorEnvelope.getColorHtml());
+                        color=colorEnvelope.getColorHtml();
                         iconColor.setShapeColor(colorEnvelope.getColor());
                     }
                 });
@@ -113,7 +112,7 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
     {
         presenter.addProject(tiedtName.getText().toString(),
                 tiedtDescription.getText().toString(),
-                txtColor.getText().toString(),
+                color,
                 deadLine);
     }
 

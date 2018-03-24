@@ -1,6 +1,8 @@
 package com.craterstudio.juanfrancrater.ipewa.ui.task.View;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -9,19 +11,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
-import com.craterstudio.juanfrancrater.ipewa.adapter.ColorAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.DiffPrioAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.SpinnerProyectAdapter;
-import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.ColorRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.DiffPrioRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
+import com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Contrats.TaskContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Presenter.EditTaskPresenter;
+import com.github.ivbaranov.mli.MaterialLetterIcon;
+import com.skydoves.colorpickerpreference.ColorEnvelope;
+import com.skydoves.colorpickerpreference.ColorListener;
+import com.skydoves.colorpickerpreference.ColorPickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,12 +41,12 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
    private TaskContrat.editTask.Presenter presenter;
     TextInputEditText tiedtName;
     TextInputEditText tiedtDescription;
-    Spinner spnColor;
     Spinner spnPrio;
     Spinner spnDiff;
     Spinner spnProyecto;
-    Button btnDeadline;
-    TextView txtVDeadLine;
+    TextView txtColor;
+    EditText edtDate;
+    MaterialLetterIcon iconColor;
     int mYear;
     int mMonth;
     int mDay;
@@ -48,6 +54,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
 
     Tarea editTask;
     private ArrayList<String> listProjId;
+    private String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,20 +64,42 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         editTask = (Tarea) getIntent().getExtras().getParcelable("editTask");
+        color=editTask.get_color();
         initialize();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.EditTask(editTask.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),spnColor.getSelectedItem().toString(),deadLine,spnPrio.getSelectedItem().toString(),spnDiff.getSelectedItem().toString(),Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
+                presenter.EditTask(editTask.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),color,deadLine,spnPrio.getSelectedItem().toString(),spnDiff.getSelectedItem().toString(),Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
             }
         });
     }
 
     private void initialize() {
-        btnDeadline = (Button) findViewById(R.id.btnDatePicker);
-        txtVDeadLine = (TextView) findViewById(R.id.txtVDeadLine);
-        btnDeadline.setOnClickListener(new View.OnClickListener() {
+        txtColor=findViewById(R.id.txtColor);
+        iconColor=findViewById(R.id.iconColorPicker);
+        iconColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(EditTaskActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                builder.setTitle("ColorPicker Dialog");
+                builder.setPositiveButton(getString(R.string.btnOK), new ColorListener() {
+                    @Override
+                    public void onColorSelected(ColorEnvelope colorEnvelope) {
+                        txtColor.setText("#" + colorEnvelope.getColorHtml());
+                        color=colorEnvelope.getColorHtml();
+                        iconColor.setShapeColor(colorEnvelope.getColor());
+                    }
+                });
+                builder.setCancelable(true);
+                builder.show();
+            }
+        });
+
+        iconColor.setShapeColor(Color.parseColor(color));
+
+        edtDate=findViewById(R.id.edtDate);
+        edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar mcurrentDate = Calendar.getInstance();
@@ -89,7 +118,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
                         SimpleDateFormat sdf = new SimpleDateFormat(myFormatTextView);
                         SimpleDateFormat sdfDB = new SimpleDateFormat(myFormatBD);
                         deadLine = sdfDB.format(myCalendar.getTime());
-                        txtVDeadLine.setText(sdf.format(myCalendar.getTime()));
+                        edtDate.setText(sdf.format(myCalendar.getTime()));
                         mDay = selectedday;
                         mMonth = selectedmonth;
                         mYear = selectedyear;
@@ -99,23 +128,14 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
             }
         });
 
-        txtVDeadLine.setText(editTask.get_deadLine().substring(8,10)+editTask.get_deadLine().substring(4,8)+editTask.get_deadLine().substring(0,4));
         deadLine=editTask.get_deadLine();
         tiedtName = (TextInputEditText) findViewById(R.id.tiedtName);
         tiedtName.setText(editTask.get_name());
         tiedtDescription = (TextInputEditText) findViewById(R.id.tiedtDescription);
         tiedtDescription.setText(editTask.get_description());
-        spnColor = (Spinner) findViewById(R.id.spnColor);
         spnDiff=(Spinner) findViewById(R.id.spnDiff);
         spnPrio=(Spinner) findViewById(R.id.spnPrio);
         spnProyecto=(Spinner) findViewById(R.id.spnProyecto);
-
-        spnColor.setAdapter(new ColorAdapter(this));
-        for (int i = 0; i < ColorRepository.getInstance().getColors().size(); i++) {
-            if (spnColor.getItemAtPosition(i).toString().equals(editTask.get_color())) {
-                spnColor.setSelection(i);
-            }
-        }
 
         spnPrio.setAdapter(new DiffPrioAdapter(this));
         for (int i = 0; i < DiffPrioRepository.getInstance().getLevels().size(); i++) {

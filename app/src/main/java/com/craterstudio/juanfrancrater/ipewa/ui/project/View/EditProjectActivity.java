@@ -2,22 +2,17 @@ package com.craterstudio.juanfrancrater.ipewa.ui.project.View;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
-import com.craterstudio.juanfrancrater.ipewa.adapter.ColorAdapter;
-import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.ColorRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Presenter.EditProjectPresenter;
@@ -50,6 +45,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
     String deadLine = "";
 
     Proyecto editProject;
+    String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +60,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
     }
 
     private void initialize() {
+        color= editProject.get_color();
         edtDate =  findViewById(R.id.edtDate);
         edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +85,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
                     @Override
                     public void onColorSelected(ColorEnvelope colorEnvelope) {
                         txtColor.setText("#" + colorEnvelope.getColorHtml());
+                        color=colorEnvelope.getColorHtml();
                         iconColor.setShapeColor(colorEnvelope.getColor());
                     }
                 });
@@ -95,11 +93,12 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
                 builder.show();
             }
         });
+        iconColor.setShapeColor(Color.parseColor(color));
     }
 
     public void onClickaddProject(View v)
     {
-        presenter.EditProject(editProject.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),txtColor.getText().toString(),deadLine);
+        presenter.EditProject(editProject.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),color,deadLine);
     }
 
     @Override

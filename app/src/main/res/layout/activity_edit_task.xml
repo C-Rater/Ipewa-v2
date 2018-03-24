@@ -80,40 +80,50 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtILDescription"/>
-
-            <Spinner
-                android:id="@+id/spnColor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+            <com.github.ivbaranov.mli.MaterialLetterIcon
+                android:id="@+id/iconColorPicker"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtVColor"></Spinner>
+                app:layout_constraintTop_toBottomOf="@+id/txtVColor" />
+
+            <TextView
+                android:id="@+id/txtColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="36dp"
+                android:text="Default"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/iconColorPicker"
+                app:layout_constraintTop_toBottomOf="@+id/txtVColor" />
 
             <TextView
                 android:id="@+id/txtVPrioridad"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/Prioridad"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spnColor" />
+                app:layout_constraintTop_toBottomOf="@+id/iconColorPicker" />
 
             <Spinner
                 android:id="@+id/spnPrio"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtVPrioridad"></Spinner>
+                app:layout_constraintStart_toEndOf="@+id/txtVPrioridad"
+                app:layout_constraintTop_toBottomOf="@+id/iconColorPicker"></Spinner>
 
             <TextView
                 android:id="@+id/txtVDiff"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/Dificultad"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,11 +131,11 @@
 
             <Spinner
                 android:id="@+id/spnDiff"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtVDiff"></Spinner>
+                app:layout_constraintStart_toStartOf="@+id/spnPrio"
+                app:layout_constraintTop_toBottomOf="@+id/spnPrio"></Spinner>
 
             <TextView
                 android:id="@+id/txtVProyecto"
@@ -145,33 +155,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtVProyecto"></Spinner>
 
-            <Button
-                android:id="@+id/btnDatePicker"
+            <EditText
+                android:id="@+id/edtDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:onClick="showDatePickerDialog"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="textPersonName"
                 android:text="@string/deadline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.72"
-                app:layout_constraintStart_toEndOf="@+id/txtVDeadLine"
-                app:layout_constraintTop_toBottomOf="@+id/spnProyecto" />
-
-            <TextView
-                android:id="@+id/txtVDeadLine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spnDiff"
-                app:layout_constraintVertical_bias="0.7" />
-
-
+                app:layout_constraintTop_toBottomOf="@+id/spnProyecto" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.NestedScrollView>

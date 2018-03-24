@@ -62,4 +62,8 @@ public class MetaRepository {
     public ArrayList<Meta> getMetasSortByDate() {
         return dao.getSortByDate();
     }
+
+    public void delete(int i) {
+        dao.delete(i);
+    }
 }

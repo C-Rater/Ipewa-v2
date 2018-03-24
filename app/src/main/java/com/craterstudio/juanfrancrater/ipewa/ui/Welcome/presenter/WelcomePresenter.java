@@ -32,6 +32,16 @@ public class WelcomePresenter implements WelcomeContrat.Presenter,WelcomeInterac
     }
 
     @Override
+    public void deleteTask(int i) {
+        interactor.deleteTask(i);
+    }
+
+    @Override
+    public void deleteMeta(int i) {
+        interactor.deleteMeta(i);
+    }
+
+    @Override
     public void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos) {
         view.fillList(tareas,metas,proyectos);
     }

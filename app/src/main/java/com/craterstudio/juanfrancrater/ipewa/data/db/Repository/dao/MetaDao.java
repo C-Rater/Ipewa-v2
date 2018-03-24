@@ -137,4 +137,10 @@ public static ArrayList<Meta> getMetasByProject(int id){
         MyOpenHelper.getInstance().closeDateBase();
         return metaArrayList;
     }
+
+    public void delete(int i) {
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{String.valueOf(i)} );
+        MyOpenHelper.getInstance().closeDateBase();
+    }
 }

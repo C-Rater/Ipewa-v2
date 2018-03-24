@@ -106,5 +106,9 @@ public class TareaRepository {
     public ArrayList<Tarea> getTareasSortByDate() {
         return dao.getSortByDate();
     }
+
+    public void deleteTask(int i) {
+        dao.delete(i);
+    }
 }
 
