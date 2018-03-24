@@ -60,7 +60,7 @@ public class TareaRepository {
         dao.set(id,tarea);
     }
 
-    public void addTarea(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto, int idTablero) {
+    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, int idProyecto, int idTablero) {
         dao.add(name,description,color,deadLine,priority,difficulty,idProyecto,idTablero);
     }
 

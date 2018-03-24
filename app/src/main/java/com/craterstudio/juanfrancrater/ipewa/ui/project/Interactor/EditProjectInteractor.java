@@ -17,7 +17,7 @@ public class EditProjectInteractor implements ProjectContrat.editProject.Interac
     }
 
     @Override
-    public void EditProject(int id, String name, String description, String color, String deadLine) {
+    public void EditProject(int id, String name, String description, int color, String deadLine) {
         if(name.length()<1)
         {
             listener.showErrorEmptyName();

@@ -15,10 +15,10 @@ public class Proyecto implements Comparable, Parcelable {
     int _ID;
     String _name;
     String _description;
-    String _color;
+    int _color;
     String _deadLine;
 
-    public Proyecto(int _ID, String _name, String _description, String _color, String _deadLine) {
+    public Proyecto(int _ID, String _name, String _description, int _color, String _deadLine) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -30,7 +30,7 @@ public class Proyecto implements Comparable, Parcelable {
         _ID = in.readInt();
         _name = in.readString();
         _description = in.readString();
-        _color = in.readString();
+        _color = in.readInt();
         _deadLine = in.readString();
     }
 
@@ -39,7 +39,7 @@ public class Proyecto implements Comparable, Parcelable {
         dest.writeInt(_ID);
         dest.writeString(_name);
         dest.writeString(_description);
-        dest.writeString(_color);
+        dest.writeInt(_color);
         dest.writeString(_deadLine);
     }
 
@@ -84,11 +84,11 @@ public class Proyecto implements Comparable, Parcelable {
         this._description = _description;
     }
 
-    public String get_color() {
+    public int get_color() {
         return _color;
     }
 
-    public void set_color(String _color) {
+    public void set_color(int _color) {
         this._color = _color;
     }
 

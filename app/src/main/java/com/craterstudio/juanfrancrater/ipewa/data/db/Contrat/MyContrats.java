@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 
 public class MyContrats {
     public static final String DATABASE_NAME = "ipewapp";
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
 
     public static class Proyectos{
         public static final String TABLE_NAME = "proyecto";
@@ -25,22 +25,12 @@ public class MyContrats {
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
-                        "%s TEXT NOT NULL,"+
+                        "%s INTEGER NOT NULL,"+
                         "%s TEXT NOT NULL)",
                 TABLE_NAME,
                 BaseColumns._ID,
                 COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE);
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES ('%s','%s','%s','%s')",
-                TABLE_NAME,
-                COLUMN_NAME,
-                COLUMN_DESCRIPTION,
-                COLUMN_COLOR,
-                COLUMN_DEADLINE,
-                "Aprender Japones",
-                "Aprender Japones, conociendo tanto los tres alfabetos como saber hablarlo",
-                "Red",
-                "01/01/2020"
-        );
+
     }
     public static class Metas{
         public static final String TABLE_NAME = "meta";
@@ -62,7 +52,7 @@ public class MyContrats {
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
-                        "%s TEXT NOT NULL,"+
+                        "%s INTEGER NOT NULL,"+
                         "%s TEXT NOT NULL,"+
                         "%s TEXT,"+
                         "%s TEXT," +
@@ -71,23 +61,7 @@ public class MyContrats {
 
                 BaseColumns._ID,
                 COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO);
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s) VALUES ('%s','%s','%s','%s','%s','%s','%s')",
-                TABLE_NAME,
-                COLUMN_NAME,
-                COLUMN_DESCRIPTION,
-                COLUMN_COLOR,
-                COLUMN_DEADLINE,
-                COLUMN_PRIORITY,
-                COLUMN_DIFFICULTY,
-                COLUMN_IDPROYECTO,
-                "1000 Palabras",
-                "Aprender 1000 palabras de vocabulario",
-                "Red",
-                "10/08/2018",
-                "Media",
-                "Media",
-                "1"
-        );
+
     }
     public static class Actividad{
         public static final String TABLE_NAME = "actividad";
@@ -119,22 +93,7 @@ public class MyContrats {
                 COLUMN_COLOR
 
         );
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s) VALUES ('%s','%s','%s')",
 
-                TABLE_NAME,
-
-                COLUMN_NAME,
-
-                COLUMN_DESCRIPTION,
-
-                COLUMN_COLOR,
-
-                "Idioma",
-
-                "Aprender un idioma además del ingles",
-
-                "Red"
-        );
 
     }
     public static class Tablero{
@@ -158,15 +117,7 @@ public class MyContrats {
 
                 BaseColumns._ID,
                 COLUMN_NAME, COLUMN_POSITION,COLUMN_IDPROYECTO);
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s) VALUES ('%s','%s','%s')",
-                TABLE_NAME,
-                COLUMN_NAME,
-                COLUMN_POSITION,
-                COLUMN_IDPROYECTO,
-                "TO DO",
-                "1",
-                "1"
-        );
+
     }
     public static class Tareas{
         public static final String TABLE_NAME = "tarea";
@@ -189,7 +140,7 @@ public class MyContrats {
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
-                        "%s TEXT NOT NULL,"+
+                        "%s INTEGER NOT NULL,"+
                         "%s TEXT NOT NULL,"+
                         "%s TEXT,"+
                         "%s TEXT,"+
@@ -200,25 +151,7 @@ public class MyContrats {
                 BaseColumns._ID,
                 COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO);
 
-        public static final String SQL_INSERT_ENTRIES = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s')",
-                TABLE_NAME,
-                COLUMN_NAME,
-                COLUMN_DESCRIPTION,
-                COLUMN_COLOR,
-                COLUMN_DEADLINE,
-                COLUMN_PRIORITY,
-                COLUMN_DIFFICULTY,
-                COLUMN_IDPROYECTO,
-                COLUMN_IDTABLERO,
-                "10 Palabras",
-                "Aprender 10 palabras de vocabulario",
-                "Blue",
-                "10/05/2018",
-                "Baja",
-                "Baja",
-                "1",
-                "1"
-        );
+
     }
 
     public static class Usuarios{

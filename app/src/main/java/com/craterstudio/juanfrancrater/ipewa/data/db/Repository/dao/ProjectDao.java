@@ -29,7 +29,7 @@ public class ProjectDao {
                 null);
         if (cursor.moveToFirst()) {
             do {
-                Proyecto proyecto = new Proyecto(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                Proyecto proyecto = new Proyecto(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4));
                 proyectosArrayList.add(proyecto);
             } while (cursor.moveToNext());
         }
@@ -62,8 +62,8 @@ public class ProjectDao {
 
     public void add(Proyecto p) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        ContentValues contentValues=createContent(p);
-        sqLiteDatabase.insert(MyContrats.Proyectos.TABLE_NAME,null,contentValues);
+        ContentValues contentValuesP=createContent(p);
+        sqLiteDatabase.insert(MyContrats.Proyectos.TABLE_NAME,null,contentValuesP);
         MyOpenHelper.getInstance().closeDateBase();
     }
 }

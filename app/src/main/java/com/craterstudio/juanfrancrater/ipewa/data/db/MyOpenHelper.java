@@ -46,15 +46,10 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         try {
             sqLiteDatabase.beginTransaction();
             sqLiteDatabase.execSQL(MyContrats.Proyectos.SQL_CREATE_ENTRIES);
-            sqLiteDatabase.execSQL(MyContrats.Proyectos.SQL_INSERT_ENTRIES);
             sqLiteDatabase.execSQL(MyContrats.Tablero.SQL_CREATE_ENTRIES);
-            sqLiteDatabase.execSQL(MyContrats.Tablero.SQL_INSERT_ENTRIES);
             sqLiteDatabase.execSQL(MyContrats.Tareas.SQL_CREATE_ENTRIES);
-            sqLiteDatabase.execSQL(MyContrats.Tareas.SQL_INSERT_ENTRIES);
             sqLiteDatabase.execSQL(MyContrats.Metas.SQL_CREATE_ENTRIES);
-            sqLiteDatabase.execSQL(MyContrats.Metas.SQL_INSERT_ENTRIES);
             sqLiteDatabase.execSQL(MyContrats.Actividad.SQL_CREATE_ENTRIES);
-            sqLiteDatabase.execSQL(MyContrats.Actividad.SQL_INSERT_ENTRIES);
             sqLiteDatabase.setTransactionSuccessful();
         }catch (SQLiteException e)
         {

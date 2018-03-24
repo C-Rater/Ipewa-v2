@@ -16,14 +16,14 @@ public class Tarea implements Comparable, Parcelable {
     int _ID;
     String _name;
     String _description;
-    String _color;
+    int _color;
     String _deadLine;
     String _priority;
     String _difficulty;
     int _idProyecto;
     int _idTablero;
 
-    public Tarea(int _ID, String _name, String _description, String _color, String _deadLine, String _priority, String _difficulty,int _idProyecto,int _idTablero) {
+    public Tarea(int _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,int _idProyecto,int _idTablero) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -40,7 +40,7 @@ public class Tarea implements Comparable, Parcelable {
         _ID = in.readInt();
         _name = in.readString();
         _description = in.readString();
-        _color = in.readString();
+        _color = in.readInt();
         _deadLine = in.readString();
         _priority = in.readString();
         _difficulty = in.readString();
@@ -92,11 +92,11 @@ public class Tarea implements Comparable, Parcelable {
         this._description = _description;
     }
 
-    public String get_color() {
+    public int get_color() {
         return _color;
     }
 
-    public void set_color(String _color) {
+    public void set_color(int _color) {
         this._color = _color;
     }
 
@@ -139,7 +139,7 @@ public class Tarea implements Comparable, Parcelable {
         dest.writeInt(_ID);
         dest.writeString(_name);
         dest.writeString(_description);
-        dest.writeString(_color);
+        dest.writeInt(_color);
         dest.writeString(_deadLine);
         dest.writeString(_priority);
         dest.writeString(_difficulty);

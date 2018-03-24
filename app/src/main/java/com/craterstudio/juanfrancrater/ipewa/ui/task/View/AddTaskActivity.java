@@ -48,7 +48,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
     String deadLine = "";
     ArrayList<String> listProjId;
     TaskContrat.addTask.Presenter presenter;
-    private String color;
+    private int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +136,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
                     @Override
                     public void onColorSelected(ColorEnvelope colorEnvelope) {
                         txtColor.setText("#" + colorEnvelope.getColorHtml());
-                        color=colorEnvelope.getColorHtml();
+                        color=colorEnvelope.getColor();
                         iconColor.setShapeColor(colorEnvelope.getColor());
                     }
                 });

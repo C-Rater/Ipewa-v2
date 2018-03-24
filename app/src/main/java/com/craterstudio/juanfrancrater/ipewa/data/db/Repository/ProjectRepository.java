@@ -44,7 +44,7 @@ public class ProjectRepository {
     }
 
 
-    public void addProject(String name,String description,String color, String deadLine ) {
+    public void addProject(String name,String description,int color, String deadLine ) {
 
         dao.add(new Proyecto(lastID++,name,description,color,deadLine));
     }

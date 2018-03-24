@@ -54,7 +54,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
 
     Tarea editTask;
     private ArrayList<String> listProjId;
-    private String color;
+    private int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +64,13 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         editTask = (Tarea) getIntent().getExtras().getParcelable("editTask");
-        color=editTask.get_color();
+        color= editTask.get_color();
         initialize();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.EditTask(editTask.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),color,deadLine,spnPrio.getSelectedItem().toString(),spnDiff.getSelectedItem().toString(),Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
+                presenter.EditTask(editTask.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(), color,deadLine,spnPrio.getSelectedItem().toString(),spnDiff.getSelectedItem().toString(),Integer.parseInt(listProjId.get(spnProyecto.getSelectedItemPosition())),1);
             }
         });
     }
@@ -87,17 +87,16 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
                     @Override
                     public void onColorSelected(ColorEnvelope colorEnvelope) {
                         txtColor.setText("#" + colorEnvelope.getColorHtml());
-                        color=colorEnvelope.getColorHtml();
+                        color= colorEnvelope.getColor();
                         iconColor.setShapeColor(colorEnvelope.getColor());
                     }
                 });
+
                 builder.setCancelable(true);
                 builder.show();
             }
         });
-
-        iconColor.setShapeColor(Color.parseColor(color));
-
+        iconColor.setShapeColor(editTask.get_color());
         edtDate=findViewById(R.id.edtDate);
         edtDate.setOnClickListener(new View.OnClickListener() {
             @Override

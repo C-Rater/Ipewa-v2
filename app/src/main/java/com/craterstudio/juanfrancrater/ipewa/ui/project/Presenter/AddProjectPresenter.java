@@ -22,7 +22,7 @@ public class AddProjectPresenter implements ProjectContrat.addProject.Presenter,
         }
 
     @Override
-    public void addProject(String nombre, String description, String color, String deadLine) {
+    public void addProject(String nombre, String description, int color, String deadLine) {
         interactor.addProject(nombre,description,color,deadLine);
     }
 

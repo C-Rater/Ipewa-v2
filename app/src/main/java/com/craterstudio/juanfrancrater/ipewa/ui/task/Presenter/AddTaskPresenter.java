@@ -39,7 +39,7 @@ public class AddTaskPresenter implements TaskContrat.addTask.Presenter, AddTaskI
     }
 
     @Override
-    public void addTask(String nombre, String description, String color, String deadLine, String priority, String difficulty, int _idProyecto, int idTablero) {
+    public void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty, int _idProyecto, int idTablero) {
         interactor.addTask(nombre,description,color,deadLine,priority,difficulty,_idProyecto,idTablero);
     }
 

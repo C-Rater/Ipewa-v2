@@ -90,7 +90,7 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
         icon.setLetter(detailProject.get_name().substring(0));
         icon.setLetterColor(Color.parseColor("white"));
         icon.setLetterSize(R.dimen.letter_icon_size);
-        icon.setShapeColor(Color.parseColor(detailProject.get_color()));
+        icon.setShapeColor(detailProject.get_color());
     }
 
     @Override

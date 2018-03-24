@@ -10,7 +10,7 @@ public class Meta {
     int _ID;
     String _name;
     String _description;
-    String _color;
+    int _color;
     String _deadLine;
     String _priority;
     String _difficulty;
@@ -40,11 +40,11 @@ public class Meta {
         this._description = _description;
     }
 
-    public String get_color() {
+    public int get_color() {
         return _color;
     }
 
-    public void set_color(String _color) {
+    public void set_color(int _color) {
         this._color = _color;
     }
 
@@ -72,7 +72,7 @@ public class Meta {
         this._difficulty = _difficulty;
     }
 
-    public Meta(int _ID, String _name, String _description, String _color, String _deadLine, String _priority, String _difficulty,int _idProyecto) {
+    public Meta(int _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,int _idProyecto) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;

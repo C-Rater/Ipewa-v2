@@ -45,7 +45,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
     String deadLine = "";
 
     Proyecto editProject;
-    String color;
+    int color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
                     @Override
                     public void onColorSelected(ColorEnvelope colorEnvelope) {
                         txtColor.setText("#" + colorEnvelope.getColorHtml());
-                        color=colorEnvelope.getColorHtml();
+                        color=colorEnvelope.getColor();
                         iconColor.setShapeColor(colorEnvelope.getColor());
                     }
                 });
@@ -93,7 +93,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
                 builder.show();
             }
         });
-        iconColor.setShapeColor(Color.parseColor(color));
+        iconColor.setShapeColor(color);
     }
 
     public void onClickaddProject(View v)

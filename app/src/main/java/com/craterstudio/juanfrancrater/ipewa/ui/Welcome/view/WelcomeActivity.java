@@ -235,9 +235,9 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                             public void onClick(DialogInterface dialog, int which) {
                                 if(tipo==1)
                                 {
-                                    presenter.deleteTask(i);
+                                    presenter.deleteTask(tareas.get(i).get_ID());
                                 }else if(tipo==2){
-                                    presenter.deleteMeta(i);
+                                    presenter.deleteMeta(metas.get(i).get_ID());
                                 }
                             }
 

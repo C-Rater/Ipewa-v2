@@ -31,7 +31,7 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
                 tareaArrayList.add(tarea);
             }while (cursor.moveToNext());
         }
@@ -65,7 +65,7 @@ public class TareaDao {
         return contentValues;
     }
 
-    public void add(String name, String description, String color, String deadLine, String priority, String difficulty, int idProyecto,int idTablero) {
+    public void add(String name, String description, int color, String deadLine, String priority, String difficulty, int idProyecto,int idTablero) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
         ContentValues contentValues=createContent(new Tarea(-1,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero));
         sqLiteDatabase.insert(MyContrats.Tareas.TABLE_NAME,null,contentValues);
@@ -93,7 +93,7 @@ public class TareaDao {
             if(cursor.moveToFirst())
             {
                 do{
-                    Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
+                    Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
                     tareaArrayList.add(tarea);
                 }while (cursor.moveToNext());
             }
@@ -117,7 +117,7 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
                 tareaArrayList.add(tarea);
             }while (cursor.moveToNext());
         }
@@ -135,7 +135,7 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8));
                 tareaArrayList.add(tarea);
             }while (cursor.moveToNext());
         }

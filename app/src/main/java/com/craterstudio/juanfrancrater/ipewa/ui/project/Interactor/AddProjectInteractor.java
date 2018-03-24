@@ -16,7 +16,7 @@ public class AddProjectInteractor implements ProjectContrat.addProject.Interacto
     }
 
     @Override
-    public void addProject(String nombre, String description, String color, String deadLine) {
+    public void addProject(String nombre, String description, int color, String deadLine) {
         if(nombre.length()<1)
         {
             listener.showEmptyNameError();
