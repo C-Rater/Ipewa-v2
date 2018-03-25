@@ -19,7 +19,7 @@ public class ChatActivity extends AppCompatActivity {
 
         input= (EditText)findViewById(R.id.input);
         setContentView(R.layout.layout_chat);
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
