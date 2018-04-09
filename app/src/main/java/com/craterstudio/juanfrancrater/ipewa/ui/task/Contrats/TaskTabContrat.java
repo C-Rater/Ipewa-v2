@@ -16,14 +16,14 @@ public interface TaskTabContrat {
         void reload(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Tablero> tableros);
     }
     interface presenter{
-        void obtenerList(int id);
+        void obtenerList(String id);
 
-        void delete(int i, String tipo);
+        void delete(String id, String tipo);
     }
     interface interactor{
-        void obtenerList(int id);
+        void obtenerList(String id);
 
-        void delete(int i, String tipo);
+        void delete(String id, String tipo);
     }
     interface interactorListener
     {

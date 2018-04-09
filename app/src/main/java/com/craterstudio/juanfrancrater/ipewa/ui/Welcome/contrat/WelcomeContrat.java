@@ -17,17 +17,17 @@ public interface WelcomeContrat {
 
         void sortByDate();
 
-        void deleteTask(int i);
+        void deleteTask(String id);
 
-        void deleteMeta(int i);
+        void deleteMeta(String id);
     }
     interface Interactor{
         void obtainElement(int daysTask,int daysMeta);
 
         void sortByDate();
 
-        void deleteTask(int i);
+        void deleteTask(String id);
 
-        void deleteMeta(int i);
+        void deleteMeta(String id);
     }
 }

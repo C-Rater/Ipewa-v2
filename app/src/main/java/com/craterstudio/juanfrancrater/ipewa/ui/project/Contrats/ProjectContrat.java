@@ -22,13 +22,13 @@ public interface ProjectContrat  {
 
         interface Presenter{
 
-            void addProject(String nombre, String description, int color, String deadLine);
+            void addProject(String nombre, String description, int color, String deadLine,String creator);
         }
 
         interface Interactor
         {
 
-            void addProject(String nombre, String description, int color, String deadLine);
+            void addProject(String nombre, String description, int color, String deadLine,String creator);
         }
     }
     interface DetailProject
@@ -41,7 +41,7 @@ public interface ProjectContrat  {
 
         interface Presenter{
 
-            void getProject(int id);
+            void getProject(String id);
 
             void deleteProject(Proyecto detailProject);
         }
@@ -49,7 +49,7 @@ public interface ProjectContrat  {
         interface Interactor
         {
 
-            void getProject(int id);
+            void getProject(String id);
 
             void deleteProject(Proyecto detailProject);
         }
@@ -83,14 +83,14 @@ public interface ProjectContrat  {
         }
 
         interface Presenter{
-            void EditProject(int id, String name, String description, int color, String deadLine);
+            void EditProject(String id, String name, String description, int color, String deadLine,String creator);
 
             void getProject(int editProyect);
         }
 
         interface Interactor
         {
-            void EditProject(int id, String name, String description, int color, String deadLine);
+            void EditProject(String id, String name, String description, int color, String deadLine,String creator);
 
             void getProject(int editProyect);
         }
