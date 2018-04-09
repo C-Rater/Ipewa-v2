@@ -66,13 +66,13 @@ public interface TaskContrat {
         }
 
         interface Presenter{
-            void EditTask(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero );
+            void EditTask(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero,String creator );
             void getIdList();
         }
 
         interface Interactor
         {
-            void EditTask(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero );
+            void EditTask(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero,String creator );
             void getIdList();
         }
     }

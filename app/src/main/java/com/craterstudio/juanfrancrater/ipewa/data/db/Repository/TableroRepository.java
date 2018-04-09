@@ -29,7 +29,7 @@ public class TableroRepository {
         this.tableros = new ArrayList<>();
         dao=new TableroDao();
     }
-    public ArrayList<Tablero> getTableros(int id)
+    public ArrayList<Tablero> getTableros(String id)
     {
         tableros= dao.loadTableroByProyectos(id);
         return  tableros;

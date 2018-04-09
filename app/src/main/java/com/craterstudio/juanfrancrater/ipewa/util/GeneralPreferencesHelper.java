@@ -6,6 +6,9 @@ package com.craterstudio.juanfrancrater.ipewa.util;
 
 public interface GeneralPreferencesHelper {
     String PREF_KEY_CURRENT_USER_NAME="pref_key_current_user_name";
+    String PREF_KEY_LAST_ID_P="pref_key_last_id_p";
+    String PREF_KEY_LAST_ID_P="pref_key_last_id_p";
+    String PREF_KEY_LAST_ID_P="pref_key_last_id_p";
     String PREf_KEY_SHOW_USER_NAME="pref_key_show_user_name";
     String PREF_KEY_REMEMBER_ME="pref_key_remember_me";
     String PREF_KEY_DAYS_NOTIFICATION_TASK="pref_key_days_notification_task";

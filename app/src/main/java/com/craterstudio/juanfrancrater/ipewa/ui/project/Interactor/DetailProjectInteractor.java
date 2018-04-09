@@ -19,7 +19,7 @@ public class DetailProjectInteractor implements ProjectContrat.DetailProject.Int
     }
 
     @Override
-    public void getProject(int id) {
+    public void getProject(String id) {
         listener.reloadProject(ProjectRepository.getInstance().getProject(id));
     }
 

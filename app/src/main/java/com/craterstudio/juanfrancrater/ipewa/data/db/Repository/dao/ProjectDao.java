@@ -37,16 +37,16 @@ public class ProjectDao {
         return proyectosArrayList;
     }
 
-    public void delete(int id) {
+    public void delete(String id) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        sqLiteDatabase.delete(MyContrats.Proyectos.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ String.valueOf(id)} );
+        sqLiteDatabase.delete(MyContrats.Proyectos.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ id} );
         MyOpenHelper.getInstance().closeDateBase();
     }
 
-    public void set(int id, Proyecto p) {
+    public void set(String id, Proyecto p) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
         ContentValues contentValues=createContent(p);
-        sqLiteDatabase.update(MyContrats.Proyectos.TABLE_NAME,contentValues,BaseColumns._ID+"=?",new String[]{ String.valueOf(id)});
+        sqLiteDatabase.update(MyContrats.Proyectos.TABLE_NAME,contentValues,BaseColumns._ID+"=?",new String[]{ id});
         MyOpenHelper.getInstance().closeDateBase();
     }
 

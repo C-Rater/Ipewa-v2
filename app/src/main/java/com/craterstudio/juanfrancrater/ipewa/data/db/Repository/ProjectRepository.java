@@ -2,6 +2,9 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.ProjectDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
+import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
+import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +17,6 @@ import java.util.Iterator;
 
 public class ProjectRepository {
     //Declaracion
-    private int lastID=0;
     private ArrayList<Proyecto> projects;
     private ProjectDao dao;
 
@@ -44,10 +46,13 @@ public class ProjectRepository {
     }
 
 
-    public void addProject(String name,String description,int color, String deadLine,String creator ) {
+    private AppPreferencesHelper sharedPreferences;
+    public void addProject(String name,String description,int color, String deadLine ) {
+        String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        int id= sharedPreferences.getLastID();
+        dao.add(new Proyecto(id+creator,name,description,color,deadLine,creator));
+        sharedPreferences.setLastID(id++);
 
-        dao.add(new Proyecto(lastID+creator,name,description,color,deadLine,creator));
-        lastID++;
     }
     public void addProject(Proyecto proyecto) {
 
@@ -71,7 +76,7 @@ public class ProjectRepository {
         }
         return null;
     }
-    public void setProject(int id, Proyecto pro)
+    public void setProject(String id, Proyecto pro)
     {
         dao.set(id,pro);
     }

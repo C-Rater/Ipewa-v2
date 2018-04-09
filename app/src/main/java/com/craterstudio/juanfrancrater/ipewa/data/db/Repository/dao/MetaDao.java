@@ -17,7 +17,7 @@ import java.util.Calendar;
  */
 
 public class MetaDao {
-public static ArrayList<Meta> getMetasByProject(int id){
+public static ArrayList<Meta> getMetasByProject(String id){
     final ArrayList<Meta> list = new ArrayList<>();
 
     final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
@@ -25,7 +25,7 @@ public static ArrayList<Meta> getMetasByProject(int id){
     Cursor cursor = sqLiteDatabase.query(MyContrats.Metas.TABLE_NAME,
             MyContrats.Metas.ALL_COLUMN,
             MyContrats.Metas.COLUMN_IDPROYECTO + "=?",
-            new String[]{String.valueOf(id)},
+            new String[]{id},
             null,
             null,
             MyContrats.Metas.DEFAULT_SORT,
@@ -138,9 +138,9 @@ public static ArrayList<Meta> getMetasByProject(int id){
         return metaArrayList;
     }
 
-    public void delete(int i) {
+    public void delete(String i) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{String.valueOf(i)} );
+        sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{i} );
         MyOpenHelper.getInstance().closeDateBase();
     }
 }

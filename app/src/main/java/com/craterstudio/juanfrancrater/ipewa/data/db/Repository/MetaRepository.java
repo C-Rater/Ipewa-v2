@@ -30,7 +30,7 @@ public class MetaRepository {
     {
         return metaRepository;
     }
-    public ArrayList<Meta> getMetasByProject(int id) {
+    public ArrayList<Meta> getMetasByProject(String id) {
         return dao.getMetasByProject(id);
     }
     public ArrayList<Meta> getMetasInDays(int id) {
@@ -41,6 +41,7 @@ public class MetaRepository {
         dao.delete(meta);
     }
     public void add(Meta meta) {
+        meta.set_idProyecto(meta.get_ID()+meta.get_creator());
         dao.add(meta);
     }
     public void edit(Meta meta) {
@@ -63,7 +64,7 @@ public class MetaRepository {
         return dao.getSortByDate();
     }
 
-    public void delete(int i) {
+    public void delete(String i) {
         dao.delete(i);
     }
 }

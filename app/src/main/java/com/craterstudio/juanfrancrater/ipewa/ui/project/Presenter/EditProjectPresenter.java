@@ -24,12 +24,12 @@ public class EditProjectPresenter implements ProjectContrat.editProject.Presente
 
 
     @Override
-    public void EditProject(int id, String name, String description, int color, String deadLine) {
-        interactor.EditProject(id,name,description,color,deadLine);
+    public void EditProject(String id, String name, String description, int color, String deadLine,String creator) {
+        interactor.EditProject(id,name,description,color,deadLine,creator);
     }
 
     @Override
-    public void getProject(int editProyect) {
+    public void getProject(String editProyect) {
         interactor.getProject(editProyect);
     }
 

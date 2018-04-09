@@ -46,13 +46,14 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
 
     Proyecto editProject;
     int color;
+    String creator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new EditProjectPresenter(this);
         setContentView(R.layout.activity_add_project);
-        presenter.getProject( getIntent().getExtras().getInt("editProject"));
+        presenter.getProject( getIntent().getExtras().getString("editProject"));
         if(editProject!=null)
         {
             initialize();
@@ -61,6 +62,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
 
     private void initialize() {
         color= editProject.get_color();
+        creator=editProject.get_creator();
         edtDate =  findViewById(R.id.edtDate);
         edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +100,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
 
     public void onClickaddProject(View v)
     {
-        presenter.EditProject(editProject.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),color,deadLine);
+        presenter.EditProject(editProject.get_ID(),tiedtName.getText().toString(),tiedtDescription.getText().toString(),color,deadLine,creator);
     }
 
     @Override

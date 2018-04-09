@@ -3,6 +3,7 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.TareaDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,7 +61,8 @@ public class TareaRepository {
         dao.set(id,tarea);
     }
 
-    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto, String idTablero,String creator) {
+    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto, String idTablero) {
+        String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
         dao.add(name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creator);
     }
 

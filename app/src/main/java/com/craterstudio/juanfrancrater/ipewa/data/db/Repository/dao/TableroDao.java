@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 public class TableroDao {
-    public ArrayList<Tablero> loadTableroByProyectos(int id) {
+    public ArrayList<Tablero> loadTableroByProyectos(String id) {
 
         final ArrayList<Tablero> list=new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class TableroDao {
         Cursor cursor = sqLiteDatabase.query(MyContrats.Tablero.TABLE_NAME,
                 MyContrats.Tablero.ALL_COLUMN,
                 MyContrats.Tablero.COLUMN_IDPROYECTO+"=?",
-                new String[]{String.valueOf(id)},
+                new String[]{id},
                 null,
                 null,
                 MyContrats.Tablero.DEFAULT_SORT,

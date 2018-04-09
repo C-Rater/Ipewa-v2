@@ -22,12 +22,12 @@ public class KanbanPresenter implements TaskTabContrat.presenter , TaskTabContra
     }
 
     @Override
-    public void obtenerList(int id) {
+    public void obtenerList(String id) {
         interactor.obtenerList(id);
     }
 
     @Override
-    public void delete(int i,String tipo) {
+    public void delete(String i,String tipo) {
         interactor.delete(i,tipo);
     }
 

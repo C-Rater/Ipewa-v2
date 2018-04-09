@@ -20,16 +20,9 @@ public class AddTaskInteractor implements TaskContrat.addTask.Interactor {
     }
 
     @Override
-    public void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty, int _idProyecto, int idTablero) {
+    public void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto, String idTablero) {
         if(!nombre.isEmpty()) {
             TareaRepository.getInstance().addTarea(nombre, description, color, deadLine, priority, difficulty,_idProyecto,idTablero);
-            if(_idProyecto>0)
-            {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("feed");
-
-                myRef.setValue("Craated Task "+nombre +" in project ");
-            }
             listener.back();
         }else
         {

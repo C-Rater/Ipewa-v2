@@ -17,20 +17,20 @@ public class EditProjectInteractor implements ProjectContrat.editProject.Interac
     }
 
     @Override
-    public void EditProject(String id, String name, String description, int color, String deadLine) {
+    public void EditProject(String id, String name, String description, int color, String deadLine,String creator) {
         if(name.length()<1)
         {
             listener.showErrorEmptyName();
         }else
         {
-            ProjectRepository.getInstance().setProject(id,new Proyecto(id,name,description,color,deadLine));
+            ProjectRepository.getInstance().setProject(id,new Proyecto(id,name,description,color,deadLine,creator));
             listener.back();
         }
 
     }
 
     @Override
-    public void getProject(int editProyect) {
+    public void getProject(String editProyect) {
         listener.loadProject(ProjectRepository.getInstance().getProject(editProyect));
     }
 

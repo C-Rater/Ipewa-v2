@@ -55,6 +55,10 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
         String name=preferences.getString(PREF_KEY_CURRENT_USER_NAME, null);
         return name;
     }
+    public int getLastIDProject() {
+        int id=preferences.getInt(PREF_KEY_CURRENT_LAST_ID_P, null);
+        return id;
+    }
     public void setRememberMe(Boolean bool) {
         preferences.edit().putBoolean(PREF_KEY_REMEMBER_ME,bool).apply();
     }
