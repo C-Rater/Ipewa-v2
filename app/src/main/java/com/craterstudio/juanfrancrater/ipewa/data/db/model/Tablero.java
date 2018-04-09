@@ -10,23 +10,34 @@ import android.os.Parcelable;
  */
 
 public class Tablero implements Parcelable {
-    int _ID;
+    String _ID;
     String _name;
     int _position;
     int _idProyecto;
+    String _creator;
 
-    public Tablero(int _ID, String _name, int _position,int _idProyecto) {
+    public String get_creator() {
+        return _creator;
+    }
+
+    public void set_creator(String _creator) {
+        this._creator = _creator;
+    }
+
+    public Tablero(String _ID, String _name, int _position,int _idProyecto,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._position = _position;
         this._idProyecto=_idProyecto;
+        this._creator=_creator;
     }
 
     protected Tablero(Parcel in) {
-        _ID = in.readInt();
+        _ID = in.readString();
         _name = in.readString();
         _position = in.readInt();
         _idProyecto=in.readInt();
+        _creator=in.readString();
     }
 
     public static final Creator<Tablero> CREATOR = new Creator<Tablero>() {
@@ -41,11 +52,11 @@ public class Tablero implements Parcelable {
         }
     };
 
-    public int get_ID() {
+    public String get_ID() {
         return _ID;
     }
 
-    public void set_ID(int _ID) {
+    public void set_ID(String _ID) {
         this._ID = _ID;
     }
 
@@ -72,9 +83,10 @@ public class Tablero implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(_ID);
+        parcel.writeString(_ID);
         parcel.writeString(_name);
         parcel.writeInt(_position);
         parcel.writeInt(_idProyecto);
+        parcel.writeString(_creator);
     }
 }

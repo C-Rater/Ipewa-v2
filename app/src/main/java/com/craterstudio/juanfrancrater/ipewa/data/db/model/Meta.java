@@ -7,20 +7,31 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.model;
  */
 
 public class Meta {
-    int _ID;
+    String _ID;
     String _name;
     String _description;
     int _color;
     String _deadLine;
     String _priority;
     String _difficulty;
-    int _idProyecto;
+    String _idProyecto;
+    String _creator;
 
-    public int get_ID() {
+    public String get_creator() {
+        return _creator;
+    }
+
+    public void set_creator(String _creator) {
+        this._creator = _creator;
+    }
+
+
+
+    public String get_ID() {
         return _ID;
     }
 
-    public void set_ID(int _ID) {
+    public void set_ID(String _ID) {
         this._ID = _ID;
     }
 
@@ -72,7 +83,7 @@ public class Meta {
         this._difficulty = _difficulty;
     }
 
-    public Meta(int _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,int _idProyecto) {
+    public Meta(String _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,String _idProyecto,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -81,13 +92,14 @@ public class Meta {
         this._priority = _priority;
         this._difficulty = _difficulty;
         this._idProyecto=_idProyecto;
+        this._creator=_creator;
     }
 
-    public int get_idProyecto() {
+    public String get_idProyecto() {
         return _idProyecto;
     }
 
-    public void set_idProyecto(int _idProyecto) {
+    public void set_idProyecto(String _idProyecto) {
         this._idProyecto = _idProyecto;
     }
 

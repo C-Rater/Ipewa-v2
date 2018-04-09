@@ -13,17 +13,26 @@ import java.util.Comparator;
  */
 
 public class Tarea implements Comparable, Parcelable {
-    int _ID;
+    String _ID;
     String _name;
     String _description;
     int _color;
     String _deadLine;
     String _priority;
     String _difficulty;
-    int _idProyecto;
-    int _idTablero;
+    String _idProyecto;
+    String _idTablero;
+    String _creator;
 
-    public Tarea(int _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,int _idProyecto,int _idTablero) {
+    public String get_creator() {
+        return _creator;
+    }
+
+    public void set_creator(String _creator) {
+        this._creator = _creator;
+    }
+
+    public Tarea(String _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,String _idProyecto,String _idTablero,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -33,26 +42,28 @@ public class Tarea implements Comparable, Parcelable {
         this._difficulty = _difficulty;
         this._idProyecto=_idProyecto;
         this._idTablero=_idTablero;
+        this._creator=_creator;
 
     }
 
     protected Tarea(Parcel in) {
-        _ID = in.readInt();
+        _ID = in.readString();
         _name = in.readString();
         _description = in.readString();
         _color = in.readInt();
         _deadLine = in.readString();
         _priority = in.readString();
         _difficulty = in.readString();
-        _idProyecto=in.readInt();
-        _idTablero=in.readInt();
+        _idProyecto=in.readString();
+        _idTablero=in.readString();
+        _creator=in.readString();
     }
 
-    public void set_idProyecto(int _idProyecto) {
+    public void set_idProyecto(String _idProyecto) {
         this._idProyecto = _idProyecto;
     }
 
-    public int get_idProyecto() {
+    public String get_idProyecto() {
         return _idProyecto;
     }
 
@@ -68,11 +79,11 @@ public class Tarea implements Comparable, Parcelable {
         }
     };
 
-    public int get_ID() {
+    public String get_ID() {
         return _ID;
     }
 
-    public void set_ID(int _ID) {
+    public void set_ID(String _ID) {
         this._ID = _ID;
     }
 
@@ -136,18 +147,19 @@ public class Tarea implements Comparable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(_ID);
+        dest.writeString(_ID);
         dest.writeString(_name);
         dest.writeString(_description);
         dest.writeInt(_color);
         dest.writeString(_deadLine);
         dest.writeString(_priority);
         dest.writeString(_difficulty);
-        dest.writeInt(_idProyecto);
-        dest.writeInt(_idTablero);
+        dest.writeString(_idProyecto);
+        dest.writeString(_idTablero);
+        dest.writeString(_creator);
     }
 
-    public int get_idTablero() {
+    public String get_idTablero() {
         return _idTablero;
     }
 

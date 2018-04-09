@@ -56,15 +56,15 @@ public class TareaRepository {
         return  tareas;
     }
 
-    public void setTarea(int id, Tarea tarea) {
+    public void setTarea(String id, Tarea tarea) {
         dao.set(id,tarea);
     }
 
-    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, int idProyecto, int idTablero) {
-        dao.add(name,description,color,deadLine,priority,difficulty,idProyecto,idTablero);
+    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto, String idTablero,String creator) {
+        dao.add(name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creator);
     }
 
-    public ArrayList<Tarea> getTareasByProjectId(int id) {
+    public ArrayList<Tarea> getTareasByProjectId(String id) {
         ArrayList<Tarea> tareasP= new ArrayList<>();
 
         Iterator<Tarea> iterator= getInstance().getTareas().iterator();
@@ -79,7 +79,7 @@ public class TareaRepository {
         }
         return tareasP;
     }
-    public void deleteTareasByProjectId(int id) {
+    public void deleteTareasByProjectId(String id) {
 
         Iterator<Tarea> iterator= getInstance().getTareas().iterator();
         Tarea temp;
@@ -107,7 +107,7 @@ public class TareaRepository {
         return dao.getSortByDate();
     }
 
-    public void deleteTask(int i) {
+    public void deleteTask(String i) {
         dao.delete(i);
     }
 }

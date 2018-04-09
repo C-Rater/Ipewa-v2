@@ -29,7 +29,7 @@ public class ProjectDao {
                 null);
         if (cursor.moveToFirst()) {
             do {
-                Proyecto proyecto = new Proyecto(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4));
+                Proyecto proyecto = new Proyecto(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4),cursor.getString(5));
                 proyectosArrayList.add(proyecto);
             } while (cursor.moveToNext());
         }

@@ -12,35 +12,48 @@ import android.support.annotation.NonNull;
 
 public class Proyecto implements Comparable, Parcelable {
     public static String TAG = "project";
-    int _ID;
+    String _ID;
     String _name;
     String _description;
     int _color;
     String _deadLine;
+    String _creator;
 
-    public Proyecto(int _ID, String _name, String _description, int _color, String _deadLine) {
+    public String get_creator() {
+        return _creator;
+    }
+
+    public void set_creator(String _creator) {
+        this._creator = _creator;
+    }
+
+
+    public Proyecto(String _ID, String _name, String _description, int _color, String _deadLine,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
         this._color = _color;
         this._deadLine = _deadLine;
+        this._creator=_creator;
     }
 
     protected Proyecto(Parcel in) {
-        _ID = in.readInt();
+        _ID = in.readString();
         _name = in.readString();
         _description = in.readString();
         _color = in.readInt();
         _deadLine = in.readString();
+        _creator=in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(_ID);
+        dest.writeString(_ID);
         dest.writeString(_name);
         dest.writeString(_description);
         dest.writeInt(_color);
         dest.writeString(_deadLine);
+        dest.writeString(_creator);
     }
 
     @Override
@@ -60,11 +73,11 @@ public class Proyecto implements Comparable, Parcelable {
         }
     };
 
-    public int get_ID() {
+    public String  get_ID() {
         return _ID;
     }
 
-    public void set_ID(int _ID) {
+    public void set_ID(String _ID) {
         this._ID = _ID;
     }
 
@@ -102,7 +115,7 @@ public class Proyecto implements Comparable, Parcelable {
 
     @Override
     public int compareTo(@NonNull Object o) {
-        return _ID-((Proyecto)o).get_ID();
+        return _ID.compareTo(((Proyecto)o).get_ID());
     }
 
     @Override

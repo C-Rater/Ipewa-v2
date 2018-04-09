@@ -34,7 +34,7 @@ public static ArrayList<Meta> getMetasByProject(int id){
 
     {
         do {
-            Meta meta = new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7));
+            Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
             list.add(meta);
         } while (cursor.moveToNext());
     }
@@ -57,7 +57,7 @@ public static ArrayList<Meta> getMetasByProject(int id){
         if(cursor.moveToFirst())
         {
             do{
-                Meta meta = new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7));
+                Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
                 metaArrayList.add(meta);
             }while (cursor.moveToNext());
         }
@@ -113,7 +113,7 @@ public static ArrayList<Meta> getMetasByProject(int id){
 
         {
             do {
-                Meta meta = new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7));
+                Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
                 list.add(meta);
             } while (cursor.moveToNext());
         }
@@ -130,7 +130,7 @@ public static ArrayList<Meta> getMetasByProject(int id){
         if(cursor.moveToFirst())
         {
             do{
-                Meta meta=new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7));
+                Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
                 metaArrayList.add(meta);
             }while (cursor.moveToNext());
         }

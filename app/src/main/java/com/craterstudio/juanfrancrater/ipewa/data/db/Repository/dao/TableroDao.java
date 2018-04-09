@@ -31,7 +31,7 @@ public class TableroDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tablero tablero =new Tablero(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getInt(3));
+                Tablero tablero =new Tablero(cursor.getString(0),cursor.getString(1),cursor.getInt(2),cursor.getInt(3),cursor.getString(4));
                 list.add(tablero);
             }while (cursor.moveToNext());
         }

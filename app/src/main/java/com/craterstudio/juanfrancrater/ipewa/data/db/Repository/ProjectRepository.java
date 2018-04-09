@@ -44,9 +44,10 @@ public class ProjectRepository {
     }
 
 
-    public void addProject(String name,String description,int color, String deadLine ) {
+    public void addProject(String name,String description,int color, String deadLine,String creator ) {
 
-        dao.add(new Proyecto(lastID++,name,description,color,deadLine));
+        dao.add(new Proyecto(lastID+creator,name,description,color,deadLine,creator));
+        lastID++;
     }
     public void addProject(Proyecto proyecto) {
 
@@ -56,7 +57,7 @@ public class ProjectRepository {
 
         dao.delete(project.get_ID());
     }
-    public Proyecto getProject(int id)
+    public Proyecto getProject(String id)
     {
         Iterator<Proyecto> iterator= getInstance().getProjects().iterator();
         Proyecto temp;
