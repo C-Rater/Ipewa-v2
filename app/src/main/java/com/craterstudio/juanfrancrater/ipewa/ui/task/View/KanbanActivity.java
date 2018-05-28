@@ -118,8 +118,8 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
     private void setupViewPager(ViewPager viewPager) {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         for (int i=0; i<tableros.size();i++)
-        adapter.addFragment(TabFragment.newInstance(0),tableros.get(i).get_name());
-        adapter.addFragment(TabFragment.newInstance(1),"Metas");
+        adapter.addFragment(TabFragment.newInstance(tableros.get(i).get_ID()),tableros.get(i).get_name());
+        adapter.addFragment(TabFragment.newInstance("1"),"Metas");
         viewPager.setAdapter(adapter);
     }
     private void setToolbar() {
@@ -131,10 +131,10 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
 
         private static final String tabNumber = "tabNumber";
 
-        public static TabFragment newInstance(int tabpos) {
+        public static TabFragment newInstance(String tabpos) {
             TabFragment fragment = new TabFragment();
             Bundle args = new Bundle();
-            args.putInt(tabNumber, tabpos);
+            args.putString(tabNumber, tabpos);
             fragment.setArguments(args);
             return fragment;
         }
@@ -146,7 +146,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_kanban, container, false);
-            int tablero= getArguments().getInt(tabNumber);
+            String tablero= getArguments().getString(tabNumber);
             ListView view = rootView.findViewById(R.id.list);
             view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -179,10 +179,10 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                 }
             });
             ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1);
-            if(tablero!=-1) {
+            if(!tablero.equals("-1")) {
                 for(int i=0;i<tareas.size();i++)
                 {
-                    if(tareas.get(i).get_idTablero()==tablero)
+                    if(tareas.get(i).get_idTablero().equals(tablero))
                     {
                         adapter.add(tareas.get(i));
                     }
