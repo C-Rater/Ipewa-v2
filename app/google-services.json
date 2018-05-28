@@ -15,12 +15,24 @@
       },
       "oauth_client": [
         {
+          "client_id": "892457402504-t0sgspbkn34j11trh60ab0u34lp88ou6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.craterstudio.juanfrancrater.ipewa",
+            "certificate_hash": "59af0d57595912d688b1451be9c0b1f1289f8aee"
+          }
+        },
+        {
           "client_id": "892457402504-lb2bdded4dnfobao7ic8b68ujf4cpgb3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.craterstudio.juanfrancrater.ipewa",
             "certificate_hash": "834241ee5a5eacc29f01ffa960e1332edd4357e4"
           }
+        },
+        {
+          "client_id": "892457402504-mpfes9fd1ipftp23360d2qb76u91skfq.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "892457402504-mpfes9fd1ipftp23360d2qb76u91skfq.apps.googleusercontent.com",

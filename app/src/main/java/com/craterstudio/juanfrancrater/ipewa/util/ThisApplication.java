@@ -26,7 +26,6 @@ public class ThisApplication extends Application {
     private static FirebaseAuth mAuth;
     private AppPreferencesHelper appPreferencesHelper;
     private static ThisApplication mContext;
-    private static FirebaseDatabase database;
 
     private static GoogleSignInClient mGoogleSignInClient;
 
@@ -48,8 +47,6 @@ public class ThisApplication extends Application {
         super.onCreate();
         appPreferencesHelper= AppPreferencesHelper.getInstance();
         mAuth=FirebaseAuth.getInstance();
-        //Pruebas
-        database=FirebaseDatabase.getInstance();
         //GoogleSignIN
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
