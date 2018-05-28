@@ -56,9 +56,32 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
         return name;
     }
     public int getLastIDProject() {
-        int id=preferences.getInt(PREF_KEY_CURRENT_LAST_ID_P, null);
+        int id=preferences.getInt(PREF_KEY_LAST_ID_PROJECT, 0);
         return id;
     }
+    public void setLastIDProject(int i)
+    {
+        preferences.edit().putInt(PREF_KEY_LAST_ID_PROJECT,i);
+    }
+
+    public int getLastIDMeta() {
+        int id=preferences.getInt(PREF_KEY_LAST_ID_META, 0);
+        return id;
+    }
+
+    public int getLastIDTarea() {
+        int id=preferences.getInt(PREF_KEY_LAST_ID_TAREA, 0);
+        return id;
+    }
+
+    public void setLastIDTarea(int i) {
+        preferences.edit().putInt(PREF_KEY_LAST_ID_TAREA,i);
+    }
+
+    public void setLastIdMeta(int i) {
+        preferences.edit().putInt(PREF_KEY_LAST_ID_META,i);
+    }
+
     public void setRememberMe(Boolean bool) {
         preferences.edit().putBoolean(PREF_KEY_REMEMBER_ME,bool).apply();
     }

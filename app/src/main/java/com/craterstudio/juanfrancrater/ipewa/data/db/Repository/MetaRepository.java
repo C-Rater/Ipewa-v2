@@ -2,6 +2,8 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.MetaDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
+import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -40,9 +42,14 @@ public class MetaRepository {
     public void delete(Meta meta) {
         dao.delete(meta);
     }
+
+    private AppPreferencesHelper sharedPreferences;
     public void add(Meta meta) {
-        meta.set_idProyecto(meta.get_ID()+meta.get_creator());
-        dao.add(meta);
+        String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String creatorname= FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        int id= sharedPreferences.getLastIDMeta();
+        dao.add(new Meta(String.valueOf(id)+creator,meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname));
+        sharedPreferences.setLastIdMeta(id++);
     }
     public void edit(Meta meta) {
         dao.edit(meta);

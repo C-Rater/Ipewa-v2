@@ -3,6 +3,7 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.TareaDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
+import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -61,9 +62,14 @@ public class TareaRepository {
         dao.set(id,tarea);
     }
 
+    private AppPreferencesHelper sharedPreferences;
     public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto, String idTablero) {
         String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        dao.add(name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creator);
+        String creatorname= FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        int id= sharedPreferences.getLastIDTarea();
+        dao.add(new Tarea(String.valueOf(id)+creator,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));
+        sharedPreferences.setLastIDTarea(id++);
+
     }
 
     public ArrayList<Tarea> getTareasByProjectId(String id) {

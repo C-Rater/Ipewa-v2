@@ -60,11 +60,12 @@ public class MyContrats {
                         "%s TEXT,"+
                         "%s TEXT," +
                         "%s TEXT NOT NULL," +
-                        "%s TEXT NOT NULL)",
+                        "%s TEXT NOT NULL," +
+                        "FOREIGN KEY(%s) REFERENCES %s(%s))",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_CREATOR);
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME,BaseColumns._ID);
 
     }
     public static class Actividad{
@@ -118,11 +119,12 @@ public class MyContrats {
                         "%s TEXT NOT NULL," +
                         "%s INTEGER NOT NULL,"+
                         "%s TEXT NOT NULL," +
-                        "%s TEXT NOT NULL)",
+                        "%s TEXT NOT NULL," +
+                        "FOREIGN KEY(%s) REFERENCES %s(%s))",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME, COLUMN_POSITION,COLUMN_IDPROYECTO,COLUMN_CREATOR);
+                COLUMN_NAME, COLUMN_POSITION,COLUMN_IDPROYECTO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME,BaseColumns._ID);
 
     }
     public static class Tareas{
@@ -155,16 +157,14 @@ public class MyContrats {
                         "%s TEXT,"+
                         "%s TEXT,"+
                         "%s TEXT," +
-                        "%s TEXT NOT NULL)",
+                        "%s TEXT NOT NULL," +
+                        "FOREIGN KEY(%s) REFERENCES %s(%s),"+
+                        "FOREIGN KEY(%s) REFERENCES %s(%s))",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR);
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME,BaseColumns._ID,COLUMN_IDTABLERO,Tablero.TABLE_NAME,BaseColumns._ID);
 
 
-    }
-
-    public static class Usuarios{
-        //Los datos de usuarios en FireBase->pues si
     }
 }
