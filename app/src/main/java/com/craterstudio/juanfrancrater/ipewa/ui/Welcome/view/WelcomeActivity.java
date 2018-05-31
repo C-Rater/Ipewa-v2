@@ -2,6 +2,7 @@ package com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -216,7 +217,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                         startActivityForResult(intent,3);
                     }else if(tipo==2){
                         Intent intent = new Intent(getContext(), EditMetaActivity.class);
-                       intent.putExtra("editTask", tareas.get(i));
+                       intent.putExtra("editMeta",  metas.get(i));
                        startActivityForResult(intent,0);
                     } else
                     {
@@ -261,14 +262,12 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
             ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1);
             if(tablero==1) {
-
                 adapter.addAll(tareas);
             }else if(tablero==2){
                 adapter.addAll(metas);
 
             }else {
                 adapter.addAll(projects);
-
             }
             view.setAdapter(adapter);
             return rootView;

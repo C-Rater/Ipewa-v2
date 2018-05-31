@@ -1,12 +1,15 @@
 package com.craterstudio.juanfrancrater.ipewa.data.db.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Pojo Meta
  *  @author Juan Francisco Benítez López
  * @version 0.1.0
  */
 
-public class Meta {
+public class Meta implements Parcelable {
     String _ID;
     String _name;
     String _description;
@@ -16,6 +19,30 @@ public class Meta {
     String _difficulty;
     String _idProyecto;
     String _creator;
+
+    protected Meta(Parcel in) {
+        _ID = in.readString();
+        _name = in.readString();
+        _description = in.readString();
+        _color = in.readInt();
+        _deadLine = in.readString();
+        _priority = in.readString();
+        _difficulty = in.readString();
+        _idProyecto = in.readString();
+        _creator = in.readString();
+    }
+
+    public static final Creator<Meta> CREATOR = new Creator<Meta>() {
+        @Override
+        public Meta createFromParcel(Parcel in) {
+            return new Meta(in);
+        }
+
+        @Override
+        public Meta[] newArray(int size) {
+            return new Meta[size];
+        }
+    };
 
     public String get_creator() {
         return _creator;
@@ -106,5 +133,23 @@ public class Meta {
     @Override
     public String toString() {
         return _name;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(_ID);
+        parcel.writeString(_name);
+        parcel.writeString(_description);
+        parcel.writeInt(_color);
+        parcel.writeString(_deadLine);
+        parcel.writeString(_priority);
+        parcel.writeString(_difficulty);
+        parcel.writeString(_idProyecto);
+        parcel.writeString(_creator);
     }
 }

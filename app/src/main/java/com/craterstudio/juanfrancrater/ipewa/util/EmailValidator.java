@@ -22,8 +22,15 @@ public class EmailValidator {
     }
     public boolean validate(final String hex) {
         matcher = pattern.matcher(hex);
+        boolean isValid = false;
+        CharSequence inputStr = hex;
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
 
-        return true;
+        return isValid;
 
     }
 }

@@ -92,4 +92,6 @@
     <string name="other">Otros</string>
     <string name="passwordDifferent">Las contraseñas no coinciden</string>
     <string name="txvPasswordAgain">Vuelva a escribir la contraseña</string>
+    <string name="titleDeleteMeta">¿Borrar Meta?</string>
+    <string name="messageDeleteMeta">¿Desea borrar esta Tarea?</string>
 </resources>
