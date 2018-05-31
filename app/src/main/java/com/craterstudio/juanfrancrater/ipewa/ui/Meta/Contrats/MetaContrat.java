@@ -21,14 +21,14 @@ public interface MetaContrat {
         }
 
         interface Presenter{
-            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto, String idTablero);
+            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto);
 
             void getIdList();
         }
 
         interface Interactor
         {
-            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto, String idTablero);
+            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto);
 
             void getIdList();
         }
@@ -66,13 +66,13 @@ public interface MetaContrat {
         }
 
         interface Presenter{
-            void EditMeta(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero,String creator );
+            void EditMeta(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String creator );
             void getIdList();
         }
 
         interface Interactor
         {
-            void EditMeta(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero,String creator );
+            void EditMeta(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String creator );
             void getIdList();
         }
     }
