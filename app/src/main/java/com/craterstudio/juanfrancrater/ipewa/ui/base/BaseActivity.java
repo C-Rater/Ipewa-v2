@@ -31,15 +31,15 @@ public class BaseActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_base);
 
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
+            toolbar =  findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_home);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            drawL_base = (DrawerLayout) findViewById(R.id.drawL_base);
+            drawL_base =  findViewById(R.id.drawL_base);
 
-            navigationView = (NavigationView) findViewById(R.id.navigationView);
+            navigationView = findViewById(R.id.navigationView);
             setupNavigationView();
         }
 
