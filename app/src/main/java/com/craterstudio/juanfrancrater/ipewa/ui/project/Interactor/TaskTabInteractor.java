@@ -1,4 +1,4 @@
-package com.craterstudio.juanfrancrater.ipewa.ui.task.Interactor;
+package com.craterstudio.juanfrancrater.ipewa.ui.project.Interactor;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.MetaRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.TableroRepository;

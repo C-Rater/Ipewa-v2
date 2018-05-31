@@ -1,10 +1,10 @@
-package com.craterstudio.juanfrancrater.ipewa.ui.task.Presenter;
+package com.craterstudio.juanfrancrater.ipewa.ui.project.Presenter;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
+import com.craterstudio.juanfrancrater.ipewa.ui.project.Interactor.TaskTabInteractor;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Contrats.TaskTabContrat;
-import com.craterstudio.juanfrancrater.ipewa.ui.task.Interactor.TaskTabInteractor;
 
 import java.util.ArrayList;
 

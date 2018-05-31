@@ -16,4 +16,8 @@ public class SpinnerProyectAdapter  extends ArrayAdapter<String> {
         {
             super(cntx,android.R.layout.simple_spinner_dropdown_item, ProjectRepository.getInstance().getNameProjects());
         }
+        public SpinnerProyectAdapter(@NonNull Context cntx, int tipoSpin)
+        {
+            super(cntx,android.R.layout.simple_spinner_dropdown_item, ProjectRepository.getInstance().getNameProjects(-1));
+        }
 }

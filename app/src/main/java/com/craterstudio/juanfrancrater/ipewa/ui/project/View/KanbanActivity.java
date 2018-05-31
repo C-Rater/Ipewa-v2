@@ -1,4 +1,4 @@
-package com.craterstudio.juanfrancrater.ipewa.ui.task.View;
+package com.craterstudio.juanfrancrater.ipewa.ui.project.View;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,8 +26,10 @@ import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.AddMetasActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.EditMetaActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.project.Presenter.KanbanPresenter;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Contrats.TaskTabContrat;
-import com.craterstudio.juanfrancrater.ipewa.ui.task.Presenter.KanbanPresenter;
+import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 
 import java.util.ArrayList;
 import java.util.List;

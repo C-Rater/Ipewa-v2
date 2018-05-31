@@ -122,7 +122,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
         spnDiff = findViewById(R.id.spnDiff);
         spnPrio =  findViewById(R.id.spnPrio);
         spnProyecto =  findViewById(R.id.spnProyecto);
-        spnProyecto.setAdapter(new SpinnerProyectAdapter(this));
+        spnProyecto.setAdapter(new SpinnerProyectAdapter(this,-1));
         presenter.getIdList();
         spnDiff.setAdapter(new DiffPrioAdapter(this));
         spnPrio.setAdapter(new DiffPrioAdapter(this));

@@ -98,6 +98,19 @@ public class ProjectRepository {
         }
         return list;
     }
+    public ArrayList<String> getNameProjects(int tipoSpin) {
+        ArrayList<String> list=new ArrayList<>();
+        Iterator<Proyecto> iterator= dao.loadAll().iterator();
+        Proyecto temp;
+        if(tipoSpin!=-1)
+        list.add("-");
+        while(iterator.hasNext())
+        {
+            temp=iterator.next();
+            list.add(temp.get_name());
+        }
+        return list;
+    }
 
     public ArrayList<String> getIdProjects() {
         ArrayList<String> list=new ArrayList<>();

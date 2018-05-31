@@ -15,12 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mli.MaterialLetterIcon;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Presenter.DetailProjectPresenter;
-import com.craterstudio.juanfrancrater.ipewa.ui.task.View.KanbanActivity;
 
 /**
  * Muestra datos del proyecto y mediante un menu permite eliminarlo.
