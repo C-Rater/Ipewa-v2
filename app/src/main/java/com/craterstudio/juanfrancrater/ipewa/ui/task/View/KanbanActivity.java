@@ -24,7 +24,6 @@ import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
-import com.craterstudio.juanfrancrater.ipewa.ui.Meta.AddMetasActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Contrats.TaskTabContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.Presenter.KanbanPresenter;
 

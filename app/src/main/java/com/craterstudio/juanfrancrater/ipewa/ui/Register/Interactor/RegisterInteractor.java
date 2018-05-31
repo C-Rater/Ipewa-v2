@@ -15,20 +15,22 @@ public class RegisterInteractor implements SigninContract.Interactor {
     }
 
     @Override
-    public void signIn( final String password, final String email) {
-       if(password.isEmpty())
-        {listener.onPasswordEmptyError();
-        }else if(email.isEmpty())
-        {listener.onEmailEmptyError();
-        }else if(password.length()<6)
-        {listener.onPasswordError();
-        }else if(!validator.validate(email)) {
+    public void signIn( final String password,final String passwordAgain, final String email) {
+        if(password.equals(passwordAgain)) {
+            if (password.isEmpty()) {
+                listener.onPasswordEmptyError();
+            } else if (email.isEmpty()) {
+                listener.onEmailEmptyError();
+            } else if (password.length() < 6) {
+                listener.onPasswordError();
+            } else if (!validator.validate(email)) {
 
-        listener.onEmailError();
+                listener.onEmailError();
 
-        }else {
-            listener.onSuccess();
-        }
+            } else {
+                listener.onSuccess();
+            }
+        }else {listener.onPasswordDifferent();}
     }
     public interface RegisterListener
     {
@@ -41,5 +43,6 @@ public class RegisterInteractor implements SigninContract.Interactor {
         void onUserError();
         void onUserDuplicated();
         void onEmailDuplicated();
+        void onPasswordDifferent();
     }
 }

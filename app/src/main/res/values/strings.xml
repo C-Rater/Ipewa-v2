@@ -90,4 +90,6 @@
     <string name="sortbyDate">Ordenar por fecha</string>
     <string name="showByDays">showByDays</string>
     <string name="other">Otros</string>
+    <string name="passwordDifferent">Las contraseñas no coinciden</string>
+    <string name="txvPasswordAgain">Vuelva a escribir la contraseña</string>
 </resources>

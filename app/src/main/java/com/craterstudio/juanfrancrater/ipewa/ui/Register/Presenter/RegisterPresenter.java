@@ -18,8 +18,8 @@ public class RegisterPresenter implements SigninContract.Presenter,RegisterInter
     }
 
     @Override
-    public void validateCredentials( String password, String email) {
-    interactor.signIn(password,email);
+    public void validateCredentials( String password,String passwordAgain, String email) {
+    interactor.signIn(password,passwordAgain,email);
     }
 
     @Override
@@ -66,6 +66,11 @@ public class RegisterPresenter implements SigninContract.Presenter,RegisterInter
     @Override
     public void onEmailDuplicated() {
         view.onEmailDuplicated();
+    }
+
+    @Override
+    public void onPasswordDifferent() {
+        view.onPasswordDifferent();
     }
 }
 

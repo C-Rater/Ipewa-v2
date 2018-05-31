@@ -21,9 +21,8 @@ public class EmailValidator {
         pattern = Pattern.compile(EMAIL_PATTERN);
     }
     public boolean validate(final String hex) {
-
         matcher = pattern.matcher(hex);
-        //falta realizar un patter mejor
+
         return true;
 
     }

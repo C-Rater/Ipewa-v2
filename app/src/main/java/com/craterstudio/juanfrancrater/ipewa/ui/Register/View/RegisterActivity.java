@@ -24,7 +24,7 @@ import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
  */
 public class RegisterActivity extends AppCompatActivity implements SigninContract.View{
 
-    EditText edtPassword,edtEmail;
+    EditText edtPassword,edtPasswordAgain,edtEmail;
     Button btnSignIn;
     SigninContract.Presenter presenter;
     @Override
@@ -33,12 +33,13 @@ public class RegisterActivity extends AppCompatActivity implements SigninContrac
         setContentView(R.layout.activity_register);
         edtEmail=findViewById(R.id.edtEmail);
         edtPassword=findViewById(R.id.edtPassword);
+        edtPasswordAgain=findViewById(R.id.edtPasswordAgain);
         btnSignIn=findViewById(R.id.btnSignIn);
         presenter= new RegisterPresenter(this);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.validateCredentials(edtPassword.getText().toString(),edtEmail.getText().toString());
+                presenter.validateCredentials(edtPassword.getText().toString(),edtPasswordAgain.getText().toString(),edtEmail.getText().toString());
             }
         });
     }
@@ -99,5 +100,10 @@ public class RegisterActivity extends AppCompatActivity implements SigninContrac
     @Override
     public void onUserError() {
         Toast.makeText(this,getResources().getString(R.string.userError),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPasswordDifferent() {
+        Toast.makeText(this,getResources().getString(R.string.passwordDifferent),Toast.LENGTH_SHORT).show();
     }
 }

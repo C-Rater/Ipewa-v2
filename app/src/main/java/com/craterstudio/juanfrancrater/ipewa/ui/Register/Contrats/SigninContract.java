@@ -15,14 +15,15 @@ public interface SigninContract {
         void onUserDuplicated();
         void onEmailDuplicated();
         void onUserError();
+        void onPasswordDifferent();
     }
 
     interface Presenter {
-        void validateCredentials(String password, String email);
+        void validateCredentials(String password,String passwordAgain, String email);
     }
 
     interface Interactor
     {
-        void signIn( String password, String email);
+        void signIn( String password,String passwordAgain, String email);
     }
 }

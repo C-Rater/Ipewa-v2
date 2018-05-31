@@ -27,11 +27,10 @@ import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
-import com.craterstudio.juanfrancrater.ipewa.ui.Meta.AddMetasActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.AddMetasActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.EditMetaActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.presenter.WelcomePresenter;
-import com.craterstudio.juanfrancrater.ipewa.ui.about.AboutActivity;
-import com.craterstudio.juanfrancrater.ipewa.ui.pref.PrefferencesActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.DetailProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
@@ -216,9 +215,9 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                         intent.putExtra("editTask", tareas.get(i));
                         startActivityForResult(intent,3);
                     }else if(tipo==2){
-                       // Intent intent = new Intent(getContext(), EditMetaActivity.class);
-                        //intent.putExtra("editTask", tareas.get(i));
-                        //startActivityForResult(intent,0);
+                        Intent intent = new Intent(getContext(), EditMetaActivity.class);
+                       intent.putExtra("editTask", tareas.get(i));
+                       startActivityForResult(intent,0);
                     } else
                     {
                         Intent intent = new Intent(getContext(), DetailProjectActivity.class);
