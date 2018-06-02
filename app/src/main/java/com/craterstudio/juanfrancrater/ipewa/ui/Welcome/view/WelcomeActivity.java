@@ -3,6 +3,7 @@ package com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +41,8 @@ import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +82,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             String message = getString(R.string.welcome) + sharedPreferences.getCurrentUserName();
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
-        presenter.obtainElements(-1,-1);
+        presenter.fillList();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

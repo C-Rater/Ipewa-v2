@@ -62,10 +62,11 @@ public class TareaRepository {
         dao.set(id,tarea);
     }
 
-    private AppPreferencesHelper sharedPreferences;
+
     public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto, String idTablero) {
-        String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String creatorname= FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
+        String creator=sharedPreferences.getCurrentUserID();
+        String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDTarea();
         dao.add(new Tarea(String.valueOf(id)+creator,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));
         sharedPreferences.setLastIDTarea(id++);

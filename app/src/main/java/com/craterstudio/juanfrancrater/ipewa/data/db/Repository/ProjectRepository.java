@@ -48,9 +48,11 @@ public class ProjectRepository {
 
     private AppPreferencesHelper sharedPreferences;
     public void addProject(String name,String description,int color, String deadLine ) {
-        String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
+        String creator=sharedPreferences.getCurrentUserID();
+        String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDProject();
-        dao.add(new Proyecto(String.valueOf(id)+creator,name,description,color,deadLine,creator));
+        dao.add(new Proyecto(String.valueOf(id)+creator,name,description,color,deadLine,creatorname));
         sharedPreferences.setLastIDProject(id++);
     }
     public void addProject(Proyecto proyecto) {

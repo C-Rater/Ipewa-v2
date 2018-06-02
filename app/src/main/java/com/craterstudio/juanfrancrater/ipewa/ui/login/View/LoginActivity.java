@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
 
             AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
             sharedPreferences.setCurrentUserName(account.getDisplayName());
+            sharedPreferences.setCurrentUserID(account.getId());
             Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
             startActivity(intnt);
             } catch (ApiException e) {

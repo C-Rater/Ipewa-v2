@@ -60,6 +60,11 @@ public class WelcomeInteractor implements WelcomeContrat.Interactor{
         listener.reload();
     }
 
+    @Override
+    public void fillList() {
+        listener.reloadList(TareaRepository.getInstance().getTareas(),MetaRepository.getInstance().getMetas(),ProjectRepository.getInstance().getProjects());
+    }
+
     public interface WelcomeListener
     {
         void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos);

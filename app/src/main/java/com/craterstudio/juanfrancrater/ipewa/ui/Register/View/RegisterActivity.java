@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements SigninContrac
                     finish();
 
                 }else{
-                    Toast.makeText(RegisterActivity.this,"Ha ocurrido un error",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,getString(R.id.errorhappen),Toast.LENGTH_SHORT).show();
                 }
             }
         });
