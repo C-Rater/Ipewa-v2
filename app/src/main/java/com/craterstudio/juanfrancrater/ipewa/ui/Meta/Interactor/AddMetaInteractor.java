@@ -19,7 +19,7 @@ public class AddMetaInteractor implements MetaContrat.addMeta.Interactor {
     }
 
     @Override
-    public void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto, String idTablero) {
+    public void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto) {
         if(!nombre.isEmpty()) {
             MetaRepository.getInstance().add(new Meta("id",nombre, description, color, deadLine, priority, difficulty,_idProyecto,"creator"));
             listener.back();

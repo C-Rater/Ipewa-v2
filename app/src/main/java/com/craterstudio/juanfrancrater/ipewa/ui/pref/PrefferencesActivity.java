@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.ui.Splash.SplashActivity;
+import com.craterstudio.juanfrancrater.ipewa.ui.about.AboutActivity;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 
@@ -24,6 +25,7 @@ public class PrefferencesActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
         Preference button = findPreference(getString(R.string.signOut));
+        Preference aboutme = (Preference) findPreference(getString(R.string.AboutMe));
         button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -32,6 +34,13 @@ public class PrefferencesActivity extends PreferenceActivity {
                 sharedPreferences.setRememberMe(false);
                 Intent intnt = new Intent(PrefferencesActivity.this, SplashActivity.class);
                 startActivity(intnt);
+                return true;
+            }
+        });
+        aboutme.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(PrefferencesActivity.this, AboutActivity.class));
                 return true;
             }
         });

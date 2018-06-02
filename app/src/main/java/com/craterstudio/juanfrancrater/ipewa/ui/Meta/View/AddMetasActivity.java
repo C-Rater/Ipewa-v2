@@ -64,7 +64,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
                         tiedtDescription.getText().toString(),
                         color,
                         deadLine,spnPrio.getSelectedItem().toString(),
-                        spnDiff.getSelectedItem().toString(), listProjId.get(spnProyecto.getSelectedItemPosition()),"1");
+                        spnDiff.getSelectedItem().toString(), listProjId.get(spnProyecto.getSelectedItemPosition()));
             }
         });
 

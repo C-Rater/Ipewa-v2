@@ -32,6 +32,7 @@ import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.AddMetasActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.EditMetaActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.presenter.WelcomePresenter;
+import com.craterstudio.juanfrancrater.ipewa.ui.pref.PrefferencesActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.DetailProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
@@ -117,6 +118,9 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_preff:
+                startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
+                break;
             case R.id.sortbyDate:
                 presenter.sortByDate();
                 break;

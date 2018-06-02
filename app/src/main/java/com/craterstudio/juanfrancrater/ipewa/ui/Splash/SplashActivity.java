@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.ui.login.View.LoginActivity;
+import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**

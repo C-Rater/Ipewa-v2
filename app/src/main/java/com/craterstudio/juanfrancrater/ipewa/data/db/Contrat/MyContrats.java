@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 
 public class MyContrats {
     public static final String DATABASE_NAME = "ipewapp";
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 9;
 
     public static class Proyectos{
         public static final String TABLE_NAME = "proyecto";
@@ -22,7 +22,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -51,7 +51,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -114,7 +114,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY , " +
 
                         "%s TEXT NOT NULL," +
                         "%s INTEGER NOT NULL,"+
@@ -147,7 +147,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +

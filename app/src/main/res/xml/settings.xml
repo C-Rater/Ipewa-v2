@@ -7,13 +7,8 @@
             android:summary="@string/pref_description_nightmode"
             android:summaryOff="@string/pref_turnoff_nightmode"
             android:summaryOn="@string/pref_turnon_nightmode"
-            android:title="@string/pref_title_nighmode" />
-
-        <EditTextPreference
-            android:key="pref_key_current_user_name"
-            android:title="@string/title_userName_preference"
-            android:summary="@string/summary_userName_preference"
-            android:dialogTitle="@string/dialog_title_userName_preference" />
+            android:title="@string/pref_title_nighmode"
+            android:enabled="false"/>
         <EditTextPreference
             android:key="@string/title_notification_days_task_preference"
             android:summary="@string/summary_notification_days_task_preference"
@@ -28,7 +23,17 @@
             android:title="@string/title_notification_days_meta_preference" />
 
     </PreferenceCategory>
-    <Preference android:title="Cerrar Sesion"
-        android:key="@string/signOut"
-        android:summary="Cerrar Sesion con el usuario actual"/>
+
+    <PreferenceCategory >
+        <Preference android:title="@string/AboutMe"
+            android:key="@string/AboutMe"/>
+        <EditTextPreference
+            android:key="pref_key_current_user_name"
+            android:title="@string/title_userName_preference"
+            android:summary="@string/summary_userName_preference"
+            android:dialogTitle="@string/dialog_title_userName_preference" />
+        <Preference android:title="Cerrar Sesion"
+            android:key="@string/signOut"
+            android:summary="Cerrar Sesion con el usuario actual"/>
+    </PreferenceCategory>
 </PreferenceScreen>
