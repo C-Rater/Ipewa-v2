@@ -49,7 +49,7 @@ public class MetaRepository {
         String creator=sharedPreferences.getCurrentUserID();
         String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDMeta();
-        dao.add(new Meta(String.valueOf(id)+creator,meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname));
+        dao.add(new Meta(String.valueOf(id)+creatorname,meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname));
         sharedPreferences.setLastIdMeta(id++);
     }
     public void edit(Meta meta) {

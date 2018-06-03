@@ -2,6 +2,7 @@ package com.craterstudio.juanfrancrater.ipewa.ui.Meta.View;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -19,6 +20,7 @@ import com.craterstudio.juanfrancrater.ipewa.adapter.DiffPrioAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.SpinnerProyectAdapter;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.Contrats.MetaContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.Presenter.AddMetaPresenter;
+import com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
@@ -54,17 +56,19 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String id = listProjId.get(spnProyecto.getSelectedItemPosition());
                 presenter.addMeta(tiedtName.getText().toString(),
                         tiedtDescription.getText().toString(),
                         color,
                         deadLine,spnPrio.getSelectedItem().toString(),
-                        spnDiff.getSelectedItem().toString(), listProjId.get(spnProyecto.getSelectedItemPosition()));
+                        spnDiff.getSelectedItem().toString(), id);
             }
         });
 
@@ -111,6 +115,14 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
             }
         }catch (NullPointerException e)
         {
+        }
+        if(listProjId.size()==0)
+        {
+            Intent intent =new Intent(AddMetasActivity.this, AddProjectActivity.class);
+            Integer createBefore=15;
+            intent.putExtra("requestCode", createBefore);
+
+            startActivityForResult(intent,0);
         }
     }
 
@@ -159,5 +171,54 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
     @Override
     public void fillIdList(ArrayList<String> idProjects) {
         listProjId=idProjects;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter= new AddMetaPresenter(this,this);
+        initialize();
+        edtDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar mcurrentDate = Calendar.getInstance();
+                mYear = mcurrentDate.get(Calendar.YEAR);
+                mMonth = mcurrentDate.get(Calendar.MONTH);
+                mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog mDatePicker = new DatePickerDialog(AddMetasActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        Calendar myCalendar = Calendar.getInstance();
+                        myCalendar.set(Calendar.YEAR, selectedyear);
+                        myCalendar.set(Calendar.MONTH, selectedmonth);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+                        String myFormatTextView = "dd/MM/yyyy";
+                        String myFormatBD = "yyyy/MM/dd";
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormatTextView);
+                        SimpleDateFormat sdfDB = new SimpleDateFormat(myFormatBD);
+                        deadLine=sdfDB.format(myCalendar.getTime());
+                        edtDate.setText(sdf.format(myCalendar.getTime()));
+
+                        mDay = selectedday;
+                        mMonth = selectedmonth;
+                        mYear = selectedyear;
+                    }
+                }, mYear, mMonth, mDay);
+                mDatePicker.show();
+            }
+        });
+        int id;
+        try {
+            id = getIntent().getExtras().getInt("idProyecto");
+            if (id != 0) {
+                for (int i = 0; i < listProjId.size(); i++) {
+                    if (id == Integer.parseInt(listProjId.get(i))) {
+                        spnProyecto.setSelection(i);
+                    }
+                }
+            }
+        }catch (NullPointerException e)
+        {
+        }
     }
 }

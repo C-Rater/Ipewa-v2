@@ -48,6 +48,13 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
         setContentView(R.layout.activity_add_project);
         presenter= new AddProjectPresenter(this,this);
         initialize();
+        try{
+            if(getIntent().getExtras().getInt("requestCode")==15)
+            {
+                Toast.makeText(this,getResources().getString(R.string.beforeCreateMeta),Toast.LENGTH_SHORT).show();
+            }
+        }catch (NullPointerException e)
+        {}
 
     }
     private void datePicker()

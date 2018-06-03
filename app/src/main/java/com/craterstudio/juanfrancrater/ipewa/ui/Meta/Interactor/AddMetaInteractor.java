@@ -31,7 +31,7 @@ public class AddMetaInteractor implements MetaContrat.addMeta.Interactor {
 
     @Override
     public void getIdList() {
-        listener.fillIdList(ProjectRepository.getInstance().getIdProjects());
+        listener.fillIdList(ProjectRepository.getInstance().getIdProjects(1));
     }
 
     public interface AddProjectListener {

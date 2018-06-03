@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 
 public class MyContrats {
     public static final String DATABASE_NAME = "ipewapp";
-    public static final int DATABASE_VERSION = 10;
+    public static final int DATABASE_VERSION = 13;
 
     public static class Proyectos{
         public static final String TABLE_NAME = "proyecto";
@@ -157,12 +157,11 @@ public class MyContrats {
                         "%s TEXT,"+
                         "%s TEXT,"+
                         "%s TEXT," +
-                        "%s TEXT NOT NULL," +
-                        "FOREIGN KEY(%s) REFERENCES %s(%s))",
+                        "%s TEXT NOT NULL)",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME,BaseColumns._ID,COLUMN_IDTABLERO);
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME);
 
 
     }

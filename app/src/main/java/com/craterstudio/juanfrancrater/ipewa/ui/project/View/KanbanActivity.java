@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
@@ -47,6 +48,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         detailProject =getIntent().getExtras().getParcelable("detailProject");
         setContentView(R.layout.activity_kanban);
         setToolbar();

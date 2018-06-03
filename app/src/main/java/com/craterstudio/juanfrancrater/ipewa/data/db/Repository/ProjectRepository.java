@@ -45,14 +45,13 @@ public class ProjectRepository {
 
     }
 
-
-    private AppPreferencesHelper sharedPreferences;
     public void addProject(String name,String description,int color, String deadLine ) {
         AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
         String creator=sharedPreferences.getCurrentUserID();
         String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDProject();
-        dao.add(new Proyecto(String.valueOf(id)+creator,name,description,color,deadLine,creatorname));
+        Proyecto proyecto =new Proyecto(String.valueOf(id)+creatorname,name,description,color,deadLine,creatorname);
+        dao.add(proyecto);
         sharedPreferences.setLastIDProject(id++);
     }
     public void addProject(Proyecto proyecto) {
@@ -114,16 +113,15 @@ public class ProjectRepository {
         return list;
     }
 
-    public ArrayList<String> getIdProjects() {
+    public ArrayList<String> getIdProjects(int i) {
         ArrayList<String> list=new ArrayList<>();
-        Iterator<Proyecto> iterator= dao.loadAll().iterator();
+        ArrayList<Proyecto> proyectos = dao.loadAll();
         Proyecto temp;
-        list.add("-1");
-        while(iterator.hasNext())
-        {
-            temp=iterator.next();
-            list.add(String.valueOf(temp.get_ID()));
+        if(i==0) {
+            list.add("-1");
         }
+       for(int j=0; j<proyectos.size();j++)
+           list.add(proyectos.get(j).get_ID());
         return list;
     }
 }

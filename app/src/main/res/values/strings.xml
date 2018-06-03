@@ -94,4 +94,5 @@
     <string name="txvPasswordAgain">Vuelva a escribir la contraseña</string>
     <string name="titleDeleteMeta">¿Borrar Meta?</string>
     <string name="messageDeleteMeta">¿Desea borrar esta Tarea?</string>
+    <string name="beforeCreateMeta">Cree un proyecto antes de añadir una meta</string>
 </resources>

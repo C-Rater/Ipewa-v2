@@ -54,6 +54,7 @@ public class TareaDao {
 
     private ContentValues createContent(Tarea tarea) {
         ContentValues contentValues=new ContentValues();
+        contentValues.put(BaseColumns._ID,tarea.get_ID());
         contentValues.put(MyContrats.Tareas.COLUMN_NAME,tarea.get_name());
         contentValues.put(MyContrats.Tareas.COLUMN_DESCRIPTION,tarea.get_description());
         contentValues.put(MyContrats.Tareas.COLUMN_COLOR,tarea.get_color());
