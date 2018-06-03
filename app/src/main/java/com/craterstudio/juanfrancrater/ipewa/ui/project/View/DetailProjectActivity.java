@@ -43,7 +43,6 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
         presenter= new DetailProjectPresenter(this);
         btnListaTareas=findViewById(R.id.btnListaTareas);
 
-        detailProject =getIntent().getExtras().getParcelable("detailProject");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initialize();
@@ -72,6 +71,7 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
     }
 
     private void initialize() {
+        detailProject =getIntent().getExtras().getParcelable("detailProject");
         txvName=findViewById(R.id.txvName);
         txvName.setText(detailProject.get_name());
         txvDescription=findViewById(R.id.txvDescription);

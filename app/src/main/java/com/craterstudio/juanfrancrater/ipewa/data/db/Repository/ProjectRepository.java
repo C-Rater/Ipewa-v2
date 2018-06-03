@@ -69,7 +69,7 @@ public class ProjectRepository {
         while(iterator.hasNext())
         {
             temp=iterator.next();
-            if(id==temp.get_ID())
+            if(id.equals(temp.get_ID()))
             {
                 return temp;
             }

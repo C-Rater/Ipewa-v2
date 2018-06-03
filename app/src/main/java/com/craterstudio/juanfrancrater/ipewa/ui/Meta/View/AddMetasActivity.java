@@ -103,15 +103,14 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
                 mDatePicker.show();
             }
         });
-        int id;
+        String id;
         try {
-            id = getIntent().getExtras().getInt("idProyecto");
-            if (id != 0) {
+            id = getIntent().getExtras().getString("idProyecto");
+
                 for (int i = 0; i < listProjId.size(); i++) {
-                    if (id == Integer.parseInt(listProjId.get(i))) {
+                    if (id.equals(Integer.parseInt(listProjId.get(i)))) {
                         spnProyecto.setSelection(i);
                     }
-                }
             }
         }catch (NullPointerException e)
         {

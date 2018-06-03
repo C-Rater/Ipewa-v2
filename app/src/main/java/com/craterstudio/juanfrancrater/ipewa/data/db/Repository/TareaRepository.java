@@ -81,7 +81,7 @@ public class TareaRepository {
         while(iterator.hasNext())
         {
             temp=iterator.next();
-            if(temp.get_idProyecto()==id)
+            if(temp.get_idProyecto().equals(id))
             {
                 tareasP.add(temp);
             }
@@ -95,7 +95,7 @@ public class TareaRepository {
         while(iterator.hasNext())
         {
             temp=iterator.next();
-            if(temp.get_idProyecto()==id)
+            if(temp.get_idProyecto().equals(id))
             {
               dao.delete(temp.get_ID());
             }
