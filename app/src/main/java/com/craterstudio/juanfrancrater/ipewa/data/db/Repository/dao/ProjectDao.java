@@ -56,6 +56,7 @@ public class ProjectDao {
         contentValues.put(MyContrats.Proyectos.COLUMN_COLOR,p.get_color());
         contentValues.put(MyContrats.Proyectos.COLUMN_DEADLINE,p.get_deadLine());
         contentValues.put(MyContrats.Proyectos.COLUMN_DESCRIPTION,p.get_description());
+        contentValues.put(MyContrats.Proyectos.COLUMN_CREATOR,p.get_creator());
 
         return contentValues;
     }

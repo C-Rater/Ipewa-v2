@@ -62,6 +62,8 @@ public class TareaDao {
         contentValues.put(MyContrats.Tareas.COLUMN_PRIORITY,tarea.get_priority());
         contentValues.put(MyContrats.Tareas.COLUMN_IDPROYECTO,tarea.get_idProyecto());
         contentValues.put(MyContrats.Tareas.COLUMN_IDTABLERO,tarea.get_idTablero());
+        contentValues.put(MyContrats.Tareas.COLUMN_CREATOR,tarea.get_creator());
+
         return contentValues;
     }
 
