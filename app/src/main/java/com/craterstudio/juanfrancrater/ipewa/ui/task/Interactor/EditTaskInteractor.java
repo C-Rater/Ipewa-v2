@@ -33,7 +33,7 @@ public class EditTaskInteractor implements TaskContrat.editTask.Interactor {
 
     @Override
     public void getIdList() {
-        listener.fillIdList(ProjectRepository.getInstance().getIdProjects());
+        listener.fillIdList(ProjectRepository.getInstance().getIdProjects(0));
     }
 
     public interface EditTaskListener {

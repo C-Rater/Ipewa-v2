@@ -93,6 +93,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
         contentValues.put(MyContrats.Metas.COLUMN_DIFFICULTY,meta.get_difficulty());
         contentValues.put(MyContrats.Metas.COLUMN_PRIORITY,meta.get_priority());
         contentValues.put(MyContrats.Metas.COLUMN_IDPROYECTO,meta.get_idProyecto());
+        contentValues.put(MyContrats.Metas.COLUMN_CREATOR,meta.get_creator());
         return contentValues;
     }
 

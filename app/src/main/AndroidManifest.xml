@@ -50,6 +50,8 @@
         </service>
 
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.util.Chat.ChatActivity" />
+        <activity android:name=".ui.Meta.View.AddMetasActivity"/>
+        <activity android:name=".ui.Meta.View.EditMetaActivity"/>
 
         <service
             android:name="com.craterstudio.juanfrancrater.ipewa.util.Chat.FireBaseMessageService">

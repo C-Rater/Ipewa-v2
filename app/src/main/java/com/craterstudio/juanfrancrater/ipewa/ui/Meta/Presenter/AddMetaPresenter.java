@@ -39,8 +39,8 @@ public class AddMetaPresenter implements MetaContrat.addMeta.Presenter, AddMetaI
     }
 
     @Override
-    public void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto, String idTablero) {
-        interactor.addMeta(nombre,description,color,deadLine,priority,difficulty,_idProyecto,idTablero);
+    public void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto) {
+        interactor.addMeta(nombre,description,color,deadLine,priority,difficulty,_idProyecto);
     }
 
     @Override

@@ -54,6 +54,7 @@ public class TareaDao {
 
     private ContentValues createContent(Tarea tarea) {
         ContentValues contentValues=new ContentValues();
+        contentValues.put(BaseColumns._ID,tarea.get_ID());
         contentValues.put(MyContrats.Tareas.COLUMN_NAME,tarea.get_name());
         contentValues.put(MyContrats.Tareas.COLUMN_DESCRIPTION,tarea.get_description());
         contentValues.put(MyContrats.Tareas.COLUMN_COLOR,tarea.get_color());
@@ -62,6 +63,8 @@ public class TareaDao {
         contentValues.put(MyContrats.Tareas.COLUMN_PRIORITY,tarea.get_priority());
         contentValues.put(MyContrats.Tareas.COLUMN_IDPROYECTO,tarea.get_idProyecto());
         contentValues.put(MyContrats.Tareas.COLUMN_IDTABLERO,tarea.get_idTablero());
+        contentValues.put(MyContrats.Tareas.COLUMN_CREATOR,tarea.get_creator());
+
         return contentValues;
     }
 

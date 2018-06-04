@@ -20,6 +20,8 @@ public interface WelcomeContrat {
         void deleteTask(String id);
 
         void deleteMeta(String id);
+
+        void fillList();
     }
     interface Interactor{
         void obtainElement(int daysTask,int daysMeta);
@@ -29,5 +31,7 @@ public interface WelcomeContrat {
         void deleteTask(String id);
 
         void deleteMeta(String id);
+
+        void fillList();
     }
 }

@@ -3,6 +3,7 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.MetaDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
+import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -43,12 +44,12 @@ public class MetaRepository {
         dao.delete(meta);
     }
 
-    private AppPreferencesHelper sharedPreferences;
     public void add(Meta meta) {
-        String creator= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        String creatorname= FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
+        String creator=sharedPreferences.getCurrentUserID();
+        String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDMeta();
-        dao.add(new Meta(String.valueOf(id)+creator,meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname));
+        dao.add(new Meta(String.valueOf(id)+creatorname,meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname));
         sharedPreferences.setLastIdMeta(id++);
     }
     public void edit(Meta meta) {
@@ -57,7 +58,7 @@ public class MetaRepository {
 
     public void deleteMetasByProjectId(String id) {
         for(int i=0; i<metas.size();i++){
-            if(metas.get(i).get_idProyecto()==id)
+            if(metas.get(i).get_idProyecto().equals(id))
             { dao.delete(metas.get(i));}
         }
 

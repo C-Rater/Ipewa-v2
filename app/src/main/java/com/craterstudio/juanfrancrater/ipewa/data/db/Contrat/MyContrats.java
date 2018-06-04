@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 
 public class MyContrats {
     public static final String DATABASE_NAME = "ipewapp";
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 13;
 
     public static class Proyectos{
         public static final String TABLE_NAME = "proyecto";
@@ -22,7 +22,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -51,7 +51,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -114,7 +114,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY , " +
 
                         "%s TEXT NOT NULL," +
                         "%s INTEGER NOT NULL,"+
@@ -147,7 +147,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -157,13 +157,11 @@ public class MyContrats {
                         "%s TEXT,"+
                         "%s TEXT,"+
                         "%s TEXT," +
-                        "%s TEXT NOT NULL," +
-                        "FOREIGN KEY(%s) REFERENCES %s(%s),"+
-                        "FOREIGN KEY(%s) REFERENCES %s(%s))",
+                        "%s TEXT NOT NULL)",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME,BaseColumns._ID,COLUMN_IDTABLERO,Tablero.TABLE_NAME,BaseColumns._ID);
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME);
 
 
     }

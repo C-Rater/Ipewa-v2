@@ -32,7 +32,7 @@ public class AddTaskInteractor implements TaskContrat.addTask.Interactor {
 
     @Override
     public void getIdList() {
-        listener.fillIdList(ProjectRepository.getInstance().getIdProjects());
+        listener.fillIdList(ProjectRepository.getInstance().getIdProjects(0));
     }
 
     public interface AddProjectListener {

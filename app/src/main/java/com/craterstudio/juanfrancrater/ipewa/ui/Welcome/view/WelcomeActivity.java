@@ -3,6 +3,7 @@ package com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,6 +34,7 @@ import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.AddMetasActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.View.EditMetaActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.contrat.WelcomeContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.presenter.WelcomePresenter;
+import com.craterstudio.juanfrancrater.ipewa.ui.pref.PrefferencesActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.AddProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.View.DetailProjectActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
@@ -40,6 +43,8 @@ import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +71,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
         FirebaseUser firebaseUser = ThisApplication.getFirebase().getCurrentUser();
         if (firebaseUser != null) {
             String uid = firebaseUser.getUid();
-            FirebaseMessaging.getInstance().subscribeToTopic("uid");
+            FirebaseMessaging.getInstance().subscribeToTopic(uid);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanban);
@@ -84,7 +89,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             String message = getString(R.string.welcome) + sharedPreferences.getCurrentUserName();
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
-        presenter.obtainElements(-1,-1);
+        presenter.fillList();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +129,9 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_preff:
+                startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
+                break;
             case R.id.sortbyDate:
                 presenter.sortByDate();
                 break;

@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 public class AppPreferencesHelper implements GeneralPreferencesHelper {
     private static final String TAG = "AppPreferencesHelper";
 
+
     /**
      * 1) Se define todas las Key posibles del fichero preferences
      */
@@ -55,6 +56,14 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
         String name=preferences.getString(PREF_KEY_CURRENT_USER_NAME, null);
         return name;
     }
+    public String getCurrentUserID() {
+        String name=preferences.getString(PREF_KEY_CURRENT_USER_ID, null);
+        return name;
+    }
+    public void setCurrentUserID(String currentUserID) {
+        preferences.edit().putString(PREF_KEY_CURRENT_USER_ID,currentUserID);
+    }
+
     public int getLastIDProject() {
         int id=preferences.getInt(PREF_KEY_LAST_ID_PROJECT, 0);
         return id;

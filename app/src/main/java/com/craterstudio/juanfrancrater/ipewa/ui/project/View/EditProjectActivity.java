@@ -118,6 +118,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
     public void loadProject(Proyecto project) {
         editProject=project;
     }
+
     private void datePicker()
     {
         Calendar mcurrentDate = Calendar.getInstance();

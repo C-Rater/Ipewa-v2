@@ -141,9 +141,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
             AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
             sharedPreferences.setCurrentUserName(account.getDisplayName());
+            sharedPreferences.setCurrentUserID(account.getId());
+            sharedPreferences.setCurrentUserID(account.getIdToken());
+            sharedPreferences.setRememberMe(true);
             Intent intnt = new Intent(LoginActivity.this, WelcomeActivity.class);
             startActivity(intnt);
             } catch (ApiException e) {

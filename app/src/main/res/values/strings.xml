@@ -100,4 +100,5 @@
     <string name="forgot_password_msg">Contraseña olvidada</string>
     <string name="hint_email">Correo</string>
     <string name="btn_reset_password">Enviar correo</string>
+    <string name="beforeCreateMeta">Cree un proyecto antes de añadir una meta</string>
 </resources>
