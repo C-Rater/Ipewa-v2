@@ -251,7 +251,6 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                     }
                 });
             }
-
             view.setAdapter(adapter);
             return rootView;
         }
