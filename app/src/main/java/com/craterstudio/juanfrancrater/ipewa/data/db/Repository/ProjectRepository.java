@@ -2,6 +2,7 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.ProjectDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
+import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +53,8 @@ public class ProjectRepository {
         int id= sharedPreferences.getLastIDProject();
         Proyecto proyecto =new Proyecto(String.valueOf(id)+creatorname,name,description,color,deadLine,creatorname);
         dao.add(proyecto);
+        TableroRepository repository = TableroRepository.getInstance();
+        repository.addTablero("To Do",0,proyecto.get_ID());
         sharedPreferences.setLastIDProject(id++);
     }
     public void addProject(Proyecto proyecto) {

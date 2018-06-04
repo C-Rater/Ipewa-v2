@@ -11,6 +11,8 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
     private static final String TAG = "AppPreferencesHelper";
 
 
+
+
     /**
      * 1) Se define todas las Key posibles del fichero preferences
      */
@@ -52,6 +54,13 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
      * @return
      */
 
+    public int getLastIDTablero() {
+        int id=preferences.getInt(PREF_KEY_LAST_ID_TABLERO, 0);
+        return id;
+    }
+    public void setLastIDTablero(int id) {
+        preferences.edit().putInt(PREF_KEY_LAST_ID_TABLERO,id);
+    }
     public String getCurrentUserName() {
         String name=preferences.getString(PREF_KEY_CURRENT_USER_NAME, null);
         return name;

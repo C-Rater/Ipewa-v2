@@ -2,6 +2,7 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.Repository;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.dao.TableroDao;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
+import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,8 @@ import java.util.ArrayList;
  */
 
 public class TableroRepository {
-    ArrayList<Tablero> tableros;
-    TableroDao dao;
+    private ArrayList<Tablero> tableros;
+    private TableroDao dao;
 
     static TableroRepository tableroRepository;
 
@@ -33,5 +34,15 @@ public class TableroRepository {
     {
         tableros= dao.loadTableroByProyectos(id);
         return  tableros;
+    }
+
+    public void addTablero(String name,int position,String idProyecto ) {
+        AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
+        String creator=sharedPreferences.getCurrentUserID();
+        String creatorname= sharedPreferences.getCurrentUserName();
+        int id= sharedPreferences.getLastIDTablero();
+        Tablero tablero =new Tablero(String.valueOf(id)+idProyecto,name,position,idProyecto,creatorname);
+        dao.add(tablero);
+        sharedPreferences.setLastIDTablero(id++);
     }
 }

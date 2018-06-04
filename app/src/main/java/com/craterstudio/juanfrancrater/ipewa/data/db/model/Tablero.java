@@ -13,7 +13,12 @@ public class Tablero implements Parcelable {
     String _ID;
     String _name;
     int _position;
-    int _idProyecto;
+    String _idProyecto;
+
+    public String get_idProyecto() {
+        return _idProyecto;
+    }
+
     String _creator;
 
     public String get_creator() {
@@ -24,7 +29,7 @@ public class Tablero implements Parcelable {
         this._creator = _creator;
     }
 
-    public Tablero(String _ID, String _name, int _position,int _idProyecto,String _creator) {
+    public Tablero(String _ID, String _name, int _position,String _idProyecto,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._position = _position;
@@ -36,7 +41,7 @@ public class Tablero implements Parcelable {
         _ID = in.readString();
         _name = in.readString();
         _position = in.readInt();
-        _idProyecto=in.readInt();
+        _idProyecto=in.readString();
         _creator=in.readString();
     }
 
@@ -86,7 +91,7 @@ public class Tablero implements Parcelable {
         parcel.writeString(_ID);
         parcel.writeString(_name);
         parcel.writeInt(_position);
-        parcel.writeInt(_idProyecto);
+        parcel.writeString(_idProyecto);
         parcel.writeString(_creator);
     }
 }

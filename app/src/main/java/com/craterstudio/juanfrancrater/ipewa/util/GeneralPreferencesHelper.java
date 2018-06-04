@@ -14,5 +14,6 @@ public interface GeneralPreferencesHelper {
     String PREF_KEY_DAYS_NOTIFICATION_TASK="pref_key_days_notification_task";
     String PREF_KEY_DAYS_NOTIFICATION_META="pref_key_days_notification_meta";
     String PREF_KEY_CURRENT_USER_ID = "pref_key_current_user_id";
+    String PREF_KEY_LAST_ID_TABLERO= "pref_key_last_id_tablero";
 
 }
