@@ -94,4 +94,10 @@
     <string name="txvPasswordAgain">Vuelva a escribir la contraseña</string>
     <string name="titleDeleteMeta">¿Borrar Meta?</string>
     <string name="messageDeleteMeta">¿Desea borrar esta Tarea?</string>
+    <string name="recoverPassword">Recuperar contraseña</string>
+    <string name="failedReset">Failed to send reset email!</string>
+    <string name="lbl_forgot_password">Recuperar Contraseña</string>
+    <string name="forgot_password_msg">Contraseña olvidada</string>
+    <string name="hint_email">Correo</string>
+    <string name="btn_reset_password">Enviar correo</string>
 </resources>

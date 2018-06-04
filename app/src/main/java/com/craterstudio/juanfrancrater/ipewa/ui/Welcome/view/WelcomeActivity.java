@@ -38,6 +38,8 @@ import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,11 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseUser firebaseUser = ThisApplication.getFirebase().getCurrentUser();
+        if (firebaseUser != null) {
+            String uid = firebaseUser.getUid();
+            FirebaseMessaging.getInstance().subscribeToTopic("uid");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanban);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -203,6 +210,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_kanban, container, false);
             int tablero= getArguments().getInt(tabNumber);
              tipo=getArguments().getInt(tipoTab);

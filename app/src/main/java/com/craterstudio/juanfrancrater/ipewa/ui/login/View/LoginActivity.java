@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.craterstudio.juanfrancrater.ipewa.ui.forget.ForgetActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
@@ -41,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     private Button btn_SignIn,btnGoogle;
     private EditText edtUser;
     private EditText edtpassword;
-    private TextView txtVIfSignUp;
+    private TextView txtVIfSignUp,txtVPasswordForget;
     private CheckBox chkB_Remember;
 
 
@@ -88,6 +89,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
             @Override
             public void onClick(View v) {
                 startActivityForResult(new Intent(LoginActivity.this, RegisterActivity.class),0);
+            }
+        });
+        txtVPasswordForget.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(LoginActivity.this,ForgetActivity.class),0);
             }
         });
 

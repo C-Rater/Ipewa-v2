@@ -96,6 +96,17 @@
         android:textColor="@android:color/white"
         android:text="@string/txtV_IfSignUP" />
 
+    <TextView
+        android:id="@+id/txtVForgetPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_weight="0.07"
+        android:gravity="center"
+        android:text="@string/recoverPassword"
+        android:textColor="@android:color/white"
+        android:textSize="16dip" />
+
     <Button
         android:id="@+id/btn_GoogleLogin"
         style="@style/Widget.Button.Transparent"
