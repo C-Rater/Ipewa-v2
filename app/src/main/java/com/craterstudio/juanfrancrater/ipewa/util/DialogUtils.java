@@ -38,6 +38,32 @@ public class DialogUtils {
         return builder.create();
     }
 
+    public static int DELETE = 0;
+    public static int EDIT = 1;
+
+    public static Dialog multipleOptionDialog(CharSequence[] options, final Context context)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Pick a color");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == DELETE)
+                {
+
+                }else if (which == EDIT)
+                {
+
+                }
+            }
+        });
+
+        return builder.create();
+    }
+
+
+
+
 
     public static ProgressDialog makeProgressDialog(Context context, String message) {
         ProgressDialog progressDialog = new ProgressDialog(context);

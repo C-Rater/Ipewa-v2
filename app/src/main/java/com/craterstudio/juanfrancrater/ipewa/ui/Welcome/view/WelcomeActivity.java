@@ -40,6 +40,7 @@ import com.craterstudio.juanfrancrater.ipewa.ui.project.View.DetailProjectActivi
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.AddTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
+import com.craterstudio.juanfrancrater.ipewa.util.DialogUtils;
 import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -48,6 +49,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.craterstudio.juanfrancrater.ipewa.util.DialogUtils.DELETE;
+import static com.craterstudio.juanfrancrater.ipewa.util.DialogUtils.EDIT;
 
 /**
  *
@@ -228,13 +232,17 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     if(tipo==1)
                     {
+                        /*
                         Intent intent = new Intent(getContext(), EditTaskActivity.class);
                         intent.putExtra("editTask", tareas.get(i));
                         startActivityForResult(intent,3);
+                        */
                     }else if(tipo==2){
+                        /*
                         Intent intent = new Intent(getContext(), EditMetaActivity.class);
                        intent.putExtra("editMeta",  metas.get(i));
                        startActivityForResult(intent,0);
+                       */
                     } else
                     {
                         Intent intent = new Intent(getContext(), DetailProjectActivity.class);
@@ -246,24 +254,44 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             });
             if(tipo!=0)
             {
+
                 view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                        final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                        builder.setTitle(builder.getContext().getResources().getString(R.string.titleDeleteTask));
-                        builder.setCancelable(true);
-                        builder.setPositiveButton(builder.getContext().getString(R.string.btnOK), new DialogInterface.OnClickListener() {
+                        CharSequence[] options = {getResources().getString(R.string.action_delete),getResources().getString(R.string.action_edit)};
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(tipo==1)
+                                if (which == DELETE)
                                 {
-                                    presenter.deleteTask(tareas.get(i).get_ID());
-                                }else if(tipo==2){
-                                    presenter.deleteMeta(metas.get(i).get_ID());
+                                    if(tipo==1)
+                                    {
+                                        presenter.deleteTask(tareas.get(i).get_ID());
+                                    }else if(tipo==2){
+                                        presenter.deleteMeta(metas.get(i).get_ID());
+                                    }
+                                }else if (which == EDIT)
+                                {
+                                    if(tipo==1)
+                                    {
+
+                        Intent intent = new Intent(getContext(), EditTaskActivity.class);
+                        intent.putExtra("editTask", tareas.get(i));
+                        startActivityForResult(intent,3);
+
+                                    }else if(tipo==2){
+
+                        Intent intent = new Intent(getContext(), EditMetaActivity.class);
+                       intent.putExtra("editMeta",  metas.get(i));
+                       startActivityForResult(intent,0);
+
+                                    }
                                 }
                             }
-
-                        }).setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
+                        });
+                        builder.setCancelable(true)
+                                .setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
