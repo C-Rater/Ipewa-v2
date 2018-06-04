@@ -35,6 +35,9 @@ import com.craterstudio.juanfrancrater.ipewa.ui.task.View.EditTaskActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.craterstudio.juanfrancrater.ipewa.util.DialogUtils.DELETE;
+import static com.craterstudio.juanfrancrater.ipewa.util.DialogUtils.EDIT;
+
 
 public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.View{
     ArrayList<Tablero> tableros;
@@ -156,26 +159,36 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                 view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                        final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                        builder.setTitle(builder.getContext().getResources().getString(R.string.titleDeleteTask));
-                        builder.setMessage(builder.getContext().getResources().getString(R.string.messageDeleteTask));
-                        builder.setCancelable(true);
-                        builder.setPositiveButton(builder.getContext().getString(R.string.btnOK), new DialogInterface.OnClickListener() {
+                        CharSequence[] options = {getResources().getString(R.string.action_delete),getResources().getString(R.string.action_edit)};
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // presenter.delete();
-                            }
-                        }).setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == DELETE)
+                                {
+                                    presenter.delete(tareas.get(i).get_ID(),"1");
+
+                                }else if (which == EDIT)
+                                {
+                                    Intent intent = new Intent(getContext(), EditTaskActivity.class);
+                                    intent.putExtra("editTask", tareas.get(i));
+                                    startActivityForResult(intent,3);
+                                }
                             }
                         });
+                        builder.setCancelable(true)
+                                .setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
                         AlertDialog alertDialog= builder.create();
                         alertDialog.show();
                         return true;
                     }
                 });
-                view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                    Intent intent = new Intent(getContext(), EditTaskActivity.class);
@@ -183,6 +196,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                     startActivityForResult(intent,0);
                     }
                 });
+
                 for(int i=0;i<tareas.size();i++)
                 {
                     if(tareas.get(i).get_idTablero().equals(tablero))
@@ -192,29 +206,42 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                 }
 
             }else{
+
                 adapter.addAll(metas);
                 view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                        final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-                        builder.setTitle(builder.getContext().getResources().getString(R.string.titleDeleteMeta));
-                        builder.setMessage(builder.getContext().getResources().getString(R.string.messageDeleteMeta));
-                        builder.setCancelable(true);
-                        builder.setPositiveButton(builder.getContext().getString(R.string.btnOK), new DialogInterface.OnClickListener() {
+                        CharSequence[] options = {getResources().getString(R.string.action_delete),getResources().getString(R.string.action_edit)};
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // presenter.delete();
-                            }
-                        }).setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == DELETE)
+                                {
+                                    presenter.delete(metas.get(i).get_ID(),"-1");
+
+                                }else if (which == EDIT)
+                                {
+                                    Intent intent = new Intent(getContext(), EditMetaActivity.class);
+                                    intent.putExtra("editMeta",  metas.get(i));
+                                    startActivityForResult(intent,0);
+                                }
                             }
                         });
+
+                        builder.setCancelable(true)
+                                .setNegativeButton(builder.getContext().getString(R.string.btnCancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
                         AlertDialog alertDialog= builder.create();
                         alertDialog.show();
                         return true;
                     }
                 });
+
                 view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -224,6 +251,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                     }
                 });
             }
+
             view.setAdapter(adapter);
             return rootView;
         }
