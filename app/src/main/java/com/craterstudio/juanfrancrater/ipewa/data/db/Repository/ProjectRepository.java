@@ -59,7 +59,7 @@ public class ProjectRepository {
     }
     public void addProject(Proyecto proyecto) {
 
-        dao.add(proyecto);
+        addProject(proyecto.get_name(),proyecto.get_description(),proyecto.get_color(),proyecto.get_deadLine());
     }
     public void deleteProject(Proyecto project) {
 
