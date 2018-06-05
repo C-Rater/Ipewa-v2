@@ -3,6 +3,8 @@ package com.craterstudio.juanfrancrater.ipewa.data.db.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Comparator;
+
 /**
  * Pojo Meta
  *  @author Juan Francisco Benítez López
@@ -151,5 +153,73 @@ public class Meta implements Parcelable {
         parcel.writeString(_difficulty);
         parcel.writeInt(_idProyecto);
         parcel.writeString(_creator);
+    }
+    public static class MetaOrderByPriority implements Comparator<Meta> {
+        //NO ORDENA POR PRIORIDAD, SOLO POR DIFICULTAD, Y NO ENCUENTO EL ERROR
+        @Override
+        public int compare(Meta t1, Meta t2) {
+            if (t1.get_priority() == t2.get_priority()) {
+                return 0;
+            } else if (t1.get_priority() == "Alta") {
+                if (t2.get_priority() == "Baja") {
+                    return 1;
+                } else if (t2.get_priority() == "Media") {
+                    return 1;
+                }
+
+            } else if (t1.get_priority() == "Media") {
+                if (t2.get_priority() == "Baja") {
+                    return 1;
+                } else if (t2.get_priority() == "Alta") {
+                    return -1;
+                }
+            } else if (t1.get_priority() == "Baja") {
+                if (t2.get_priority() == "Media") {
+                    return -1;
+                } else if (t2.get_priority() == "Alta") {
+                    return -1;
+                }
+            }
+            if (t1.get_priority().isEmpty()) {
+                if(t2.get_priority().isEmpty())
+                    return 0;
+            }
+            return 1;
+        }
+    }
+
+
+    public static class MetaOrderByDifficulty implements Comparator<Meta> {
+
+        @Override
+        public int compare(Meta t1, Meta t2) {
+            if (t1.get_difficulty() == t2.get_difficulty()) {
+                return 0;
+            } else if (t1.get_difficulty() == "Alta") {
+                if (t2.get_difficulty() == "Baja") {
+                    return 1;
+                } else if (t2.get_difficulty() == "Media") {
+                    return 1;
+                }
+
+            } else if (t1.get_difficulty() == "Media") {
+                if (t2.get_difficulty() == "Baja") {
+                    return 1;
+                } else if (t2.get_difficulty() == "Alta") {
+                    return -1;
+                }
+            } else if (t1.get_difficulty() == "Baja") {
+                if (t2.get_difficulty() == "Media") {
+                    return -1;
+                } else if (t2.get_difficulty() == "Alta") {
+                    return -1;
+                }
+            }
+            if (t1.get_difficulty().isEmpty()) {
+                if(t2.get_difficulty().isEmpty())
+                    return 0;
+            }
+            return 1;
+        }
     }
 }

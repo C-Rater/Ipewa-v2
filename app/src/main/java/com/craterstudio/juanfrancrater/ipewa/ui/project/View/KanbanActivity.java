@@ -134,7 +134,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         viewPager.setAdapter(adapter);
     }
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }
@@ -197,18 +197,17 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                             view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        /*
                    Intent intent = new Intent(getContext(), EditTaskActivity.class);
                     intent.putExtra("editTask", tareas.get(i));
                     startActivityForResult(intent,0);
+                    */
                     }
                 });
 
                 for(int i=0;i<tareas.size();i++)
                 {
-                    if(tareas.get(i).get_idTablero()==(tablero))
-                    {
                         adapter.add(tareas.get(i));
-                    }
                 }
 
             }else{
@@ -252,9 +251,10 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                 view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Intent intent = new Intent(getContext(), EditMetaActivity.class);
+                  /*  Intent intent = new Intent(getContext(), EditMetaActivity.class);
                     intent.putExtra("editMeta", tareas.get(i));
                     startActivityForResult(intent,0);
+                    */
                     }
                 });
             }

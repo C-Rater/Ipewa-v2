@@ -34,6 +34,7 @@ public class DetailProjectPresenter implements ProjectContrat.DetailProject.Pres
         view.reloadProject(proyecto);
     }
 
+
     @Override
     public void reloadList() {
         view.reloadList();

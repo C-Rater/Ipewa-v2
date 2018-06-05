@@ -65,10 +65,11 @@ public class ProjectDao {
         return contentValues;
     }
 
-    public void add(Proyecto p) {
+    public long add(Proyecto p) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
         ContentValues contentValuesP=createContent(p);
-        sqLiteDatabase.insert(MyContrats.Proyectos.TABLE_NAME,null,contentValuesP);
+       long id= sqLiteDatabase.insert(MyContrats.Proyectos.TABLE_NAME,null,contentValuesP);
         MyOpenHelper.getInstance().closeDateBase();
+        return id;
     }
 }

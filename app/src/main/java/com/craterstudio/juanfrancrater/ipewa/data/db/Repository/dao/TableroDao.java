@@ -52,8 +52,8 @@ public class TableroDao {
         ContentValues contentValues=new ContentValues();
         contentValues.put(MyContrats.Tablero.COLUMN_NAME,t.get_name());
         contentValues.put(MyContrats.Tablero.COLUMN_POSITION,t.get_position());
-        contentValues.put(MyContrats.Tablero.COLUMN_CREATOR,t.get_creator());
         contentValues.put(MyContrats.Tablero.COLUMN_IDPROYECTO,t.get_idProyecto());
+        contentValues.put(MyContrats.Tablero.COLUMN_CREATOR,t.get_creator());
         return contentValues;
     }
 

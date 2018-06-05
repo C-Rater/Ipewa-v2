@@ -46,13 +46,12 @@ public class ProjectRepository {
 
     }
 
-    public void addProject(String name,String description,int color, String deadLine ) {
+    public long addProject(String name,String description,int color, String deadLine ) {
         AppPreferencesHelper sharedPreferences=ThisApplication.getAppPreferencesHelper().getInstance();
         String creatorname= sharedPreferences.getCurrentUserName();
         Proyecto proyecto =new Proyecto(0,name,description,color,deadLine,creatorname);
-        dao.add(proyecto);
-        TableroRepository repository = TableroRepository.getInstance();
-        repository.addTablero("To Do",0,proyecto.get_ID());
+       long id= dao.add(proyecto);
+        return id;
 
     }
     public void addProject(Proyecto proyecto) {

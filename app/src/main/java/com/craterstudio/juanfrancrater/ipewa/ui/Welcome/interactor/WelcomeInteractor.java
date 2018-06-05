@@ -66,6 +66,16 @@ public class WelcomeInteractor implements WelcomeContrat.Interactor{
         listener.reloadList(TareaRepository.getInstance().getTareas(),MetaRepository.getInstance().getMetas(),ProjectRepository.getInstance().getProjects());
     }
 
+    @Override
+    public void sortPrio() {
+        listener.reloadList(TareaRepository.getInstance().getTareasSortByPri(),MetaRepository.getInstance().getMetasByPri(),ProjectRepository.getInstance().getProjects());
+    }
+
+    @Override
+    public void sortByDiff() {
+        listener.reloadList(TareaRepository.getInstance().getTareasSortByDif(),MetaRepository.getInstance().getMetasSortByDif(),ProjectRepository.getInstance().getProjects());
+    }
+
     public interface WelcomeListener
     {
         void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos);

@@ -64,7 +64,6 @@ public class TareaRepository {
 
     public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, int idProyecto, int idTablero) {
         AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
-        String creator=sharedPreferences.getCurrentUserID();
         String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDTarea();
         dao.add(new Tarea(0,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));

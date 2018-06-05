@@ -47,6 +47,16 @@ public class WelcomePresenter implements WelcomeContrat.Presenter,WelcomeInterac
     }
 
     @Override
+    public void sortByDiff() {
+        interactor.sortByDiff();
+    }
+
+    @Override
+    public void sortPrio() {
+        interactor.sortPrio();
+    }
+
+    @Override
     public void reloadList(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Proyecto> proyectos) {
         view.fillList(tareas,metas,proyectos);
     }

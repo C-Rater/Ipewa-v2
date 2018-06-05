@@ -36,7 +36,6 @@ public class DetailProjectInteractor implements ProjectContrat.DetailProject.Int
     public interface DetailProjectListener
     {
         void reloadProject(Proyecto proyecto);
-
         void reloadList();
     }
 }

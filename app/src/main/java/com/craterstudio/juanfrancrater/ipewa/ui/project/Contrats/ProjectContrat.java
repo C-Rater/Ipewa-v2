@@ -29,6 +29,7 @@ public interface ProjectContrat  {
         {
 
             void addProject(String nombre, String description, int color, String deadLine);
+            void addTablero(int idProyecto);
         }
     }
     interface DetailProject

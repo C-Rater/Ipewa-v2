@@ -9,10 +9,11 @@
             android:id="@+id/sortbyDate"
             android:title="@string/sortbyDate"
             app:actionLayout="@layout/switch_item" />
-        <item
+        <!-- <item
             android:id="@+id/showByDays"
             android:title="@string/showByDays"
-            app:actionLayout="@layout/switch_item" />
+            app:actionLayout="@layout/switch_item" /> -->
+
         <item
             android:id="@+id/sortDiff"
             android:title="@string/sortDifficult"

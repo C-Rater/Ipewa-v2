@@ -7,6 +7,7 @@ import com.craterstudio.juanfrancrater.ipewa.util.ThisApplication;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by juanf on 25/02/2018.
@@ -73,5 +74,15 @@ public class MetaRepository {
 
     public void delete(int i) {
         dao.delete(i);
+    }
+
+    public ArrayList<Meta> getMetasByPri() {
+        Collections.sort(metas, new Meta.MetaOrderByPriority());
+        return  metas;
+    }
+
+    public ArrayList<Meta> getMetasSortByDif() {
+        Collections.sort(metas, new Meta.MetaOrderByPriority());
+        return  metas;
     }
 }

@@ -27,6 +27,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
+import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.TableroRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Proyecto;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
@@ -135,6 +136,15 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
         switch (item.getItemId()) {
             case R.id.action_preff:
                 startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
+                break;
+            case R.id.sortbyDate:
+                presenter.sortByDate();
+                break;
+            case R.id.sortDiff:
+                presenter.sortByDiff();
+                break;
+            case R.id.sortPrio:
+                presenter.sortPrio();
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -22,6 +22,10 @@ public interface WelcomeContrat {
         void deleteMeta(int id);
 
         void fillList();
+
+        void sortByDiff();
+
+        void sortPrio();
     }
     interface Interactor{
         void obtainElement(int daysTask,int daysMeta);
@@ -33,5 +37,9 @@ public interface WelcomeContrat {
         void deleteMeta(int id);
 
         void fillList();
+
+        void sortPrio();
+
+        void sortByDiff();
     }
 }

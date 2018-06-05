@@ -26,9 +26,15 @@ public class AddProjectPresenter implements ProjectContrat.addProject.Presenter,
         interactor.addProject(nombre,description,color,deadLine);
     }
 
+
     @Override
     public void showEmptyNameError() {
         view.showError(context.getString(R.string.ErrorEmptyName));
+    }
+
+    @Override
+    public void addTablero(int idProyecto) {
+        interactor.addTablero(idProyecto);
     }
 
     @Override
