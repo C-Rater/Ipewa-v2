@@ -57,4 +57,10 @@ public class TableroDao {
         contentValues.put(MyContrats.Tablero.COLUMN_IDPROYECTO,t.get_idProyecto());
         return contentValues;
     }
+
+    public void delete(String id) {
+        final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        sqLiteDatabase.delete(MyContrats.Tablero.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ id} );
+        MyOpenHelper.getInstance().closeDateBase();
+    }
 }

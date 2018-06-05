@@ -57,7 +57,7 @@ public class ForgetActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(ForgetActivity.this, R.string.resetComplet, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ForgetActivity.this, getResources().getString(R.string.resetComplet), Toast.LENGTH_SHORT).show();
                                     FirebaseMessagingService sender = new FirebaseMessagingService();
 
                                     finish();

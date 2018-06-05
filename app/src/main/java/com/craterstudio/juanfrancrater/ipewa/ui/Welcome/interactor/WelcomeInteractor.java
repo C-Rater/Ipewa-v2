@@ -44,6 +44,7 @@ public class WelcomeInteractor implements WelcomeContrat.Interactor{
     public void sortByDate() {
         ArrayList<Tarea> tareas=TareaRepository.getInstance().getTareasSortByDate();
         ArrayList<Meta> metas=MetaRepository.getInstance().getMetasSortByDate();
+
         ArrayList<Proyecto> proyectos=ProjectRepository.getInstance().getProjects();
         listener.reloadList(tareas,metas,proyectos);
     }

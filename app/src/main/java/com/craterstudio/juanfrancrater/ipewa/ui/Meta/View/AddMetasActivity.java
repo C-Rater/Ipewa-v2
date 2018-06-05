@@ -108,7 +108,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
             id = getIntent().getExtras().getString("idProyecto");
 
                 for (int i = 0; i < listProjId.size(); i++) {
-                    if (id.equals(Integer.parseInt(listProjId.get(i)))) {
+                    if (id.equals((listProjId.get(i)))) {
                         spnProyecto.setSelection(i);
                     }
             }

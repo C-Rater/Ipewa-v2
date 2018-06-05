@@ -48,7 +48,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
+    <activity android:name=".ui.forget.ForgetActivity"/>
         <activity android:name="com.craterstudio.juanfrancrater.ipewa.util.Chat.ChatActivity" />
         <activity android:name=".ui.Meta.View.AddMetasActivity"/>
         <activity android:name=".ui.Meta.View.EditMetaActivity"/>

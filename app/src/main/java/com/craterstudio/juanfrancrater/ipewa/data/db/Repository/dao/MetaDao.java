@@ -86,6 +86,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
     }
     private ContentValues createContent(Meta meta) {
         ContentValues contentValues=new ContentValues();
+        contentValues.put(BaseColumns._ID,meta.get_ID());
         contentValues.put(MyContrats.Metas.COLUMN_NAME,meta.get_name());
         contentValues.put(MyContrats.Metas.COLUMN_DESCRIPTION,meta.get_description());
         contentValues.put(MyContrats.Metas.COLUMN_COLOR,meta.get_color());
@@ -141,7 +142,9 @@ public static ArrayList<Meta> getMetasByProject(String id){
 
     public void delete(String i) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
+        loadAll().size();
         sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{i} );
+        loadAll().size();
         MyOpenHelper.getInstance().closeDateBase();
     }
 }

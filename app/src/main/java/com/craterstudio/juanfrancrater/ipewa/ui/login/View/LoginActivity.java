@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
         edtUser=findViewById(R.id.edT_User);
         edtpassword=findViewById(R.id.edT_Passw);
         txtVIfSignUp=findViewById(R.id.txtVIfSignUp);
+        txtVPasswordForget=findViewById(R.id.txtVForgetPassword);
         txtVIfSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,6 +5,7 @@ import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tablero;
 import com.craterstudio.juanfrancrater.ipewa.util.AppPreferencesHelper;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by juanf on 25/02/2018.
@@ -44,5 +45,18 @@ public class TableroRepository {
         Tablero tablero =new Tablero(String.valueOf(id)+idProyecto,name,position,idProyecto,creatorname);
         dao.add(tablero);
         sharedPreferences.setLastIDTablero(id++);
+    }
+
+    public void deleteTablerosByProjectId(String id) {
+        Iterator<Tablero> iterator= getInstance().getTableros(id).iterator();
+        Tablero temp;
+        while(iterator.hasNext())
+        {
+            temp=iterator.next();
+            if(temp.get_idProyecto().equals(id))
+            {
+                dao.delete(temp.get_ID());
+            }
+        }
     }
 }

@@ -68,7 +68,7 @@ public class TareaRepository {
         String creator=sharedPreferences.getCurrentUserID();
         String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDTarea();
-        dao.add(new Tarea(String.valueOf(id)+creatorname,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));
+        dao.add(new Tarea(String.valueOf(id)+idProyecto,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));
         sharedPreferences.setLastIDTarea(id++);
 
     }

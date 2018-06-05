@@ -28,6 +28,12 @@ public class TaskTabInteractor implements TaskTabContrat.interactor {
 
     @Override
     public void delete(String i, String tipo) {
-
+        if(tipo.equals("1"))
+        {
+            TareaRepository.getInstance().deleteTask(i);
+        }else
+        {
+            MetaRepository.getInstance().delete(i);
+        }
     }
 }

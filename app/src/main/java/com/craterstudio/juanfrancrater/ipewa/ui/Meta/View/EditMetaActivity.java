@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import com.craterstudio.juanfrancrater.ipewa.R;
 import com.craterstudio.juanfrancrater.ipewa.adapter.DiffPrioAdapter;
 import com.craterstudio.juanfrancrater.ipewa.adapter.SpinnerProyectAdapter;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.DiffPrioRepository;
+import com.craterstudio.juanfrancrater.ipewa.data.db.model.Meta;
 import com.craterstudio.juanfrancrater.ipewa.data.db.model.Tarea;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.Contrats.MetaContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.Meta.Presenter.EditMetaPresenter;
@@ -49,7 +51,7 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
     int mDay;
     String deadLine = "";
 
-    Tarea editMeta;
+    Meta editMeta;
     private ArrayList<String> listProjId;
     private int color;
 
@@ -60,7 +62,7 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
         presenter = new EditMetaPresenter(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        editMeta = (Tarea) getIntent().getExtras().getParcelable("editMeta");
+        editMeta = getIntent().getExtras().getParcelable("editMeta");
         color= editMeta.get_color();
         initialize();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -123,8 +125,8 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
                 mDatePicker.show();
             }
         });
-
         deadLine=editMeta.get_deadLine();
+        edtDate.setText(deadLine);
         tiedtName = (TextInputEditText) findViewById(R.id.tiedtName);
         tiedtName.setText(editMeta.get_name());
         tiedtDescription = (TextInputEditText) findViewById(R.id.tiedtDescription);
@@ -146,7 +148,7 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
             }
         }
         presenter.getIdList();
-        spnProyecto.setAdapter(new SpinnerProyectAdapter(this));
+        spnProyecto.setAdapter(new SpinnerProyectAdapter(this,-1));
         for (int i=0;i<listProjId.size();i++)
         {
             if(listProjId.get(i).equals(String.valueOf(editMeta.get_idProyecto())))

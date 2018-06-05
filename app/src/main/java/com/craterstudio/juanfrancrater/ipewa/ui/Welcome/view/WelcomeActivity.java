@@ -267,9 +267,11 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
                                 {
                                     if(tipo==1)
                                     {
-                                        presenter.deleteTask(tareas.get(i).get_ID());
+                                        Tarea tareaABorrar=tareas.get(i);
+                                        presenter.deleteTask(tareaABorrar.get_ID());
                                     }else if(tipo==2){
-                                        presenter.deleteMeta(metas.get(i).get_ID());
+                                        Meta metaABorrar = metas.get(i);
+                                        presenter.deleteMeta(metaABorrar.get_ID());
                                     }
                                 }else if (which == EDIT)
                                 {
@@ -278,7 +280,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
                         Intent intent = new Intent(getContext(), EditTaskActivity.class);
                         intent.putExtra("editTask", tareas.get(i));
-                        startActivityForResult(intent,3);
+                        startActivityForResult(intent,0);
 
                                     }else if(tipo==2){
 

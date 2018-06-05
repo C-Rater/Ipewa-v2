@@ -1,6 +1,7 @@
 package com.craterstudio.juanfrancrater.ipewa.ui.project.Interactor;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.MetaRepository;
+import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.TableroRepository;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.ProjectRepository;
 import com.craterstudio.juanfrancrater.ipewa.data.db.Repository.TareaRepository;
@@ -25,9 +26,10 @@ public class DetailProjectInteractor implements ProjectContrat.DetailProject.Int
 
     @Override
     public void deleteProject(Proyecto detailProject) {
-        ProjectRepository.getInstance().deleteProject(detailProject);
-        TareaRepository.getInstance().deleteTareasByProjectId(detailProject.get_ID());
         MetaRepository.getInstance().deleteMetasByProjectId(detailProject.get_ID());
+        TableroRepository.getInstance().deleteTablerosByProjectId(detailProject.get_ID());
+        TareaRepository.getInstance().deleteTareasByProjectId(detailProject.get_ID());
+        ProjectRepository.getInstance().deleteProject(detailProject);
         listener.reloadList();
     }
 
