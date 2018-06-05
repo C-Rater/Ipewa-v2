@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import com.craterstudio.juanfrancrater.ipewa.data.db.Contrat.MyContrats;
 import com.craterstudio.juanfrancrater.ipewa.data.db.MyOpenHelper;
@@ -29,7 +30,7 @@ public class ProjectDao {
                 null);
         if (cursor.moveToFirst()) {
             do {
-                Proyecto proyecto = new Proyecto(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4),cursor.getString(5));
+                Proyecto proyecto = new Proyecto(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4),cursor.getString(5));
                 proyectosArrayList.add(proyecto);
             } while (cursor.moveToNext());
         }
@@ -37,22 +38,24 @@ public class ProjectDao {
         return proyectosArrayList;
     }
 
-    public void delete(String id) {
+    public void delete(int id) {
+        try{
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        sqLiteDatabase.delete(MyContrats.Proyectos.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ id} );
-        MyOpenHelper.getInstance().closeDateBase();
+        sqLiteDatabase.delete(MyContrats.Proyectos.TABLE_NAME, BaseColumns._ID+"=?",new String[]{(String.valueOf( id))} );
+        MyOpenHelper.getInstance().closeDateBase();}catch (Exception e)
+        {
+            Log.d("Error",e.getMessage());}
     }
 
-    public void set(String id, Proyecto p) {
+    public void set(int id, Proyecto p) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
         ContentValues contentValues=createContent(p);
-        sqLiteDatabase.update(MyContrats.Proyectos.TABLE_NAME,contentValues,BaseColumns._ID+"=?",new String[]{ id});
+        sqLiteDatabase.update(MyContrats.Proyectos.TABLE_NAME,contentValues,BaseColumns._ID+"=?",new String[]{ String.valueOf(id)});
         MyOpenHelper.getInstance().closeDateBase();
     }
 
     private ContentValues createContent(Proyecto p) {
         ContentValues contentValues=new ContentValues();
-        contentValues.put(BaseColumns._ID,p.get_ID());
         contentValues.put(MyContrats.Proyectos.COLUMN_NAME,p.get_name());
         contentValues.put(MyContrats.Proyectos.COLUMN_COLOR,p.get_color());
         contentValues.put(MyContrats.Proyectos.COLUMN_DEADLINE,p.get_deadLine());

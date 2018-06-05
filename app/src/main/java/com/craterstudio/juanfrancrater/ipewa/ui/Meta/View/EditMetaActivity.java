@@ -52,7 +52,7 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
     String deadLine = "";
 
     Meta editMeta;
-    private ArrayList<String> listProjId;
+    private ArrayList<Integer> listProjId;
     private int color;
 
     @Override
@@ -170,7 +170,7 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
     }
 
     @Override
-    public void fillIdList(ArrayList<String> idProjects) {
+    public void fillIdList(ArrayList<Integer> idProjects) {
         listProjId=idProjects;
     }
 }

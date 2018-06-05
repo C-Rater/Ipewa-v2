@@ -17,7 +17,7 @@ import java.util.Calendar;
  */
 
 public class MetaDao {
-public static ArrayList<Meta> getMetasByProject(String id){
+public static ArrayList<Meta> getMetasByProject(int id){
     final ArrayList<Meta> list = new ArrayList<>();
 
     final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
@@ -25,7 +25,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
     Cursor cursor = sqLiteDatabase.query(MyContrats.Metas.TABLE_NAME,
             MyContrats.Metas.ALL_COLUMN,
             MyContrats.Metas.COLUMN_IDPROYECTO + "=?",
-            new String[]{id},
+            new String[]{String.valueOf(id)},
             null,
             null,
             MyContrats.Metas.DEFAULT_SORT,
@@ -34,7 +34,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
 
     {
         do {
-            Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+            Meta meta=new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getString(8));
             list.add(meta);
         } while (cursor.moveToNext());
     }
@@ -57,7 +57,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
         if(cursor.moveToFirst())
         {
             do{
-                Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+                Meta meta=new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getString(8));
                 metaArrayList.add(meta);
             }while (cursor.moveToNext());
         }
@@ -86,7 +86,6 @@ public static ArrayList<Meta> getMetasByProject(String id){
     }
     private ContentValues createContent(Meta meta) {
         ContentValues contentValues=new ContentValues();
-        contentValues.put(BaseColumns._ID,meta.get_ID());
         contentValues.put(MyContrats.Metas.COLUMN_NAME,meta.get_name());
         contentValues.put(MyContrats.Metas.COLUMN_DESCRIPTION,meta.get_description());
         contentValues.put(MyContrats.Metas.COLUMN_COLOR,meta.get_color());
@@ -115,7 +114,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
 
         {
             do {
-                Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+                Meta meta=new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getString(8));
                 list.add(meta);
             } while (cursor.moveToNext());
         }
@@ -132,7 +131,7 @@ public static ArrayList<Meta> getMetasByProject(String id){
         if(cursor.moveToFirst())
         {
             do{
-                Meta meta=new Meta(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+                Meta meta=new Meta(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getString(8));
                 metaArrayList.add(meta);
             }while (cursor.moveToNext());
         }
@@ -140,11 +139,9 @@ public static ArrayList<Meta> getMetasByProject(String id){
         return metaArrayList;
     }
 
-    public void delete(String i) {
+    public void delete(int i) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        loadAll().size();
-        sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{i} );
-        loadAll().size();
+        sqLiteDatabase.delete(MyContrats.Metas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{String.valueOf(i)} );
         MyOpenHelper.getInstance().closeDateBase();
     }
 }

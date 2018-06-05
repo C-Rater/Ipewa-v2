@@ -46,7 +46,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
     int mMonth;
     int mDay;
     String deadLine = "";
-    ArrayList<String> listProjId;
+    ArrayList<Integer> listProjId;
     TaskContrat.addTask.Presenter presenter;
     private int color;
 
@@ -64,7 +64,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
                         tiedtDescription.getText().toString(),
                         color,
                         deadLine,spnPrio.getSelectedItem().toString(),
-                        spnDiff.getSelectedItem().toString(), listProjId.get(spnProyecto.getSelectedItemPosition()),"1");
+                        spnDiff.getSelectedItem().toString(), listProjId.get(spnProyecto.getSelectedItemPosition()),1);
             }
         });
 
@@ -104,7 +104,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
              id = getIntent().getExtras().getInt("idProyecto");
             if (id != 0) {
                 for (int i = 0; i < listProjId.size(); i++) {
-                    if (id == Integer.parseInt(listProjId.get(i))) {
+                    if (id == listProjId.get(i)) {
                         spnProyecto.setSelection(i);
                     }
                 }
@@ -157,7 +157,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
     }
 
     @Override
-    public void fillIdList(ArrayList<String> idProjects) {
+    public void fillIdList(ArrayList<Integer> idProjects) {
         listProjId=idProjects;
     }
 }

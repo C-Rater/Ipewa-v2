@@ -34,12 +34,12 @@ public class AddMetaPresenter implements MetaContrat.addMeta.Presenter, AddMetaI
     }
 
     @Override
-    public void fillIdList(ArrayList<String> idProjects) {
+    public void fillIdList(ArrayList<Integer> idProjects) {
         view.fillIdList(idProjects);
     }
 
     @Override
-    public void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto) {
+    public void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty, int _idProyecto) {
         interactor.addMeta(nombre,description,color,deadLine,priority,difficulty,_idProyecto);
     }
 

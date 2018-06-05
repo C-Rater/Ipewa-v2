@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 
 public class TableroDao {
-    public ArrayList<Tablero> loadTableroByProyectos(String id) {
+    public ArrayList<Tablero> loadTableroByProyectos(int id) {
 
         final ArrayList<Tablero> list=new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class TableroDao {
         Cursor cursor = sqLiteDatabase.query(MyContrats.Tablero.TABLE_NAME,
                 MyContrats.Tablero.ALL_COLUMN,
                 MyContrats.Tablero.COLUMN_IDPROYECTO+"=?",
-                new String[]{id},
+                new String[]{String.valueOf(id)},
                 null,
                 null,
                 MyContrats.Tablero.DEFAULT_SORT,
@@ -35,7 +35,7 @@ public class TableroDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tablero tablero =new Tablero(cursor.getString(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3),cursor.getString(4));
+                Tablero tablero =new Tablero(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getInt(3),cursor.getString(4));
                 list.add(tablero);
             }while (cursor.moveToNext());
         }
@@ -50,7 +50,6 @@ public class TableroDao {
     }
     private ContentValues createContent(Tablero t) {
         ContentValues contentValues=new ContentValues();
-        contentValues.put(BaseColumns._ID,t.get_ID());
         contentValues.put(MyContrats.Tablero.COLUMN_NAME,t.get_name());
         contentValues.put(MyContrats.Tablero.COLUMN_POSITION,t.get_position());
         contentValues.put(MyContrats.Tablero.COLUMN_CREATOR,t.get_creator());
@@ -58,9 +57,9 @@ public class TableroDao {
         return contentValues;
     }
 
-    public void delete(String id) {
+    public void delete(int id) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        sqLiteDatabase.delete(MyContrats.Tablero.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ id} );
+        sqLiteDatabase.delete(MyContrats.Tablero.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ String.valueOf(id)} );
         MyOpenHelper.getInstance().closeDateBase();
     }
 }

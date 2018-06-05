@@ -17,9 +17,9 @@ public interface WelcomeContrat {
 
         void sortByDate();
 
-        void deleteTask(String id);
+        void deleteTask(int id);
 
-        void deleteMeta(String id);
+        void deleteMeta(int id);
 
         void fillList();
     }
@@ -28,9 +28,9 @@ public interface WelcomeContrat {
 
         void sortByDate();
 
-        void deleteTask(String id);
+        void deleteTask(int id);
 
-        void deleteMeta(String id);
+        void deleteMeta(int id);
 
         void fillList();
     }

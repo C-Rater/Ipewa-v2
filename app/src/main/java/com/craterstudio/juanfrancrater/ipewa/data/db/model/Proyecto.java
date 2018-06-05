@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 
 public class Proyecto implements Comparable, Parcelable {
     public static String TAG = "project";
-    String _ID;
+    int _ID;
     String _name;
     String _description;
     int _color;
@@ -28,7 +28,7 @@ public class Proyecto implements Comparable, Parcelable {
     }
 
 
-    public Proyecto(String _ID, String _name, String _description, int _color, String _deadLine,String _creator) {
+    public Proyecto(int _ID, String _name, String _description, int _color, String _deadLine,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -38,7 +38,7 @@ public class Proyecto implements Comparable, Parcelable {
     }
 
     protected Proyecto(Parcel in) {
-        _ID = in.readString();
+        _ID = in.readInt();
         _name = in.readString();
         _description = in.readString();
         _color = in.readInt();
@@ -48,7 +48,7 @@ public class Proyecto implements Comparable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_ID);
+        dest.writeInt(_ID);
         dest.writeString(_name);
         dest.writeString(_description);
         dest.writeInt(_color);
@@ -73,11 +73,11 @@ public class Proyecto implements Comparable, Parcelable {
         }
     };
 
-    public String  get_ID() {
+    public int  get_ID() {
         return _ID;
     }
 
-    public void set_ID(String _ID) {
+    public void set_ID(int _ID) {
         this._ID = _ID;
     }
 
@@ -113,13 +113,23 @@ public class Proyecto implements Comparable, Parcelable {
         this._deadLine = _deadLine;
     }
 
-    @Override
-    public int compareTo(@NonNull Object o) {
-        return _ID.compareTo(((Proyecto)o).get_ID());
-    }
+
 
     @Override
     public String toString() {
         return _name ;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        if( _ID==((Proyecto)o).get_ID())
+        {
+            return 0;
+        }else if(_ID>((Proyecto)o).get_ID())
+        {
+            return 1;
+        }else{
+            return -1;
+        }
     }
 }

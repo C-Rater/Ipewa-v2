@@ -17,7 +17,7 @@ public class EditProjectInteractor implements ProjectContrat.editProject.Interac
     }
 
     @Override
-    public void EditProject(String id, String name, String description, int color, String deadLine,String creator) {
+    public void EditProject(int id, String name, String description, int color, String deadLine,String creator) {
         if(name.length()<1)
         {
             listener.showErrorEmptyName();
@@ -30,7 +30,7 @@ public class EditProjectInteractor implements ProjectContrat.editProject.Interac
     }
 
     @Override
-    public void getProject(String editProyect) {
+    public void getProject(int editProyect) {
         listener.loadProject(ProjectRepository.getInstance().getProject(editProyect));
     }
 

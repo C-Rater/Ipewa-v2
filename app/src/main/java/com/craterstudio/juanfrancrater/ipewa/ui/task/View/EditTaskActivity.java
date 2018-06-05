@@ -53,7 +53,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
     String deadLine = "";
 
     Tarea editTask;
-    private ArrayList<String> listProjId;
+    private ArrayList<Integer> listProjId;
     private int color;
 
     @Override
@@ -171,7 +171,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
     }
 
     @Override
-    public void fillIdList(ArrayList<String> idProjects) {
+    public void fillIdList(ArrayList<Integer> idProjects) {
         listProjId=idProjects;
     }
 }

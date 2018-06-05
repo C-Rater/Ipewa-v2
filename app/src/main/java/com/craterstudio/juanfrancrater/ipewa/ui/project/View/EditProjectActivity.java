@@ -53,7 +53,7 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
         super.onCreate(savedInstanceState);
         presenter = new EditProjectPresenter(this);
         setContentView(R.layout.activity_add_project);
-        presenter.getProject( getIntent().getExtras().getString("editProject"));
+        presenter.getProject( getIntent().getExtras().getInt("editProject"));
         if(editProject!=null)
         {
             initialize();

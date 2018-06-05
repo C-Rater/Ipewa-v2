@@ -48,7 +48,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
     int mMonth;
     int mDay;
     String deadLine = "";
-    ArrayList<String> listProjId;
+    ArrayList<Integer> listProjId;
     public MetaContrat.addMeta.Presenter presenter;
     private int color;
 
@@ -63,7 +63,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = listProjId.get(spnProyecto.getSelectedItemPosition());
+                int id = listProjId.get(spnProyecto.getSelectedItemPosition());
                 presenter.addMeta(tiedtName.getText().toString(),
                         tiedtDescription.getText().toString(),
                         color,
@@ -168,7 +168,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
     }
 
     @Override
-    public void fillIdList(ArrayList<String> idProjects) {
+    public void fillIdList(ArrayList<Integer> idProjects) {
         listProjId=idProjects;
     }
 
@@ -211,7 +211,7 @@ public class AddMetasActivity extends AppCompatActivity implements MetaContrat.a
             id = getIntent().getExtras().getInt("idProyecto");
             if (id != 0) {
                 for (int i = 0; i < listProjId.size(); i++) {
-                    if (id == Integer.parseInt(listProjId.get(i))) {
+                    if (id == (listProjId.get(i))) {
                         spnProyecto.setSelection(i);
                     }
                 }

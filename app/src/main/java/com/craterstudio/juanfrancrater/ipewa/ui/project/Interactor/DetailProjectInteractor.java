@@ -20,14 +20,14 @@ public class DetailProjectInteractor implements ProjectContrat.DetailProject.Int
     }
 
     @Override
-    public void getProject(String id) {
+    public void getProject(int id) {
         listener.reloadProject(ProjectRepository.getInstance().getProject(id));
     }
 
     @Override
     public void deleteProject(Proyecto detailProject) {
-        MetaRepository.getInstance().deleteMetasByProjectId(detailProject.get_ID());
         TableroRepository.getInstance().deleteTablerosByProjectId(detailProject.get_ID());
+        MetaRepository.getInstance().deleteMetasByProjectId(detailProject.get_ID());
         TareaRepository.getInstance().deleteTareasByProjectId(detailProject.get_ID());
         ProjectRepository.getInstance().deleteProject(detailProject);
         listener.reloadList();

@@ -33,12 +33,12 @@ public class EditMetaPresenter implements MetaContrat.editMeta.Presenter,EditMet
     }
 
     @Override
-    public void fillIdList(ArrayList<String> idProjects) {
+    public void fillIdList(ArrayList<Integer> idProjects) {
         view.fillIdList(idProjects);
     }
 
     @Override
-    public void EditMeta(String id, String name, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto, String creator) {
+    public void EditMeta(int id, String name, String description, int color, String deadLine, String priority, String difficulty, int _idProyecto, String creator) {
         interactor.EditMeta(id,name,description,color,deadLine,priority,difficulty,_idProyecto,creator);
     }
 

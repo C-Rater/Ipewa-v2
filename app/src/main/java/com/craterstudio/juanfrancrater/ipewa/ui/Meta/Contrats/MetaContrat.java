@@ -17,18 +17,18 @@ public interface MetaContrat {
 
             void back();
 
-            void fillIdList(ArrayList<String> idProjects);
+            void fillIdList(ArrayList<Integer> idProjects);
         }
 
         interface Presenter{
-            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto);
+            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,int _idProyecto);
 
             void getIdList();
         }
 
         interface Interactor
         {
-            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto);
+            void addMeta(String nombre, String description, int color, String deadLine, String priority, String difficulty,int _idProyecto);
 
             void getIdList();
         }
@@ -62,17 +62,17 @@ public interface MetaContrat {
         interface View{
             void back();
             void showError();
-            void fillIdList(ArrayList<String> idProjects);
+            void fillIdList(ArrayList<Integer> idProjects);
         }
 
         interface Presenter{
-            void EditMeta(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String creator );
+            void EditMeta(int id, String name, String description, int color, String deadLine,String priority, String difficulty,int _idProyecto,String creator );
             void getIdList();
         }
 
         interface Interactor
         {
-            void EditMeta(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String creator );
+            void EditMeta(int id, String name, String description, int color, String deadLine,String priority, String difficulty,int _idProyecto,String creator );
             void getIdList();
         }
     }

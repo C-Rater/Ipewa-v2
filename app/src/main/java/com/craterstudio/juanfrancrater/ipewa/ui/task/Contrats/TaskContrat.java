@@ -17,18 +17,18 @@ public interface TaskContrat {
 
             void back();
 
-            void fillIdList(ArrayList<String> idProjects);
+            void fillIdList(ArrayList<Integer> idProjects);
         }
 
         interface Presenter{
-            void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto, String idTablero);
+            void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty,int _idProyecto, int idTablero);
 
             void getIdList();
         }
 
         interface Interactor
         {
-            void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty,String _idProyecto, String idTablero);
+            void addTask(String nombre, String description, int color, String deadLine, String priority, String difficulty,int _idProyecto, int idTablero);
 
             void getIdList();
         }
@@ -62,17 +62,17 @@ public interface TaskContrat {
         interface View{
             void back();
             void showError();
-            void fillIdList(ArrayList<String> idProjects);
+            void fillIdList(ArrayList<Integer> idProjects);
         }
 
         interface Presenter{
-            void EditTask(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero,String creator );
+            void EditTask(int id, String name, String description, int color, String deadLine,String priority, String difficulty,int _idProyecto,int idTablero,String creator );
             void getIdList();
         }
 
         interface Interactor
         {
-            void EditTask(String id, String name, String description, int color, String deadLine,String priority, String difficulty,String _idProyecto,String idTablero,String creator );
+            void EditTask(int id, String name, String description, int color, String deadLine,String priority, String difficulty,int _idProyecto,int idTablero,String creator );
             void getIdList();
         }
     }

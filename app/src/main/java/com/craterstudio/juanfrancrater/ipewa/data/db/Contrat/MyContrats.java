@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 
 public class MyContrats {
     public static final String DATABASE_NAME = "ipewapp";
-    public static final int DATABASE_VERSION = 13;
+    public static final int DATABASE_VERSION = 14;
 
     public static class Proyectos{
         public static final String TABLE_NAME = "proyecto";
@@ -22,7 +22,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
+                "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -51,7 +51,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
+                "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -60,7 +60,7 @@ public class MyContrats {
                         "%s TEXT,"+
                         "%s TEXT," +
                         "%s TEXT NOT NULL," +
-                        "%s TEXT NOT NULL," +
+                        "%s INTEGER NOT NULL," +
                         "FOREIGN KEY(%s) REFERENCES %s(%s))",
                 TABLE_NAME,
 
@@ -114,12 +114,12 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY , " +
+                "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                         "%s TEXT NOT NULL," +
                         "%s INTEGER NOT NULL,"+
                         "%s TEXT NOT NULL," +
-                        "%s TEXT NOT NULL," +
+                        "%s INTEGER NOT NULL," +
                         "FOREIGN KEY(%s) REFERENCES %s(%s))",
                 TABLE_NAME,
 
@@ -147,7 +147,7 @@ public class MyContrats {
         public static final String SQL_DELETE_ENTRIES = String.format("DROP TABLE IF EXISTS %s",TABLE_NAME);
         public static final String SQL_CREATE_ENTRIES = String.format(
 
-                "CREATE TABLE %s (%s TEXT PRIMARY KEY, " +
+                "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
 
                         "%s TEXT NOT NULL," +
                         "%s TEXT," +
@@ -157,11 +157,11 @@ public class MyContrats {
                         "%s TEXT,"+
                         "%s TEXT,"+
                         "%s TEXT," +
-                        "%s TEXT NOT NULL)",
+                        "%s INTEGER NOT NULL)",
                 TABLE_NAME,
 
                 BaseColumns._ID,
-                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO,Proyectos.TABLE_NAME);
+                COLUMN_NAME,COLUMN_DESCRIPTION,COLUMN_COLOR,COLUMN_DEADLINE,COLUMN_PRIORITY,COLUMN_DIFFICULTY,COLUMN_IDPROYECTO,COLUMN_IDTABLERO,COLUMN_CREATOR,COLUMN_IDPROYECTO);
 
 
     }

@@ -1,5 +1,7 @@
 package com.craterstudio.juanfrancrater.ipewa.util;
 
+import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -10,9 +12,6 @@ import android.preference.PreferenceManager;
 public class AppPreferencesHelper implements GeneralPreferencesHelper {
     private static final String TAG = "AppPreferencesHelper";
 
-
-
-
     /**
      * 1) Se define todas las Key posibles del fichero preferences
      */
@@ -21,6 +20,8 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
         void onSharedPrerenceChange();
     }
 
+
+    public static final String PREF_NAME = "Inventory_pref";
     //2. Objeto para editar las preferencias
     private final SharedPreferences preferences;
     private static AppPreferencesHelper instance;
@@ -30,11 +31,10 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
 
     private AppPreferencesHelper() {
         //Si es el fichero por defecto de las preferencias
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(ThisApplication.getContext());
+        this.preferences = ((Application)ThisApplication.getContext()).getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         listener= new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-                ThisApplication.getContext();
             }
         };
         //Si es un fichero con nombre diferente
@@ -55,40 +55,45 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
      */
 
     public int getLastIDTablero() {
-        int id=preferences.getInt(PREF_KEY_LAST_ID_TABLERO, 0);
+        int id=preferences.getInt(PREF_KEY_LAST_ID_TABLERO, 10);
         return id;
     }
     public void setLastIDTablero(int id) {
         preferences.edit().putInt(PREF_KEY_LAST_ID_TABLERO,id);
     }
+
+
     public String getCurrentUserName() {
         String name=preferences.getString(PREF_KEY_CURRENT_USER_NAME, null);
         return name;
     }
+
     public String getCurrentUserID() {
         String name=preferences.getString(PREF_KEY_CURRENT_USER_ID, null);
         return name;
     }
+
     public void setCurrentUserID(String currentUserID) {
         preferences.edit().putString(PREF_KEY_CURRENT_USER_ID,currentUserID);
     }
 
     public int getLastIDProject() {
-        int id=preferences.getInt(PREF_KEY_LAST_ID_PROJECT, 0);
+        int id=preferences.getInt(PREF_KEY_LAST_ID_PROJECT, 10);
         return id;
     }
+
     public void setLastIDProject(int i)
     {
         preferences.edit().putInt(PREF_KEY_LAST_ID_PROJECT,i);
     }
 
     public int getLastIDMeta() {
-        int id=preferences.getInt(PREF_KEY_LAST_ID_META, 0);
+        int id=preferences.getInt(PREF_KEY_LAST_ID_META, 10);
         return id;
     }
 
     public int getLastIDTarea() {
-        int id=preferences.getInt(PREF_KEY_LAST_ID_TAREA, 0);
+        int id=preferences.getInt(PREF_KEY_LAST_ID_TAREA, 10);
         return id;
     }
 
@@ -103,6 +108,7 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
     public void setRememberMe(Boolean bool) {
         preferences.edit().putBoolean(PREF_KEY_REMEMBER_ME,bool).apply();
     }
+
     public boolean getRememberMe() {
         Boolean remember=preferences.getBoolean(PREF_KEY_REMEMBER_ME, false);
         return remember;
@@ -112,6 +118,7 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
         Boolean bool=preferences.getBoolean(PREf_KEY_SHOW_USER_NAME, false);
         return bool;
     }
+
     public void setCurrentUserName(String name) {
         preferences.edit().putString(PREF_KEY_CURRENT_USER_NAME,name).apply();
     }
@@ -119,15 +126,18 @@ public class AppPreferencesHelper implements GeneralPreferencesHelper {
     {
         preferences.edit().putInt(PREF_KEY_DAYS_NOTIFICATION_TASK,days).apply();
     }
+
     public int getsetDaysNotTask()
     {
         int days=preferences.getInt(PREF_KEY_DAYS_NOTIFICATION_TASK,7);
         return days;
     }
+
     public void setDaysNotMeta(int days)
     {
         preferences.edit().putInt(PREF_KEY_DAYS_NOTIFICATION_META,days).apply();
     }
+
     public int getsetDaysNotMeta()
     {
         int days=preferences.getInt(PREF_KEY_DAYS_NOTIFICATION_META,7);

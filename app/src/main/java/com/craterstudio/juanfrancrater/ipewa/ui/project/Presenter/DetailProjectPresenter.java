@@ -18,7 +18,7 @@ public class DetailProjectPresenter implements ProjectContrat.DetailProject.Pres
     }
 
     @Override
-    public void getProject(String id) {
+    public void getProject(int id) {
         interactor.getProject(id);
     }
 

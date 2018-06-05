@@ -32,12 +32,12 @@ public class WelcomePresenter implements WelcomeContrat.Presenter,WelcomeInterac
     }
 
     @Override
-    public void deleteTask(String i) {
+    public void deleteTask(int i) {
         interactor.deleteTask(i);
     }
 
     @Override
-    public void deleteMeta(String i) {
+    public void deleteMeta(int i) {
         interactor.deleteMeta(i);
     }
 

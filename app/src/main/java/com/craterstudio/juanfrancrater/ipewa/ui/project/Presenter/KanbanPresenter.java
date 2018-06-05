@@ -22,17 +22,22 @@ public class KanbanPresenter implements TaskTabContrat.presenter , TaskTabContra
     }
 
     @Override
-    public void obtenerList(String id) {
+    public void obtenerList(int id) {
         interactor.obtenerList(id);
     }
 
     @Override
-    public void delete(String i,String tipo) {
+    public void delete(int i,String tipo) {
         interactor.delete(i,tipo);
     }
 
     @Override
     public void reload(ArrayList<Tarea> tareas, ArrayList<Meta> metas, ArrayList<Tablero> tableros) {
         view.reload(tareas,metas,tableros);
+    }
+
+    @Override
+    public void reload() {
+       view.restart();
     }
 }

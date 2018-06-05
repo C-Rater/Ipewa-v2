@@ -24,7 +24,7 @@ import static com.vansuita.materialabout.views.RoundedDrawable.TAG;
 
 public class ThisApplication extends Application {
     private static FirebaseAuth mAuth;
-    private AppPreferencesHelper appPreferencesHelper;
+    private static AppPreferencesHelper appPreferencesHelper;
     private static ThisApplication mContext;
 
     private static GoogleSignInClient mGoogleSignInClient;
@@ -54,7 +54,7 @@ public class ThisApplication extends Application {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
-    public AppPreferencesHelper getAppPreferencesHelper()
+    public static AppPreferencesHelper getAppPreferencesHelper()
     {
         return appPreferencesHelper;
     }

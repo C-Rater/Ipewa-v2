@@ -136,12 +136,6 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
             case R.id.action_preff:
                 startActivity(new Intent(WelcomeActivity.this, PrefferencesActivity.class));
                 break;
-            case R.id.sortbyDate:
-                presenter.sortByDate();
-                break;
-            case R.id.showByDays:
-                presenter.obtainElements(sharedPreferences.getsetDaysNotTask(),sharedPreferences.getsetDaysNotMeta());
-                break;
         }
         return super.onOptionsItemSelected(item);
 
@@ -150,7 +144,6 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     @Override
     protected void onResume() {
         super.onResume();
-
         sharedPreferences=((ThisApplication)getApplicationContext()).getAppPreferencesHelper();
         presenter.obtainElements(sharedPreferences.getsetDaysNotTask(), sharedPreferences.getsetDaysNotMeta());
     }
@@ -168,8 +161,8 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
     }
 
     @Override
-    public void reload() {
-        startActivity(new Intent(this,this.getClass()));
+    public void reload() { finish();
+        startActivity(getIntent());
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -323,7 +316,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrat
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        presenter.obtainElements(-1, -1);
+        super.onActivityResult(requestCode, resultCode, data); finish();
+        startActivity(getIntent());
     }
 }

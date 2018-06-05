@@ -52,28 +52,27 @@ public class TareaRepository {
         Collections.sort(tareas, new Tarea.TareaOrderByDifficulty());
         return  tareas;
     }
-    public ArrayList<Tarea> getTareasSortByPri()
-    {
+    public ArrayList<Tarea> getTareasSortByPri(){
         Collections.sort(tareas, new Tarea.TareaOrderByPriority());
         return  tareas;
     }
 
-    public void setTarea(String id, Tarea tarea) {
+    public void setTarea(int id, Tarea tarea) {
         dao.set(id,tarea);
     }
 
 
-    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto, String idTablero) {
+    public void addTarea(String name, String description, int color, String deadLine, String priority, String difficulty, int idProyecto, int idTablero) {
         AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
         String creator=sharedPreferences.getCurrentUserID();
         String creatorname= sharedPreferences.getCurrentUserName();
         int id= sharedPreferences.getLastIDTarea();
-        dao.add(new Tarea(String.valueOf(id)+idProyecto,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));
+        dao.add(new Tarea(0,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creatorname));
         sharedPreferences.setLastIDTarea(id++);
 
     }
 
-    public ArrayList<Tarea> getTareasByProjectId(String id) {
+    public ArrayList<Tarea> getTareasByProjectId(int id) {
         ArrayList<Tarea> tareasP= new ArrayList<>();
 
         Iterator<Tarea> iterator= getInstance().getTareas().iterator();
@@ -81,21 +80,21 @@ public class TareaRepository {
         while(iterator.hasNext())
         {
             temp=iterator.next();
-            if(temp.get_idProyecto().equals(id))
+            if(temp.get_idProyecto()==id)
             {
                 tareasP.add(temp);
             }
         }
         return tareasP;
     }
-    public void deleteTareasByProjectId(String id) {
+    public void deleteTareasByProjectId(int id) {
 
         Iterator<Tarea> iterator= getInstance().getTareas().iterator();
         Tarea temp;
         while(iterator.hasNext())
         {
             temp=iterator.next();
-            if(temp.get_idProyecto().equals(id))
+            if(temp.get_idProyecto()==(id))
             {
               dao.delete(temp.get_ID());
             }
@@ -116,7 +115,7 @@ public class TareaRepository {
         return dao.getSortByDate();
     }
 
-    public void deleteTask(String i) {
+    public void deleteTask(int i) {
         dao.delete(i);
     }
 }

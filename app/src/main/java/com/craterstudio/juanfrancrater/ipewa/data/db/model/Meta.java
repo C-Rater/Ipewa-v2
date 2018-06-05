@@ -10,25 +10,25 @@ import android.os.Parcelable;
  */
 
 public class Meta implements Parcelable {
-    String _ID;
+    int _ID;
     String _name;
     String _description;
     int _color;
     String _deadLine;
     String _priority;
     String _difficulty;
-    String _idProyecto;
+    int _idProyecto;
     String _creator;
 
     protected Meta(Parcel in) {
-        _ID = in.readString();
+        _ID = in.readInt();
         _name = in.readString();
         _description = in.readString();
         _color = in.readInt();
         _deadLine = in.readString();
         _priority = in.readString();
         _difficulty = in.readString();
-        _idProyecto = in.readString();
+        _idProyecto = in.readInt();
         _creator = in.readString();
     }
 
@@ -54,11 +54,11 @@ public class Meta implements Parcelable {
 
 
 
-    public String get_ID() {
+    public int get_ID() {
         return _ID;
     }
 
-    public void set_ID(String _ID) {
+    public void set_ID(int _ID) {
         this._ID = _ID;
     }
 
@@ -110,7 +110,7 @@ public class Meta implements Parcelable {
         this._difficulty = _difficulty;
     }
 
-    public Meta(String _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,String _idProyecto,String _creator) {
+    public Meta(int _ID, String _name, String _description, int _color, String _deadLine, String _priority, String _difficulty,int _idProyecto,String _creator) {
         this._ID = _ID;
         this._name = _name;
         this._description = _description;
@@ -122,11 +122,11 @@ public class Meta implements Parcelable {
         this._creator=_creator;
     }
 
-    public String get_idProyecto() {
+    public int get_idProyecto() {
         return _idProyecto;
     }
 
-    public void set_idProyecto(String _idProyecto) {
+    public void set_idProyecto(int _idProyecto) {
         this._idProyecto = _idProyecto;
     }
 
@@ -142,14 +142,14 @@ public class Meta implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(_ID);
+        parcel.writeInt(_ID);
         parcel.writeString(_name);
         parcel.writeString(_description);
         parcel.writeInt(_color);
         parcel.writeString(_deadLine);
         parcel.writeString(_priority);
         parcel.writeString(_difficulty);
-        parcel.writeString(_idProyecto);
+        parcel.writeInt(_idProyecto);
         parcel.writeString(_creator);
     }
 }

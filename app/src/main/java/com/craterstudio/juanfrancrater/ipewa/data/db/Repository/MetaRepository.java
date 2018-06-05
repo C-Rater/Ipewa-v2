@@ -33,7 +33,7 @@ public class MetaRepository {
     {
         return metaRepository;
     }
-    public ArrayList<Meta> getMetasByProject(String id) {
+    public ArrayList<Meta> getMetasByProject(int id) {
         return dao.getMetasByProject(id);
     }
     public ArrayList<Meta> getMetasInDays(int id) {
@@ -46,20 +46,18 @@ public class MetaRepository {
 
     public void add(Meta meta) {
         AppPreferencesHelper sharedPreferences=AppPreferencesHelper.getInstance();
-        String creator=sharedPreferences.getCurrentUserID();
         String creatorname= sharedPreferences.getCurrentUserName();
-        int id= sharedPreferences.getLastIDMeta();
-        Meta meta1 = new Meta(String.valueOf(id)+meta.get_idProyecto(),meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname);
+        Meta meta1 = new Meta(0,meta.get_name(),meta.get_description(),meta.get_color(),meta.get_deadLine(),meta.get_priority(),meta.get_difficulty(),meta.get_idProyecto(),creatorname);
         dao.add(meta1);
-        sharedPreferences.setLastIdMeta(id++);
     }
     public void edit(Meta meta) {
         dao.edit(meta);
     }
 
-    public void deleteMetasByProjectId(String id) {
+    public void deleteMetasByProjectId(int id) {
+        metas=getInstance().getMetas();
         for(int i=0; i<metas.size();i++){
-            if(metas.get(i).get_idProyecto().equals(id))
+            if(metas.get(i).get_idProyecto()==(id))
             { dao.delete(metas.get(i));}
         }
 
@@ -73,7 +71,7 @@ public class MetaRepository {
         return dao.getSortByDate();
     }
 
-    public void delete(String i) {
+    public void delete(int i) {
         dao.delete(i);
     }
 }

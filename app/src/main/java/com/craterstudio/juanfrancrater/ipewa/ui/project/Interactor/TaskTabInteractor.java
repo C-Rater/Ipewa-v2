@@ -19,7 +19,7 @@ public class TaskTabInteractor implements TaskTabContrat.interactor {
     }
 
     @Override
-    public void obtenerList(String id) {
+    public void obtenerList(int id) {
        ArrayList tableros= TableroRepository.getInstance().getTableros(id);
        ArrayList metas= MetaRepository.getInstance().getMetasByProject(id);
        ArrayList tareas = TareaRepository.getInstance().getTareasByProjectId(id);
@@ -27,7 +27,7 @@ public class TaskTabInteractor implements TaskTabContrat.interactor {
     }
 
     @Override
-    public void delete(String i, String tipo) {
+    public void delete(int i, String tipo) {
         if(tipo.equals("1"))
         {
             TareaRepository.getInstance().deleteTask(i);
@@ -35,5 +35,6 @@ public class TaskTabInteractor implements TaskTabContrat.interactor {
         {
             MetaRepository.getInstance().delete(i);
         }
+        listener.reload();
     }
 }

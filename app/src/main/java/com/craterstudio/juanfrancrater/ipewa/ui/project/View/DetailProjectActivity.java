@@ -63,7 +63,7 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
             public void onClick(View v) {
                 Intent intent = new Intent(DetailProjectActivity.this, EditProjectActivity.class);
                 Bundle bnd = new Bundle();
-                bnd.putString("editProject", detailProject.get_ID());
+                bnd.putInt("editProject", detailProject.get_ID());
                 intent.putExtras(bnd);
                 startActivityForResult(intent,0);
             }

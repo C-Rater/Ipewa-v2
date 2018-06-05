@@ -90,6 +90,12 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         this.metas=metas;
     }
 
+    @Override
+    public void restart() {
+        finish();
+        startActivity(getIntent());
+    }
+
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragments = new ArrayList<>();
@@ -124,7 +130,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         for (int i=0; i<tableros.size();i++)
         adapter.addFragment(TabFragment.newInstance(tableros.get(i).get_ID()),tableros.get(i).get_name());
-        adapter.addFragment(TabFragment.newInstance("-1"),"Metas");
+        adapter.addFragment(TabFragment.newInstance(-1),"Metas");
         viewPager.setAdapter(adapter);
     }
     private void setToolbar() {
@@ -136,10 +142,10 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
 
         private static final String tabNumber = "tabNumber";
 
-        public static TabFragment newInstance(String tabpos) {
+        public static TabFragment newInstance(int tabpos) {
             TabFragment fragment = new TabFragment();
             Bundle args = new Bundle();
-            args.putString(tabNumber, tabpos);
+            args.putInt(tabNumber, tabpos);
             fragment.setArguments(args);
             return fragment;
         }
@@ -151,10 +157,10 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_kanban, container, false);
-            String tablero= getArguments().getString(tabNumber);
+            int tablero= getArguments().getInt(tabNumber);
             ListView view = rootView.findViewById(R.id.list);
             ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1);
-            if(!tablero.equals("-1")) {
+            if(tablero!=-1) {
 
                 view.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
@@ -199,7 +205,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
 
                 for(int i=0;i<tareas.size();i++)
                 {
-                    if(tareas.get(i).get_idTablero().equals(tablero))
+                    if(tareas.get(i).get_idTablero()==(tablero))
                     {
                         adapter.add(tareas.get(i));
                     }
@@ -219,6 +225,7 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
                                 if (which == DELETE)
                                 {
                                     presenter.delete(metas.get(i).get_ID(),"-1");
+
 
                                 }else if (which == EDIT)
                                 {
@@ -257,4 +264,10 @@ public class KanbanActivity extends AppCompatActivity implements TaskTabContrat.
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        finish();
+        startActivity(getIntent());
+    }
 }

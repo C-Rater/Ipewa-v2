@@ -21,7 +21,7 @@ public class EditMetaInteractor  implements MetaContrat.editMeta.Interactor {
 
 
     @Override
-    public void EditMeta(String id, String name, String description, int color, String deadLine, String priority, String difficulty, String _idProyecto, String creator) {
+    public void EditMeta(int id, String name, String description, int color, String deadLine, String priority, String difficulty, int _idProyecto, String creator) {
         if (!name.isEmpty()) {
             MetaRepository.getInstance().edit(new Meta(id, name, description, color, deadLine, priority, difficulty, _idProyecto, creator));
             listener.back();
@@ -40,6 +40,6 @@ public class EditMetaInteractor  implements MetaContrat.editMeta.Interactor {
 
         void showEmptyName();
 
-        void fillIdList(ArrayList<String> idProjects);
+        void fillIdList(ArrayList<Integer> idProjects);
     }
 }

@@ -31,7 +31,7 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(9));
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8),cursor.getString(9));
                 tareaArrayList.add(tarea);
             }while (cursor.moveToNext());
         }
@@ -39,13 +39,13 @@ public class TareaDao {
         return tareaArrayList;
     }
 
-    public void delete(String id) {
+    public void delete(int id) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        sqLiteDatabase.delete(MyContrats.Tareas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ id} );
+        sqLiteDatabase.delete(MyContrats.Tareas.TABLE_NAME, BaseColumns._ID+"=?",new String[]{ String.valueOf(id)} );
         MyOpenHelper.getInstance().closeDateBase();
     }
 
-    public void set(String id, Tarea tarea) {
+    public void set(int id, Tarea tarea) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
         ContentValues contentValues=createContent(tarea);
         sqLiteDatabase.update(MyContrats.Tareas.TABLE_NAME,contentValues,BaseColumns._ID+"=?",new String[]{ String.valueOf(id)});
@@ -68,9 +68,9 @@ public class TareaDao {
         return contentValues;
     }
 
-    public void add(String name, String description, int color, String deadLine, String priority, String difficulty, String idProyecto,String idTablero,String creator) {
+    public void add(String name, String description, int color, String deadLine, String priority, String difficulty, int idProyecto,int idTablero,String creator) {
         final SQLiteDatabase sqLiteDatabase = MyOpenHelper.getInstance().openDateBase();
-        ContentValues contentValues=createContent(new Tarea("a",name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creator));
+        ContentValues contentValues=createContent(new Tarea(0,name,description,color,deadLine,priority,difficulty,idProyecto,idTablero,creator));
         sqLiteDatabase.insert(MyContrats.Tareas.TABLE_NAME,null,contentValues);
         MyOpenHelper.getInstance().closeDateBase();
     }
@@ -96,7 +96,7 @@ public class TareaDao {
             if(cursor.moveToFirst())
             {
                 do{
-                    Tarea tarea=new Tarea(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(9));
+                    Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8),cursor.getString(9));
                     tareaArrayList.add(tarea);
                 }while (cursor.moveToNext());
             }
@@ -120,7 +120,7 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(9));
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8),cursor.getString(9));
                 tareaArrayList.add(tarea);
             }while (cursor.moveToNext());
         }
@@ -138,8 +138,8 @@ public class TareaDao {
         if(cursor.moveToFirst())
         {
             do{
-                Tarea tarea=new Tarea(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getString(9));
-                tareaArrayList.add(tarea);
+                Tarea tarea=new Tarea(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getInt(7),cursor.getInt(8),cursor.getString(9));
+
             }while (cursor.moveToNext());
         }
         MyOpenHelper.getInstance().closeDateBase();
