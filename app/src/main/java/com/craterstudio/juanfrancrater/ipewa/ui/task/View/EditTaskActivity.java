@@ -62,6 +62,7 @@ public class EditTaskActivity extends AppCompatActivity implements TaskContrat.e
         setContentView(R.layout.activity_edit_task);
         presenter = new EditTaskPresenter(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.tareas);
         setSupportActionBar(toolbar);
         editTask = (Tarea) getIntent().getExtras().getParcelable("editTask");
         color= editTask.get_color();

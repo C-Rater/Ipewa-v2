@@ -2,6 +2,7 @@ package com.craterstudio.juanfrancrater.ipewa.ui.project.View;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.craterstudio.juanfrancrater.ipewa.R;
+import com.craterstudio.juanfrancrater.ipewa.ui.Welcome.view.WelcomeActivity;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Contrats.ProjectContrat;
 import com.craterstudio.juanfrancrater.ipewa.ui.project.Presenter.AddProjectPresenter;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
@@ -57,6 +59,19 @@ public class AddProjectActivity extends AppCompatActivity implements ProjectCont
         {}
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        try {
+            if (getIntent().getExtras().getInt("requestCode") == 15) {
+                finish();
+                startActivity(new Intent(AddProjectActivity.this, WelcomeActivity.class));
+            }
+        }catch (Exception e)
+        {}
+    }
+
     private void datePicker()
     { Calendar mcurrentDate = Calendar.getInstance();
     mYear = mcurrentDate.get(Calendar.YEAR);

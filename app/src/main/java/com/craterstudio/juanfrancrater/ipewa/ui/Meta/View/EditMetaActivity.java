@@ -62,6 +62,7 @@ public class EditMetaActivity extends AppCompatActivity implements MetaContrat.e
         presenter = new EditMetaPresenter(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.metas);
         editMeta = getIntent().getExtras().getParcelable("editMeta");
         color= editMeta.get_color();
         initialize();

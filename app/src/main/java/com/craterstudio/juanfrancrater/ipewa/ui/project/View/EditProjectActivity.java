@@ -78,6 +78,11 @@ public class EditProjectActivity extends AppCompatActivity implements ProjectCon
         tiedtDescription.setText(editProject.get_description());
         iconColor=findViewById(R.id.iconColorPicker);
         txtColor=findViewById(R.id.txtColor);
+        try {
+        }catch (Exception e)
+        {
+            txtColor.setText("Color");
+        }
         iconColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

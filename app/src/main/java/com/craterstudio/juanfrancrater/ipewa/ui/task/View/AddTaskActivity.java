@@ -55,6 +55,7 @@ public class AddTaskActivity extends AppCompatActivity implements TaskContrat.ad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.tareas);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

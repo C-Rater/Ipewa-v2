@@ -45,6 +45,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContrat.Vie
     private TextView txtVIfSignUp,txtVPasswordForget;
     private CheckBox chkB_Remember;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+            moveTaskToBack(true);
+    }
 
     @Override
     protected void onStart() {

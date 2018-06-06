@@ -33,6 +33,7 @@ public class PrefferencesActivity extends PreferenceActivity {
                 AppPreferencesHelper sharedPreferences = ((ThisApplication) getApplicationContext()).getAppPreferencesHelper();
                 sharedPreferences.setRememberMe(false);
                 Intent intnt = new Intent(PrefferencesActivity.this, SplashActivity.class);
+                intnt.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intnt);
                 return true;
             }

@@ -3,4 +3,5 @@
     <item name="userEmptyError" type="id">User is empty</item>
     <item name="errorhappen" type="id">Ha ocurrido un error</item>
     <item name="toDo" type="id">Tareas</item>
+    <item name="deadline" type="id">Fecha Tope</item>
 </resources>

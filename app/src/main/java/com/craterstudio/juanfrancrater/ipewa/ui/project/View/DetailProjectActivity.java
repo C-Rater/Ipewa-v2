@@ -33,8 +33,8 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
     ProjectContrat.DetailProject.Presenter presenter;
     TextView txvName,txvDescription,txvDeadLine;
     FloatingActionButton fab;
-    MaterialLetterIcon icon;
     Button btnListaTareas;
+     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +43,9 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
         presenter= new DetailProjectPresenter(this);
         btnListaTareas=findViewById(R.id.btnListaTareas);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initialize();
-        Log.d("Project",String.valueOf(detailProject.get_ID()));
         btnListaTareas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +67,16 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
                 startActivityForResult(intent,0);
             }
         });
+
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+       presenter.getProject(detailProject.get_ID());
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
 
     private void initialize() {
@@ -78,29 +87,22 @@ public class DetailProjectActivity extends AppCompatActivity implements ProjectC
         txvDescription.setText(detailProject.get_description());
         txvDeadLine=findViewById(R.id.txvDeadLine);
         try {
-            txvDeadLine.setText(detailProject.get_deadLine().substring(8, 10) + detailProject.get_deadLine().substring(4, 8) + detailProject.get_deadLine().substring(0, 4));
+            txvDeadLine.setText(getResources().getString(R.string.deadline)+": "+detailProject.get_deadLine().substring(8, 10) + detailProject.get_deadLine().substring(4, 8) + detailProject.get_deadLine().substring(0, 4));
         }catch (StringIndexOutOfBoundsException e){
-            txvDeadLine.setText("");
+            txvDeadLine.setText(getResources().getString(R.string.deadline)+": "+"");
         }
         fab=findViewById(R.id.fab);
-        icon=findViewById(R.id.icon);
-        icon.setLetter(detailProject.get_name().substring(0));
-        icon.setLetterColor(Color.parseColor("white"));
-        icon.setLetterSize(R.dimen.letter_icon_size);
-        icon.setShapeColor(detailProject.get_color());
-    }
-
-    @Override
-    protected void onResume() {
-        if(detailProject!=null)
-        presenter.getProject(detailProject.get_ID());
-        super.onResume();
+        toolbar.setBackgroundColor(detailProject.get_color());
     }
 
     @Override
     public void reloadProject(Proyecto proyecto) {
         detailProject=proyecto;
-        initialize();
+        Bundle bnd = new Bundle();
+        bnd.putParcelable("detailProject",proyecto);
+        getIntent().putExtras(bnd);
+        finish();
+        startActivity(getIntent());
     }
 
     @Override
